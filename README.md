@@ -4,6 +4,41 @@ A modern, feature-rich congregation website built with Next.js 14, TypeScript, a
 
 ## 🌟 Features
 
+### 🎯 NEW: Enterprise Integrations
+
+#### **Sanity.io CMS** 📝
+- Professional content management system
+- No-code content editing for non-technical users
+- Manage events, sermons, news, prayer requests, volunteers
+- Real-time content updates
+- Access at `/studio`
+
+#### **NextAuth.js Member Portal** 🔐
+- Secure member authentication with Google OAuth
+- Personalized member dashboard
+- Track events, giving history, and group memberships
+- Protected member-only resources
+- Profile management
+
+#### **Stripe Payment Processing** 💳
+- One-time and recurring donations
+- Multiple giving categories
+- Secure PCI-compliant processing
+- Automatic tax receipts
+- 2.9% + $0.30 per transaction
+
+#### **SendGrid Email Automation** 📧
+- Automated donation receipts
+- Event reminders
+- Welcome emails for new members
+- Newsletter distribution
+- Beautiful HTML templates
+
+**📖 Setup Guide**: See [`docs/INTEGRATIONS_GUIDE.md`](docs/INTEGRATIONS_GUIDE.md)
+**🆕 What's New**: See [`docs/NEW_FEATURES.md`](docs/NEW_FEATURES.md)
+
+---
+
 ### Core Features (Based on cofchrist.org)
 - **Responsive Design** - Mobile-first, fully responsive layout
 - **Navigation** - Intuitive navigation with About, Grow, Connect, and Give sections
