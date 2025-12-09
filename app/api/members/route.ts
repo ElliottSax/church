@@ -1,0 +1,56 @@
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getAllMembers, getPublicMembers, searchMembers } from '@/lib/members';
+
+export const dynamic = 'force-dynamic';
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const isPublic = searchParams.get('public') === 'true';
+  const query = searchParams.get('q');
+
+  try {
+    // Check if user is authenticated for non-public access
+    if (!isPublic) {
+      const session = await getServerSession(authOptions);
+      if (!session) {
+        return NextResponse.json(
+          { error: 'Unauthorized' },
+          { status: 401 }
+        );
+      }
+    }
+
+    let members;
+    if (query) {
+      members = await searchMembers(query);
+    } else if (isPublic) {
+      members = await getPublicMembers();
+    } else {
+      members = await getAllMembers();
+    }
+
+    // Filter sensitive information for public access
+    if (isPublic) {
+      members = members.map(member => ({
+        id: member.id,
+        displayName: member.displayName,
+        email: member.email,
+        membershipStatus: member.membershipStatus,
+        skills: member.skills,
+        interests: member.interests,
+        ministries: member.ministries,
+        photo: member.photo,
+      }));
+    }
+
+    return NextResponse.json(members);
+  } catch (error) {
+    console.error('Error fetching members:', error);
+    return NextResponse.json(
+      { error: 'Failed to fetch members' },
+      { status: 500 }
+    );
+  }
+}
