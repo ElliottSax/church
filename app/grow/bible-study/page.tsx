@@ -69,9 +69,28 @@ export default function BibleStudyPage() {
         else params.append("ageGroup", filter);
       }
 
-      const response = await fetch(`/api/calendar/bible-study?${params}`);
-      const data = await response.json();
-      setGroups(data.groups);
+      const response = await fetch(`/api/calendar/bible-study?${params}`).catch(() => null);
+      if (response) {
+        const data = await response.json();
+        setGroups(data.groups);
+      } else {
+        // Use mock data for static deployment
+        setGroups([
+          {
+            id: "demo-1",
+            name: "Demo Bible Study Group",
+            leader: "Demo Leader",
+            schedule: "Wednesdays, 7:00 PM",
+            location: "Room 101",
+            description: "This is a demo group. In production, groups would load from a database.",
+            currentBook: "Demo Book",
+            spotsAvailable: 10,
+            maxCapacity: 20,
+            fillPercentage: 50,
+            currentMembers: 10,
+          }
+        ]);
+      }
     } catch (error) {
       console.error("Error fetching bible study groups:", error);
     } finally {
