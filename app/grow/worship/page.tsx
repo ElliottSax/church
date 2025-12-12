@@ -15,7 +15,7 @@ export default function WorshipPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Worship Services</h1>
             <p className="text-xl text-primary-100 mb-8">
-              Join us in celebrating God's love through music, message, and community
+              Join us in celebrating God&apos;s love through music, message, and community
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -62,7 +62,7 @@ export default function WorshipPage() {
                 </h3>
                 <p className="text-2xl font-bold text-primary-600 mb-2">Communion</p>
                 <p className="text-secondary-600 text-sm">
-                  We celebrate the Lord's Supper together
+                  We celebrate the Lord&apos;s Supper together
                 </p>
               </div>
 
@@ -121,7 +121,7 @@ export default function WorshipPage() {
                     <p className="text-secondary-700">
                       Our pastors deliver thoughtful, relevant sermons that connect
                       scripture with daily life. Messages typically run 20-25 minutes and
-                      focus on God's love and our call to discipleship.
+                      focus on God&apos;s love and our call to discipleship.
                     </p>
                   </div>
                 </div>
@@ -135,7 +135,7 @@ export default function WorshipPage() {
                       Welcoming Community
                     </h3>
                     <p className="text-secondary-700">
-                      We believe worship is better together. You'll find a warm, friendly
+                      We believe worship is better together. You&apos;ll find a warm, friendly
                       congregation that genuinely cares about one another. Coffee and
                       fellowship follow the service.
                     </p>
@@ -203,7 +203,7 @@ export default function WorshipPage() {
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">
-                      Children's Moment
+                      Children&apos;s Moment
                     </h4>
                     <p className="text-sm text-secondary-600">
                       Kids come forward for a brief lesson
@@ -282,8 +282,8 @@ export default function WorshipPage() {
               <div className="bg-white rounded-lg p-6">
                 <h3 className="font-semibold text-secondary-900 mb-3">Children</h3>
                 <p className="text-secondary-700 text-sm">
-                  Nursery available for infants-3 years. Children's Church for ages 4-11
-                  starts after the Children's Moment. Kids are always welcome in worship!
+                  Nursery available for infants-3 years. Children&apos;s Church for ages 4-11
+                  starts after the Children&apos;s Moment. Kids are always welcome in worship!
                 </p>
               </div>
 
@@ -306,7 +306,7 @@ export default function WorshipPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-secondary-900 mb-4">
-              Can't Join Us in Person?
+              Can&apos;t Join Us in Person?
             </h2>
             <p className="text-lg text-secondary-700 mb-8">
               Watch our worship services live online every Sunday at 10:00 AM, or catch up

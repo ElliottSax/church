@@ -51,7 +51,7 @@ export default function GrowPage() {
                 Bible Study
               </h2>
               <p className="text-secondary-600 mb-4">
-                Dive deep into Scripture with our weekly Bible study. Explore God's
+                Dive deep into Scripture with our weekly Bible study. Explore God&apos;s
                 word together and discover its relevance for today.
               </p>
               <span className="text-primary-600 font-semibold group-hover:underline">
@@ -69,7 +69,7 @@ export default function GrowPage() {
               </h2>
               <p className="text-secondary-600 mb-4">
                 Connect with others in prayer. Share concerns, celebrate blessings,
-                and experience God's presence together.
+                and experience God&apos;s presence together.
               </p>
               <span className="text-primary-600 font-semibold group-hover:underline">
                 Learn More →

@@ -74,7 +74,7 @@ const sermons: Sermon[] = [
   },
   {
     id: 6,
-    title: "God's Unconditional Love",
+    title: "God&apos;s Unconditional Love",
     speaker: "Rev. John Miller",
     date: "November 5, 2025",
     series: "Living the Gospel",

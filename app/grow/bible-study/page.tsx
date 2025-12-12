@@ -169,7 +169,7 @@ export default function BibleStudyPage() {
               Bible Study Groups
             </h1>
             <p className="text-xl text-primary-100">
-              Join a community of believers as we dive deep into God's Word together.
+              Join a community of believers as we dive deep into God&apos;s Word together.
               Find a group that fits your schedule and spiritual journey.
             </p>
           </motion.div>
