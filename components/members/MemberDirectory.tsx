@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -61,11 +61,7 @@ export default function MemberDirectory({
   }, [members]);
 
   // Load members data
-  useEffect(() => {
-    loadMembers();
-  }, [isPublic]);
-
-  const loadMembers = async () => {
+  const loadMembers = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(
@@ -81,7 +77,11 @@ export default function MemberDirectory({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [isPublic]);
+
+  useEffect(() => {
+    loadMembers();
+  }, [loadMembers]);
 
   // Filter members based on search and filters
   useEffect(() => {
@@ -411,9 +411,11 @@ export default function MemberDirectory({
                   {/* Avatar */}
                   <div className="flex justify-center mb-4">
                     {member.photo ? (
-                      <img
+                      <Image
                         src={member.photo}
                         alt={member.displayName}
+                        width={96}
+                        height={96}
                         className="w-24 h-24 rounded-full object-cover"
                       />
                     ) : (
@@ -512,9 +514,11 @@ export default function MemberDirectory({
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       {member.photo ? (
-                        <img
+                        <Image
                           src={member.photo}
                           alt={member.displayName}
+                          width={40}
+                          height={40}
                           className="w-10 h-10 rounded-full object-cover mr-3"
                         />
                       ) : (
@@ -609,9 +613,11 @@ export default function MemberDirectory({
                   {/* Avatar */}
                   <div className="-mt-16 mb-4">
                     {selectedMember.photo ? (
-                      <img
+                      <Image
                         src={selectedMember.photo}
                         alt={selectedMember.displayName}
+                        width={128}
+                        height={128}
                         className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
                       />
                     ) : (

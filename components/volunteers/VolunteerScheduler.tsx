@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
@@ -48,11 +48,7 @@ export default function VolunteerScheduler({
     status: "all",
   });
 
-  useEffect(() => {
-    loadScheduleData();
-  }, [selectedDate]);
-
-  const loadScheduleData = async () => {
+  const loadScheduleData = useCallback(async () => {
     setIsLoading(true);
     try {
       // Load shifts for the selected period
@@ -75,7 +71,11 @@ export default function VolunteerScheduler({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [selectedDate, viewMode]);
+
+  useEffect(() => {
+    loadScheduleData();
+  }, [loadScheduleData]);
 
   const getWeekDays = () => {
     const start = startOfWeek(selectedDate);
