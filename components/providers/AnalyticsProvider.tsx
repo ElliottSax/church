@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { initializeAnalytics, trackPageView, isAnalyticsEnabled } from "@/lib/analytics";
 
 export default function AnalyticsProvider({
@@ -10,7 +10,6 @@ export default function AnalyticsProvider({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   // Initialize analytics on mount
   useEffect(() => {
@@ -22,10 +21,12 @@ export default function AnalyticsProvider({
   // Track page views on route change
   useEffect(() => {
     if (isAnalyticsEnabled) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
+      // Get search params from window.location for static export compatibility
+      const searchParams = typeof window !== "undefined" ? window.location.search : "";
+      const url = pathname + searchParams;
       trackPageView(url);
     }
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return <>{children}</>;
 }
