@@ -179,7 +179,7 @@ export default function VolunteerPage() {
 
             <div className="bg-primary-50 rounded-lg p-8">
               <p className="text-secondary-700 mb-6">
-                We're currently seeking volunteers for these specific roles:
+                We&apos;re currently seeking volunteers for these specific roles:
               </p>
 
               <div className="space-y-4">

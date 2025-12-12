@@ -115,7 +115,7 @@ export default function GivePage() {
                     Mail a Check
                   </h3>
                   <p className="text-secondary-600">
-                    Make checks payable to "Minneapolis Community of Christ" and mail to:<br />
+                    Make checks payable to &quot;Minneapolis Community of Christ&quot; and mail to:<br />
                     123 Main Street, Minneapolis, MN 55401
                   </p>
                 </div>

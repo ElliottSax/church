@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import {
   Book,
@@ -56,11 +56,7 @@ export default function BibleStudyPage() {
     message: string;
   }>({ type: null, message: "" });
 
-  useEffect(() => {
-    fetchGroups();
-  }, [filter]);
-
-  const fetchGroups = async () => {
+  const fetchGroups = useCallback(async () => {
     try {
       const params = new URLSearchParams();
       if (filter !== "all") {
@@ -96,7 +92,11 @@ export default function BibleStudyPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    fetchGroups();
+  }, [fetchGroups]);
 
   const handleRegistration = async (e: React.FormEvent) => {
     e.preventDefault();
