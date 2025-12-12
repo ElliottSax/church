@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
+    unoptimized: true,
     domains: ['localhost', 'cdn.sanity.io'],
   },
-  experimental: {
-    serverActions: {
-      allowedOrigins: ['localhost:3000'],
-    },
-  },
+  trailingSlash: true,
+  basePath: '/church',
+  assetPrefix: '/church/',
 };
 
 module.exports = nextConfig;
