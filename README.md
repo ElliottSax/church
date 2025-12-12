@@ -227,3 +227,4 @@ For technical support or questions:
 **Built with ❤️ for Minneapolis Community of Christ**
 
 *Proclaiming Jesus Christ and promoting communities of joy, hope, love, and peace.*
+
