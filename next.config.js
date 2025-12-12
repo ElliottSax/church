@@ -3,14 +3,8 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-    domains: ['localhost'],
+    domains: ['localhost', 'cdn.sanity.io'],
   },
-  // Remove experimental server actions for static export
-  // experimental: {
-  //   serverActions: {
-  //     allowedOrigins: ['localhost:3000'],
-  //   },
-  // },
   // Add trailing slash for better GitHub Pages compatibility
   trailingSlash: true,
   // Deploying to GitHub Pages with username.github.io/church
