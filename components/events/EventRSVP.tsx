@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   Calendar,
   MapPin,
@@ -155,7 +156,7 @@ export default function EventRSVP({ event, initialCapacity }: EventRSVPProps) {
         {capacity?.waitlistAvailable && (
           <p className="text-xs text-yellow-600 mt-2 flex items-center">
             <AlertCircle size={12} className="mr-1" />
-            Event is full - you'll be added to the waitlist
+            Event is full - you&apos;ll be added to the waitlist
           </p>
         )}
       </div>
@@ -170,10 +171,11 @@ export default function EventRSVP({ event, initialCapacity }: EventRSVPProps) {
       {/* Event Header */}
       <div className="relative h-64 bg-gradient-to-br from-primary-600 to-primary-800">
         {event.image && (
-          <img
+          <Image
             src={event.image}
             alt={event.title}
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            fill
+            className="object-cover opacity-30"
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

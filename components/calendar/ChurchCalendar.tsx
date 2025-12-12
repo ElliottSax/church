@@ -655,8 +655,8 @@ export default function ChurchCalendar({
               <option value="worship">Worship Services</option>
               <option value="education">Bible Study</option>
               <option value="youth">Youth</option>
-              <option value="mens">Men's Ministry</option>
-              <option value="womens">Women's Ministry</option>
+              <option value="mens">Men&apos;s Ministry</option>
+              <option value="womens">Women&apos;s Ministry</option>
               <option value="prayer">Prayer</option>
             </select>
 

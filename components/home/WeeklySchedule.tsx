@@ -67,7 +67,7 @@ const upcomingBibleStudies = [
     spotsLeft: 5,
   },
   {
-    name: "Women's Heart to Heart",
+    name: "Women&apos;s Heart to Heart",
     day: "Tuesday",
     time: "10:00 AM",
     leader: "Sarah Miller",
