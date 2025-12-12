@@ -82,7 +82,7 @@ export default function StoryPage() {
                   <p className="text-secondary-700">
                     Our congregation became known for community service, starting a food
                     shelf ministry and partnering with local shelters. We welcomed our
-                    first women to priesthood, embracing the church's inclusive calling.
+                    first women to priesthood, embracing the church&apos;s inclusive calling.
                   </p>
                 </div>
               </div>
@@ -139,8 +139,8 @@ export default function StoryPage() {
                   <p className="text-secondary-700">
                     We continue to grow as a diverse, welcoming community. While
                     respecting our heritage, we're focused on the future - sharing
-                    Christ's love, pursuing peace and justice, and inviting all to
-                    experience God's grace.
+                    Christ&apos;s love, pursuing peace and justice, and inviting all to
+                    experience God&apos;s grace.
                   </p>
                 </div>
               </div>

@@ -101,7 +101,7 @@ export default function ConnectPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-secondary-900 mb-8 text-center">
-              This Month's Highlights
+              This Month&apos;s Highlights
             </h2>
             <div className="space-y-6">
               <div className="bg-white rounded-lg p-6 shadow-md">

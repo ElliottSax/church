@@ -9,12 +9,12 @@ const principles = [
   {
     icon: HandHeart,
     title: "Grace and Generosity",
-    description: "We experience God's grace and respond by sharing generously with others.",
+    description: "We experience God&apos;s grace and respond by sharing generously with others.",
   },
   {
     icon: Globe,
     title: "Sacredness of Creation",
-    description: "All of creation has worth and purpose. We care for the earth as God's gift.",
+    description: "All of creation has worth and purpose. We care for the earth as God&apos;s gift.",
   },
   {
     icon: Lightbulb,
@@ -24,12 +24,12 @@ const principles = [
   {
     icon: Heart,
     title: "Worth of All Persons",
-    description: "Every person is of infinite worth, created in God's image and loved unconditionally.",
+    description: "Every person is of infinite worth, created in God&apos;s image and loved unconditionally.",
   },
   {
     icon: Sparkles,
     title: "All Are Called",
-    description: "Everyone has gifts and is called to participate in God's mission.",
+    description: "Everyone has gifts and is called to participate in God&apos;s mission.",
   },
   {
     icon: Scale,
@@ -44,7 +44,7 @@ const principles = [
   {
     icon: BookOpen,
     title: "Mission and Witness",
-    description: "We share Christ's good news through word and deed in all the world.",
+    description: "We share Christ&apos;s good news through word and deed in all the world.",
   },
   {
     icon: Gem,
@@ -98,7 +98,7 @@ export default function BeliefsPage() {
               </h2>
               <p className="text-lg text-secondary-600 max-w-3xl mx-auto">
                 These principles guide us in faithful discipleship and help us discern
-                God's will in our contemporary world.
+                God&apos;s will in our contemporary world.
               </p>
             </div>
 
@@ -145,7 +145,7 @@ export default function BeliefsPage() {
                 </h3>
                 <p className="text-secondary-700">
                   We believe Jesus Christ is the Living Word of God and Savior of the
-                  world. Through his life, death, and resurrection, Jesus reveals God's
+                  world. Through his life, death, and resurrection, Jesus reveals God&apos;s
                   unconditional love and calls us to follow him in ministry and mission.
                 </p>
               </div>
@@ -158,7 +158,7 @@ export default function BeliefsPage() {
                   We affirm the Bible as the foundational scripture for the church. We
                   also use the Book of Mormon and Doctrine and Covenants as additional
                   witnesses of Jesus Christ. We interpret scripture through the lens of
-                  Christ's love and in community discernment.
+                  Christ&apos;s love and in community discernment.
                 </p>
               </div>
 
@@ -167,8 +167,8 @@ export default function BeliefsPage() {
                   Grace and Sacraments
                 </h3>
                 <p className="text-secondary-700">
-                  We believe in God's grace freely given to all. We practice two
-                  sacraments: Baptism (by immersion) and the Lord's Supper (communion).
+                  We believe in God&apos;s grace freely given to all. We practice two
+                  sacraments: Baptism (by immersion) and the Lord&apos;s Supper (communion).
                   These sacred acts symbolize our covenant relationship with God and one
                   another.
                 </p>
@@ -205,7 +205,7 @@ export default function BeliefsPage() {
                 <p className="text-secondary-700">
                   We celebrate diversity and welcome all people into Christian community.
                   Our priesthood includes both women and men. We believe all are called to
-                  ministry according to their gifts and God's leading.
+                  ministry according to their gifts and God&apos;s leading.
                 </p>
               </div>
             </div>

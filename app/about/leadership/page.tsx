@@ -30,7 +30,7 @@ const pastoralTeam = [
 const councilMembers = [
   { name: "Michael Chen", role: "Congregational Chair" },
   { name: "Rebecca Martinez", role: "Financial Officer" },
-  { name: "David Anderson", role: "Children's Ministry Coordinator" },
+  { name: "David Anderson", role: "Children&apos;s Ministry Coordinator" },
   { name: "Lisa Thompson", role: "Worship Coordinator" },
   { name: "James Wilson", role: "Building & Grounds" },
   { name: "Maria Garcia", role: "Fellowship Coordinator" },
@@ -121,7 +121,7 @@ export default function LeadershipPage() {
               Congregational Council
             </h2>
             <p className="text-center text-secondary-600 mb-12 max-w-2xl mx-auto">
-              Elected lay leaders who guide our congregation's ministry, finances, and
+              Elected lay leaders who guide our congregation&apos;s ministry, finances, and
               operations.
             </p>
 
@@ -188,7 +188,7 @@ export default function LeadershipPage() {
             </h2>
             <p className="text-secondary-700 mb-8">
               Our pastoral team is available for counseling, spiritual direction,
-              questions about faith, or just to talk. Don't hesitate to reach out!
+              questions about faith, or just to talk. Don&apos;t hesitate to reach out!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

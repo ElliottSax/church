@@ -15,8 +15,8 @@ const opportunities = [
   },
   {
     icon: Baby,
-    title: "Children's Ministry",
-    description: "Teach Sunday School, help with nursery, or assist with children's programs.",
+    title: "Children&apos;s Ministry",
+    description: "Teach Sunday School, help with nursery, or assist with children&apos;s programs.",
     commitment: "Flexible schedule",
     contact: "children@minneapoliscofchrist.org",
   },
@@ -87,7 +87,7 @@ export default function VolunteerPage() {
               Why Volunteer?
             </h2>
             <p className="text-lg text-secondary-700 mb-8">
-              Volunteering is more than just helping out—it's a way to live out our faith,
+              Volunteering is more than just helping out—it&apos;s a way to live out our faith,
               build community, and discover our unique gifts in service to God and others.
             </p>
 

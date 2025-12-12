@@ -15,7 +15,7 @@ export default function GivePage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Give</h1>
             <p className="text-xl text-primary-100">
-              Your generosity helps us share Christ's love and serve our community
+              Your generosity helps us share Christ&apos;s love and serve our community
             </p>
           </div>
         </div>

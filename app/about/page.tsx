@@ -17,7 +17,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">About Us</h1>
             <p className="text-xl text-primary-100">
               We are a diverse, welcoming community of faith dedicated to following
-              Jesus Christ and sharing God's love with the world.
+              Jesus Christ and sharing God&apos;s love with the world.
             </p>
           </div>
         </div>
@@ -34,8 +34,8 @@ export default function AboutPage() {
               <p>
                 The Minneapolis Community of Christ congregation has been serving our
                 community for over 75 years. Our roots trace back to the Restoration
-                movement, and we continue to honor that heritage while embracing God's
-                call to be a prophetic people in today's world.
+                movement, and we continue to honor that heritage while embracing God&apos;s
+                call to be a prophetic people in today&apos;s world.
               </p>
               <p>
                 We are part of Community of Christ, an international Christian
@@ -44,7 +44,7 @@ export default function AboutPage() {
                 hope, love, and peace.
               </p>
               <p>
-                Here in Minneapolis, we strive to be a beacon of Christ's love in our
+                Here in Minneapolis, we strive to be a beacon of Christ&apos;s love in our
                 neighborhood and beyond, working for justice, peace, and the worth of
                 all persons.
               </p>
@@ -66,7 +66,7 @@ export default function AboutPage() {
                 Grace & Love
               </h3>
               <p className="text-secondary-600">
-                We extend Christ's unconditional love and grace to all people,
+                We extend Christ&apos;s unconditional love and grace to all people,
                 embracing diversity and promoting inclusion.
               </p>
             </div>

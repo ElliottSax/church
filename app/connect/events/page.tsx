@@ -61,7 +61,7 @@ const upcomingEvents: Event[] = [
   },
   {
     id: "new-year-prayer-2025",
-    title: "New Year's Eve Prayer Service",
+    title: "New Year&apos;s Eve Prayer Service",
     date: "December 31, 2024",
     time: "11:00 PM",
     endTime: "12:30 AM",
@@ -74,7 +74,7 @@ const upcomingEvents: Event[] = [
   },
   {
     id: "mens-breakfast-2025",
-    title: "Men's Breakfast & Fellowship",
+    title: "Men&apos;s Breakfast & Fellowship",
     date: "January 4, 2025",
     time: "8:00 AM",
     endTime: "10:00 AM",
@@ -85,7 +85,7 @@ const upcomingEvents: Event[] = [
     currentAttendees: 22,
     mealProvided: true,
     price: 10,
-    tags: ["Men's Ministry", "Breakfast"],
+    tags: ["Men&apos;s Ministry", "Breakfast"],
   },
   {
     id: "youth-winter-retreat-2025",
@@ -116,7 +116,7 @@ const upcomingEvents: Event[] = [
   },
   {
     id: "womens-retreat-2025",
-    title: "Women's Spring Retreat",
+    title: "Women&apos;s Spring Retreat",
     date: "March 14-15, 2025",
     time: "6:00 PM",
     location: "Camp Courage",
@@ -125,7 +125,7 @@ const upcomingEvents: Event[] = [
     capacity: 75,
     currentAttendees: 38,
     price: 95,
-    tags: ["Women's Ministry", "Retreat", "Weekend"],
+    tags: ["Women&apos;s Ministry", "Retreat", "Weekend"],
   },
   {
     id: "easter-sunrise-2025",
@@ -148,7 +148,7 @@ const upcomingEvents: Event[] = [
     time: "9:00 AM",
     endTime: "12:00 PM",
     location: "Education Wing",
-    description: "A week of fun, games, and Bible lessons for kids ages 4-12. Theme: 'God's Great Adventure'",
+    description: "A week of fun, games, and Bible lessons for kids ages 4-12. Theme: 'God&apos;s Great Adventure'",
     category: "children",
     capacity: 150,
     currentAttendees: 87,
@@ -213,7 +213,7 @@ export default function EventsPage() {
     { value: "education", label: "Education", count: events.filter(e => e.category === "education").length },
     { value: "fellowship", label: "Fellowship", count: events.filter(e => e.category === "fellowship").length },
     { value: "youth", label: "Youth", count: events.filter(e => e.category === "youth").length },
-    { value: "womens", label: "Women's", count: events.filter(e => e.category === "womens").length },
+    { value: "womens", label: "Women&apos;s", count: events.filter(e => e.category === "womens").length },
     { value: "children", label: "Children", count: events.filter(e => e.category === "children").length },
   ];
 
@@ -233,7 +233,7 @@ export default function EventsPage() {
             </h1>
             <p className="text-xl text-primary-100">
               Join us for worship, fellowship, and community events.
-              There's something for everyone at Minneapolis Community of Christ!
+              There&apos;s something for everyone at Minneapolis Community of Christ!
             </p>
           </motion.div>
         </div>
@@ -472,7 +472,7 @@ export default function EventsPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">
-              Don't Miss Out!
+              Don&apos;t Miss Out!
             </h2>
             <p className="text-xl mb-6 text-primary-100">
               Subscribe to our newsletter to get notified about upcoming events and church news.
