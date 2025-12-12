@@ -42,7 +42,7 @@ export default function Mission() {
           </h2>
           <p className="text-lg text-secondary-600">
             We are a diverse community united in our commitment to follow Jesus Christ
-            and share God's love with the world.
+            and share God&apos;s love with the world.
           </p>
         </motion.div>
 

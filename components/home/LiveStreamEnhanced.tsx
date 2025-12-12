@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Calendar, Users, Clock, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { StreamStatus, ScheduledStream } from "@/lib/streaming";
 import { format } from "date-fns";
 
@@ -143,10 +144,11 @@ export default function LiveStreamEnhanced({
                       allowFullScreen
                     />
                   ) : streamStatus.thumbnailUrl ? (
-                    <img
+                    <Image
                       src={streamStatus.thumbnailUrl}
                       alt={streamStatus.title || "Stream thumbnail"}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   ) : (
                     <div className="flex items-center justify-center h-full">

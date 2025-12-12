@@ -303,7 +303,7 @@ export default function WeeklySchedule() {
               <div>
                 <h4 className="font-semibold mb-2">Special Programs</h4>
                 <p className="text-primary-100">Youth Group Thursday 6:30 PM</p>
-                <p className="text-primary-100">Men's & Women's Studies</p>
+                <p className="text-primary-100">Men&apos;s & Women&apos;s Studies</p>
               </div>
             </div>
           </motion.div>
