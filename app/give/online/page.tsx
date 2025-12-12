@@ -150,7 +150,7 @@ export default function OnlineGivingPage() {
                   </h3>
                   <p className="text-sm text-secondary-700">
                     Minneapolis Community of Christ is a 501(c)(3) organization. Your
-                    donation is tax-deductible to the extent allowed by law. You'll
+                    donation is tax-deductible to the extent allowed by law. You&apos;ll
                     receive a receipt via email for your records.
                   </p>
                 </div>
@@ -203,7 +203,7 @@ export default function OnlineGivingPage() {
                   Mail a Check
                 </h3>
                 <p className="text-secondary-600 text-sm mb-3">
-                  Make checks payable to "Minneapolis Community of Christ" and mail to:
+                  Make checks payable to &quot;Minneapolis Community of Christ&quot; and mail to:
                 </p>
                 <p className="text-secondary-700 text-sm">
                   123 Main Street<br />
@@ -253,7 +253,7 @@ export default function OnlineGivingPage() {
               Questions About Giving?
             </h2>
             <p className="text-secondary-700 mb-6">
-              We're here to help! Contact our Financial Officer or pastoral team with any
+              We&apos;re here to help! Contact our Financial Officer or pastoral team with any
               questions about giving, donations, or financial stewardship.
             </p>
             <a

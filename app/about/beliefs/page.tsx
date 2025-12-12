@@ -77,8 +77,8 @@ export default function BeliefsPage() {
               Our Mission
             </h2>
             <p className="text-2xl text-primary-600 font-semibold mb-4">
-              "We proclaim Jesus Christ and promote communities of joy, hope, love,
-              and peace."
+              &quot;We proclaim Jesus Christ and promote communities of joy, hope, love,
+              and peace.&quot;
             </p>
             <p className="text-lg text-secondary-600">
               This simple yet profound mission guides everything we do as a congregation
@@ -191,7 +191,7 @@ export default function BeliefsPage() {
                   Peace and Justice
                 </h3>
                 <p className="text-secondary-700">
-                  Following Jesus' example, we are called to be peacemakers and advocates
+                  Following Jesus&apos; example, we are called to be peacemakers and advocates
                   for justice. We work to end poverty, racism, violence, and oppression.
                   We affirm the worth of all persons and strive for the wholeness of
                   creation.
@@ -221,7 +221,7 @@ export default function BeliefsPage() {
               Want to Learn More?
             </h2>
             <p className="text-secondary-700 mb-8">
-              We'd love to explore faith and questions with you. Join us for worship,
+              We&apos;d love to explore faith and questions with you. Join us for worship,
               attend a class, or contact our pastoral team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
