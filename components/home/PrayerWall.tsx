@@ -23,7 +23,7 @@ const samplePrayers: Prayer[] = [
   {
     id: 2,
     author: "John D.",
-    request: "Praying for guidance in my career transition and God's direction.",
+    request: "Praying for guidance in my career transition and God&apos;s direction.",
     date: "5 hours ago",
     prayers: 8,
   },

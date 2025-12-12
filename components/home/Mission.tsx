@@ -7,7 +7,7 @@ const values = [
   {
     icon: Heart,
     title: "Love",
-    description: "We embrace all people with Christ's unconditional love and grace.",
+    description: "We embrace all people with Christ&apos;s unconditional love and grace.",
   },
   {
     icon: Users,

@@ -150,13 +150,13 @@ const weeklySchedule: CalendarEvent[] = [
   // Tuesday Groups
   {
     id: "tue-womens",
-    title: "Women's Bible Study",
+    title: "Women&apos;s Bible Study",
     type: "bible-study",
     date: new Date(),
     startTime: "10:00",
     endTime: "11:30",
     location: "Room 201",
-    description: "Women's fellowship and Bible study",
+    description: "Women&apos;s fellowship and Bible study",
     recurring: {
       frequency: "weekly",
       daysOfWeek: [2], // Tuesday
@@ -166,13 +166,13 @@ const weeklySchedule: CalendarEvent[] = [
   },
   {
     id: "tue-mens",
-    title: "Men's Bible Study",
+    title: "Men&apos;s Bible Study",
     type: "bible-study",
     date: new Date(),
     startTime: "06:00",
     endTime: "07:00",
     location: "Room 103",
-    description: "Early morning men's Bible study and prayer",
+    description: "Early morning men&apos;s Bible study and prayer",
     recurring: {
       frequency: "weekly",
       daysOfWeek: [2],
@@ -236,18 +236,18 @@ const weeklySchedule: CalendarEvent[] = [
   // Saturday Groups
   {
     id: "sat-mens-breakfast",
-    title: "Men's Breakfast & Bible Study",
+    title: "Men&apos;s Breakfast & Bible Study",
     type: "meeting",
     date: new Date(),
     startTime: "08:00",
     endTime: "10:00",
     location: "Fellowship Hall",
-    description: "Monthly men's breakfast and devotional",
+    description: "Monthly men&apos;s breakfast and devotional",
     recurring: {
       frequency: "monthly",
       daysOfWeek: [6], // First Saturday
     },
-    leader: "Men's Ministry Team",
+    leader: "Men&apos;s Ministry Team",
     category: "mens",
   },
 ];
@@ -266,7 +266,7 @@ const bibleStudyGroups = [
   },
   {
     id: "bs-2",
-    name: "Women's Heart to Heart",
+    name: "Women&apos;s Heart to Heart",
     leader: "Sarah Miller",
     schedule: "Tuesdays, 10:00 AM",
     location: "Room 201",
