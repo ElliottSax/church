@@ -174,8 +174,8 @@ export const showLocalNotification = async (options: NotificationOptions): Promi
     tag: options.tag,
     data: options.data,
     requireInteraction: options.requireInteraction,
-    actions: options.actions as any,
-  });
+    actions: (options as any).actions,
+  } as any);
 };
 
 // Notification templates
