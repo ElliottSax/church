@@ -140,7 +140,7 @@ export default function EventRSVP({ event, initialCapacity }: EventRSVPProps) {
           <span className="text-sm text-gray-600">Capacity</span>
           <span className={`text-sm font-semibold ${textColor}`}>
             {event.currentAttendees} / {event.maxCapacity}
-            {capacity?.spotsLeft !== null && capacity.spotsLeft > 0 && (
+            {capacity && capacity.spotsLeft !== null && capacity.spotsLeft > 0 && (
               <span className="ml-2 text-gray-500">
                 ({capacity.spotsLeft} spots left)
               </span>
