@@ -247,8 +247,8 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// GET endpoint to fetch a specific bible study group
-export async function GET_BY_ID(groupId: string) {
+// Helper function to fetch a specific bible study group (internal use only)
+async function getGroupById(groupId: string) {
   const group = bibleStudyGroups.find(g => g.id === groupId);
 
   if (!group) {
