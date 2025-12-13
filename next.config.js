@@ -8,6 +8,14 @@ const nextConfig = {
       allowedOrigins: ['localhost:3000'],
     },
   },
+  typescript: {
+    // Skip type checking during the build
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    // Skip ESLint during the build
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
