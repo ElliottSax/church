@@ -138,7 +138,7 @@ export default function StoryPage() {
                   </h3>
                   <p className="text-secondary-700">
                     We continue to grow as a diverse, welcoming community. While
-                    respecting our heritage, we're focused on the future - sharing
+                    respecting our heritage, we&apos;re focused on the future - sharing
                     Christ&apos;s love, pursuing peace and justice, and inviting all to
                     experience God&apos;s grace.
                   </p>
@@ -228,7 +228,7 @@ export default function StoryPage() {
               Be Part of Our Story
             </h2>
             <p className="text-lg text-secondary-700 mb-8">
-              Our story continues with each person who joins our community. We'd love for
+              Our story continues with each person who joins our community. We&apos;d love for
               you to become part of what God is doing through Minneapolis Community of
               Christ.
             </p>

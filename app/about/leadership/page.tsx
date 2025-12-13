@@ -172,7 +172,7 @@ export default function LeadershipPage() {
               </ul>
               <p className="text-secondary-700">
                 If you feel called to priesthood ministry, please speak with one of our
-                pastors. We'll walk with you in discerning and developing your calling.
+                pastors. We&apos;ll walk with you in discerning and developing your calling.
               </p>
             </div>
           </div>

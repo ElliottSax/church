@@ -15,7 +15,7 @@ export default function LocationPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Visit Us</h1>
             <p className="text-xl text-primary-100">
-              We'd love to welcome you to our community
+              We&apos;d love to welcome you to our community
             </p>
           </div>
         </div>
