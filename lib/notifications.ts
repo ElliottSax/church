@@ -93,7 +93,7 @@ export const subscribeToPushNotifications = async (): Promise<PushSubscription |
 
     const subscription = await registration.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(publicKey) as BufferSource,
+      applicationServerKey: urlBase64ToUint8Array(publicKey) as any,
     });
 
     // Send subscription to server
