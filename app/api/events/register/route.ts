@@ -119,7 +119,7 @@ export async function GET(request: NextRequest) {
 
     if (confirmationCode) {
       // Search by confirmation code
-      for (const eventRegs of registrations.values()) {
+      for (const eventRegs of Array.from(registrations.values())) {
         const reg = eventRegs.find(r => r.confirmationCode === confirmationCode);
         if (reg) {
           results.push(reg);
@@ -131,7 +131,7 @@ export async function GET(request: NextRequest) {
       results = registrations.get(eventId) || [];
     } else if (email) {
       // Get all registrations for a user
-      for (const eventRegs of registrations.values()) {
+      for (const eventRegs of Array.from(registrations.values())) {
         const userRegs = eventRegs.filter(r => r.email === email);
         results.push(...userRegs);
       }
@@ -274,7 +274,7 @@ export async function PUT(request: NextRequest) {
     let registration: EventRegistration | null = null;
     let eventRegs: EventRegistration[] | null = null;
 
-    for (const [eventId, regs] of registrations.entries()) {
+    for (const [eventId, regs] of Array.from(registrations.entries())) {
       const index = regs.findIndex(r => r.confirmationCode === data.confirmationCode);
       if (index !== -1) {
         registration = regs[index];
@@ -357,7 +357,7 @@ export async function DELETE(request: NextRequest) {
     // Find and remove registration
     let deleted = false;
 
-    for (const [eventId, regs] of registrations.entries()) {
+    for (const [eventId, regs] of Array.from(registrations.entries())) {
       const index = regs.findIndex(r => r.confirmationCode === confirmationCode);
       if (index !== -1) {
         const registration = regs[index];
