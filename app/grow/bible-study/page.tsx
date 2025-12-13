@@ -309,13 +309,13 @@ export default function BibleStudyPage() {
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
                           className={`h-2 rounded-full transition-all ${
-                            group.fillPercentage === 100
+                            (group.fillPercentage ?? 0) === 100
                               ? "bg-red-500"
-                              : group.fillPercentage >= 75
+                              : (group.fillPercentage ?? 0) >= 75
                               ? "bg-yellow-500"
                               : "bg-green-500"
                           }`}
-                          style={{ width: `${group.fillPercentage}%` }}
+                          style={{ width: `${group.fillPercentage ?? 0}%` }}
                         />
                       </div>
                     </div>
