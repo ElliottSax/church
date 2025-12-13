@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { MessageCircle, X, Send, ChevronRight } from "lucide-react";
-import { findBestMatch } from "@/lib/chatbot-knowledge";
+import { getSimpleResponse } from "@/lib/chatbot-simple";
 
 interface Message {
   id: number;
@@ -73,19 +73,31 @@ What would you like to know about Community of Christ?`,
 
     // Generate bot response with slight delay for natural feel
     setTimeout(() => {
-      const result = findBestMatch(messageText, newHistory);
+      try {
+        const result = getSimpleResponse(messageText);
 
-      const botMessage: Message = {
-        id: messages.length + 2,
-        text: result.response,
-        sender: "bot",
-        timestamp: new Date(),
-        followUp: result.followUp
-      };
+        const botMessage: Message = {
+          id: messages.length + 2,
+          text: result.response,
+          sender: "bot",
+          timestamp: new Date(),
+          followUp: result.followUp
+        };
 
-      setMessages((prev) => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 1000 + Math.random() * 500); // Variable delay for more natural conversation
+        setMessages((prev) => [...prev, botMessage]);
+      } catch (error) {
+        console.error('Error generating chatbot response:', error);
+        const errorMessage: Message = {
+          id: messages.length + 2,
+          text: "I apologize, but I'm having trouble responding right now. Please try again or call us at (612) 555-1234.",
+          sender: "bot",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, errorMessage]);
+      } finally {
+        setIsTyping(false);
+      }
+    }, 800); // Fixed delay for consistent response time
   };
 
   const currentFollowUp = messages.length > 0
