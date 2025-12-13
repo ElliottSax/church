@@ -115,7 +115,7 @@ export default function PrayerWallEnhanced({ initialRequests = [] }: PrayerWallE
     if (prayedRequests.has(requestId)) return;
 
     // Optimistic UI update
-    setPrayedRequests(prev => new Set([...prev, requestId]));
+    setPrayedRequests(prev => new Set([...Array.from(prev), requestId]));
     setRequests(prev =>
       prev.map(r => r.id === requestId ? { ...r, prayerCount: r.prayerCount + 1 } : r)
     );
