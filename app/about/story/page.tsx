@@ -99,8 +99,8 @@ export default function StoryPage() {
                     2001 - Community of Christ
                   </h3>
                   <p className="text-secondary-700">
-                    Along with the international church, we adopted the name "Community of
-                    Christ," reflecting our Christ-centered mission and commitment to
+                    Along with the international church, we adopted the name &quot;Community of
+                    Christ,&quot; reflecting our Christ-centered mission and commitment to
                     building communities of joy, hope, love, and peace.
                   </p>
                 </div>
@@ -166,10 +166,10 @@ export default function StoryPage() {
                 The church traces its roots to the Restoration movement of the 1830s.
                 After the death of Joseph Smith Jr., we reorganized in 1860 under the
                 leadership of Joseph Smith III. For 141 years we were known as the
-                "Reorganized Church of Jesus Christ of Latter Day Saints" (RLDS).
+                &quot;Reorganized Church of Jesus Christ of Latter Day Saints&quot; (RLDS).
               </p>
               <p className="text-secondary-700 mb-4">
-                In 2001, the church adopted the name "Community of Christ" to better
+                In 2001, the church adopted the name &quot;Community of Christ&quot; to better
                 reflect our identity and mission. Today, we are a Christ-centered,
                 peace-loving church committed to the worth of all persons and the pursuit
                 of justice.
