@@ -114,10 +114,10 @@ const weeklySchedule: CalendarEvent[] = [
     category: "education",
   },
 
-  // Wednesday Services
+  // Friday Services
   {
-    id: "wed-bible",
-    title: "Wednesday Bible Study",
+    id: "fri-bible",
+    title: "Friday Bible Study",
     type: "bible-study",
     date: new Date(),
     startTime: "19:00",
@@ -126,7 +126,7 @@ const weeklySchedule: CalendarEvent[] = [
     description: "In-depth Bible study and discussion",
     recurring: {
       frequency: "weekly",
-      daysOfWeek: [3], // Wednesday
+      daysOfWeek: [5], // Friday
     },
     leader: "Pastor Sarah Johnson",
     category: "education",
@@ -278,7 +278,7 @@ const bibleStudyGroups = [
     id: "bs-3",
     name: "Marriage & Family",
     leader: "Tom & Lisa Anderson",
-    schedule: "Wednesdays, 7:00 PM",
+    schedule: "Fridays, 7:00 PM",
     location: "Conference Room",
     currentBook: "Love & Respect",
     spotsAvailable: 3,

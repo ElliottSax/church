@@ -123,7 +123,7 @@ export default function LiveStreamEnhanced({
                         className="absolute top-4 left-4 bg-secondary-900/80 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center z-10"
                       >
                         <Calendar size={16} className="mr-2" />
-                        Sunday Service: 10:00 AM
+                        Sunday Service: 10:30 AM
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -265,8 +265,8 @@ export default function LiveStreamEnhanced({
                   <div className="text-secondary-600 text-sm">
                     <p className="mb-2">Regular Service Times:</p>
                     <ul className="space-y-1">
-                      <li>• Sunday Worship: 10:00 AM</li>
-                      <li>• Wednesday Bible Study: 7:00 PM</li>
+                      <li>• Sunday Worship: 10:30 AM</li>
+                      <li>• Friday Bible Study: 7:00 PM</li>
                       <li>• Youth Service: Saturday 6:00 PM</li>
                     </ul>
                   </div>

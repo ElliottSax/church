@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Worship Services | Minneapolis Community of Christ",
-  description: "Join us for worship Sundays at 10:00 AM. In-person and online options available.",
+  description: "Join us for worship Sundays at 10:30 AM. In-person and online options available.",
 };
 
 export default function WorshipPage() {
@@ -49,7 +49,7 @@ export default function WorshipPage() {
                 <h3 className="text-xl font-semibold text-secondary-900 mb-2">
                   Sunday Worship
                 </h3>
-                <p className="text-2xl font-bold text-primary-600 mb-2">10:00 AM</p>
+                <p className="text-2xl font-bold text-primary-600 mb-2">10:30 AM</p>
                 <p className="text-secondary-600 text-sm">
                   Traditional worship with contemporary elements
                 </p>
@@ -159,7 +159,7 @@ export default function WorshipPage() {
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
                   <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:00 AM
+                    10:30 AM
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">
@@ -173,7 +173,7 @@ export default function WorshipPage() {
 
                 <div className="flex items-center space-x-4">
                   <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:05
+                    10:35
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">Opening Song</h4>
@@ -185,7 +185,7 @@ export default function WorshipPage() {
 
                 <div className="flex items-center space-x-4">
                   <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:10
+                    10:40
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">
@@ -199,7 +199,7 @@ export default function WorshipPage() {
 
                 <div className="flex items-center space-x-4">
                   <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:20
+                    10:50
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">
@@ -213,7 +213,7 @@ export default function WorshipPage() {
 
                 <div className="flex items-center space-x-4">
                   <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:25
+                    10:55
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">Message</h4>
@@ -223,7 +223,7 @@ export default function WorshipPage() {
 
                 <div className="flex items-center space-x-4">
                   <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:50
+                    11:20
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">
@@ -237,7 +237,7 @@ export default function WorshipPage() {
 
                 <div className="flex items-center space-x-4">
                   <div className="w-20 text-right text-primary-600 font-semibold">
-                    11:00
+                    11:30
                   </div>
                   <div className="flex-1 border-l-2 border-primary-600 pl-4">
                     <h4 className="font-semibold text-secondary-900">
@@ -309,7 +309,7 @@ export default function WorshipPage() {
               Can&apos;t Join Us in Person?
             </h2>
             <p className="text-lg text-secondary-700 mb-8">
-              Watch our worship services live online every Sunday at 10:00 AM, or catch up
+              Watch our worship services live online every Sunday at 10:30 AM, or catch up
               later with our sermon archive.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -160,8 +160,8 @@ const recurringEvents: CalendarEvent[] = [
     zoomLink: "https://zoom.us/j/123456789",
   },
   {
-    id: "wed-bible",
-    title: "Wednesday Night Bible Study",
+    id: "fri-bible",
+    title: "Friday Night Bible Study",
     type: "bible-study",
     date: new Date().toISOString(),
     startTime: "19:00",
@@ -170,7 +170,7 @@ const recurringEvents: CalendarEvent[] = [
     description: "Verse-by-verse study through books of the Bible",
     recurring: {
       frequency: "weekly",
-      daysOfWeek: [3],
+      daysOfWeek: [5],
     },
     leader: "Pastor Sarah Johnson",
     category: "education",

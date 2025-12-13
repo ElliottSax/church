@@ -37,7 +37,7 @@ export default function LiveStream() {
               ) : (
                 <div className="absolute top-4 left-4 bg-secondary-900/80 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center">
                   <Calendar size={16} className="mr-2" />
-                  Next Service: Sunday 10:00 AM
+                  Next Service: Sunday 10:30 AM
                 </div>
               )}
 

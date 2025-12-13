@@ -221,7 +221,7 @@ export const notificationTemplates = {
 
   sundayService: (): NotificationOptions => ({
     title: 'Sunday Service Starting Soon',
-    body: 'Join us for worship at 10:00 AM. Live stream available!',
+    body: 'Join us for worship at 10:30 AM. Live stream available!',
     icon: '/icon-192x192.png',
     badge: '/icon-72x72.png',
     tag: 'sunday-service',

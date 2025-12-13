@@ -76,7 +76,7 @@ export default function BibleStudyPage() {
             id: "demo-1",
             name: "Demo Bible Study Group",
             leader: "Demo Leader",
-            schedule: "Wednesdays, 7:00 PM",
+            schedule: "Fridays, 7:00 PM",
             location: "Room 101",
             description: "This is a demo group. In production, groups would load from a database.",
             currentBook: "Demo Book",

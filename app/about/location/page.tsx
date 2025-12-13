@@ -88,7 +88,7 @@ export default function LocationPage() {
                     <Clock className="text-primary-600" size={20} />
                     <h3 className="font-semibold text-secondary-900">Sunday Worship</h3>
                   </div>
-                  <p className="text-secondary-600 ml-7">10:00 AM</p>
+                  <p className="text-secondary-600 ml-7">10:30 AM</p>
                   <p className="text-sm text-secondary-500 ml-7">
                     Traditional worship service with communion
                   </p>
@@ -96,7 +96,7 @@ export default function LocationPage() {
                 <div>
                   <div className="flex items-center space-x-2 mb-2">
                     <Clock className="text-primary-600" size={20} />
-                    <h3 className="font-semibold text-secondary-900">Wednesday Bible Study</h3>
+                    <h3 className="font-semibold text-secondary-900">Friday Bible Study</h3>
                   </div>
                   <p className="text-secondary-600 ml-7">7:00 PM</p>
                   <p className="text-sm text-secondary-500 ml-7">

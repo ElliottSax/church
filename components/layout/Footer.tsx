@@ -99,7 +99,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-secondary-300 hover:text-white transition-colors"
                 >
-                  Community of Christ International
+                  Community of Christ World Church
                 </a>
               </li>
             </ul>

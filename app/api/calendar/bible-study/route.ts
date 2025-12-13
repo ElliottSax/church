@@ -68,7 +68,7 @@ const bibleStudyGroups: BibleStudyGroup[] = [
     id: "bs-marriage",
     name: "Marriage & Family",
     leader: "Tom & Lisa Anderson",
-    schedule: "Wednesdays, 7:00 PM - 8:30 PM",
+    schedule: "Fridays, 7:00 PM - 8:30 PM",
     location: "Conference Room",
     description: "Biblical principles for strong marriages and godly families",
     currentBook: "Love & Respect by Dr. Emerson Eggerichs",

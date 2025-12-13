@@ -237,7 +237,7 @@ export default function BeliefsPage() {
                 rel="noopener noreferrer"
                 className="px-8 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
               >
-                Community of Christ International
+                Community of Christ World Church
               </a>
             </div>
           </div>

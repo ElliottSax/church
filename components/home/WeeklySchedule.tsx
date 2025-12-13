@@ -9,22 +9,16 @@ const weeklyServices = [
     day: "Sunday",
     services: [
       {
-        time: "9:00 AM",
-        title: "Traditional Service",
+        time: "10:30 AM",
+        title: "Worship Service",
         location: "Main Sanctuary",
         type: "worship",
       },
       {
-        time: "10:30 AM",
+        time: "11:45 AM",
         title: "Sunday School (All Ages)",
         location: "Education Wing",
         type: "education",
-      },
-      {
-        time: "11:00 AM",
-        title: "Contemporary Service",
-        location: "Main Sanctuary",
-        type: "worship",
       },
     ],
   },
@@ -37,6 +31,11 @@ const weeklyServices = [
         location: "Prayer Chapel",
         type: "prayer",
       },
+    ],
+  },
+  {
+    day: "Friday",
+    services: [
       {
         time: "7:00 PM",
         title: "Bible Study",
@@ -75,7 +74,7 @@ const upcomingBibleStudies = [
   },
   {
     name: "Marriage & Family",
-    day: "Wednesday",
+    day: "Friday",
     time: "7:00 PM",
     leader: "Tom & Lisa Anderson",
     spotsLeft: 3,
@@ -292,13 +291,13 @@ export default function WeeklySchedule() {
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
                 <h4 className="font-semibold mb-2">Sunday Services</h4>
-                <p className="text-primary-100">9:00 AM Traditional</p>
-                <p className="text-primary-100">11:00 AM Contemporary</p>
+                <p className="text-primary-100">10:30 AM Worship Service</p>
+                <p className="text-primary-100">11:45 AM Sunday School</p>
               </div>
               <div>
-                <h4 className="font-semibold mb-2">Wednesday Night</h4>
-                <p className="text-primary-100">6:00 PM Prayer</p>
-                <p className="text-primary-100">7:00 PM Bible Study</p>
+                <h4 className="font-semibold mb-2">Midweek Services</h4>
+                <p className="text-primary-100">Wednesday 6:00 PM Prayer</p>
+                <p className="text-primary-100">Friday 7:00 PM Bible Study</p>
               </div>
               <div>
                 <h4 className="font-semibold mb-2">Special Programs</h4>

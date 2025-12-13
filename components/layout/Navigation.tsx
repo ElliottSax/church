@@ -108,45 +108,50 @@ export default function Navigation({ mobile = false, onClose }: NavigationProps)
 
   return (
     <nav className="flex items-center space-x-1">
-      {navItems.map((item) => (
-        <div
-          key={item.label}
-          className="relative"
-          onMouseEnter={() => setOpenDropdown(item.label)}
-          onMouseLeave={() => setOpenDropdown(null)}
-        >
-          <Link
-            href={item.href}
-            className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-              pathname === item.href || pathname.startsWith(item.href + "/")
-                ? "text-primary-700 bg-primary-50"
-                : "text-secondary-700 hover:text-primary-600 hover:bg-secondary-50"
-            }`}
-          >
-            {item.label}
-            {item.children && <ChevronDown className="ml-1 h-4 w-4" />}
-          </Link>
+      {navItems.map((item, index) => {
+        // Only right-align the last menu item to prevent cutoff
+        const isRightAligned = index === navItems.length - 1;
 
-          {/* Dropdown Menu */}
-          {item.children && openDropdown === item.label && (
-            <div className="absolute left-0 mt-1 w-56 bg-white rounded-md shadow-lg border border-secondary-200 py-2">
-              {item.children.map((child) => (
-                <Link
-                  key={child.label}
-                  href={child.href}
-                  className={`block px-4 py-2 text-sm transition-colors ${
-                    pathname === child.href
-                      ? "bg-primary-50 text-primary-700"
-                      : "text-secondary-700 hover:bg-secondary-50"
-                  }`}
-                >
-                  {child.label}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
+        return (
+          <div
+            key={item.label}
+            className="relative"
+            onMouseEnter={() => setOpenDropdown(item.label)}
+            onMouseLeave={() => setOpenDropdown(null)}
+          >
+            <Link
+              href={item.href}
+              className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                pathname === item.href || pathname.startsWith(item.href + "/")
+                  ? "text-primary-700 bg-primary-50"
+                  : "text-secondary-700 hover:text-primary-600 hover:bg-secondary-50"
+              }`}
+            >
+              {item.label}
+              {item.children && <ChevronDown className="ml-1 h-4 w-4" />}
+            </Link>
+
+            {/* Dropdown Menu */}
+            {item.children && openDropdown === item.label && (
+              <div className={`absolute ${isRightAligned ? 'right-0' : 'left-0'} mt-1 w-56 bg-white rounded-md shadow-lg border border-secondary-200 py-2 z-50`}>
+                {item.children.map((child) => (
+                  <Link
+                    key={child.label}
+                    href={child.href}
+                    className={`block px-4 py-2 text-sm transition-colors ${
+                      pathname === child.href
+                        ? "bg-primary-50 text-primary-700"
+                        : "text-secondary-700 hover:bg-secondary-50"
+                    }`}
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </nav>
   );
 }

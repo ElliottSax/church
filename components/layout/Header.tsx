@@ -14,7 +14,7 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold text-primary-600">
+            <div className="text-lg md:text-2xl font-bold text-primary-600 whitespace-nowrap">
               Minneapolis Community of Christ
             </div>
           </Link>

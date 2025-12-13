@@ -48,11 +48,11 @@ export default function Hero() {
         >
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center border border-white/20">
             <h3 className="font-semibold text-lg mb-2">Sunday Worship</h3>
-            <p className="text-primary-100">10:00 AM</p>
+            <p className="text-primary-100">10:30 AM</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center border border-white/20">
             <h3 className="font-semibold text-lg mb-2">Bible Study</h3>
-            <p className="text-primary-100">Wednesday 7:00 PM</p>
+            <p className="text-primary-100">Friday 7:00 PM</p>
           </div>
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center border border-white/20">
             <h3 className="font-semibold text-lg mb-2">Prayer Group</h3>

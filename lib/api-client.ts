@@ -19,7 +19,7 @@ const MOCK_DATA = {
         id: 'bs-demo',
         name: 'Demo Bible Study Group',
         leader: 'Demo Leader',
-        schedule: 'Wednesdays, 7:00 PM',
+        schedule: 'Fridays, 7:00 PM',
         location: 'Room 101',
         spotsAvailable: 10,
         maxCapacity: 20,

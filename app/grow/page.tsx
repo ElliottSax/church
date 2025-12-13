@@ -34,7 +34,7 @@ export default function GrowPage() {
                 Worship Services
               </h2>
               <p className="text-secondary-600 mb-4">
-                Join us for meaningful worship every Sunday at 10:00 AM. Experience
+                Join us for meaningful worship every Sunday at 10:30 AM. Experience
                 uplifting music, inspiring messages, and authentic community.
               </p>
               <span className="text-primary-600 font-semibold group-hover:underline">
