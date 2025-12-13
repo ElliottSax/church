@@ -1,25 +1,17 @@
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+// Auth is disabled for static deployment
+// These functions are stubs to prevent build errors
 
 export async function getCurrentUser() {
-  const session = await getServerSession(authOptions);
-  return session?.user;
+  // Auth disabled for static deployment
+  return null;
 }
 
 export async function requireAuth() {
-  const user = await getCurrentUser();
-  if (!user) {
-    throw new Error('Unauthorized');
-  }
-  return user;
+  // Auth disabled for static deployment
+  throw new Error('Authentication not available in static deployment');
 }
 
 export async function requireAdmin() {
-  const session = await getServerSession(authOptions);
-  const user = session?.user as any;
-
-  if (!user || user.role !== 'admin') {
-    throw new Error('Unauthorized - Admin access required');
-  }
-  return user;
+  // Auth disabled for static deployment
+  throw new Error('Authentication not available in static deployment');
 }
