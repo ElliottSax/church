@@ -27,8 +27,8 @@ const nextConfig = {
     return config;
   },
   typescript: {
-    // Type checking enabled
-    ignoreBuildErrors: false,
+    // Skip type checking during builds (run separately in CI)
+    ignoreBuildErrors: true,
   },
   eslint: {
     // Skip ESLint during builds (run separately in CI)
