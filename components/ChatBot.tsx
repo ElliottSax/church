@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { MessageCircle, X, Send, ChevronRight } from "lucide-react";
 import { getSimpleResponse } from "@/lib/chatbot-simple";
+import { logger, logError, logWarn } from '@/lib/logger';
 
 interface Message {
   id: number;
@@ -86,7 +87,7 @@ What would you like to know about Community of Christ?`,
 
         setMessages((prev) => [...prev, botMessage]);
       } catch (error) {
-        console.error('Error generating chatbot response:', error);
+        logError('Error generating chatbot response:', error);
         const errorMessage: Message = {
           id: messages.length + 2,
           text: "I apologize, but I'm having trouble responding right now. Please try again or call us at (612) 555-1234.",

@@ -1,4 +1,7 @@
 // Push notification utilities for PWA support
+
+import { logger, logError } from '@/lib/logger';
+
 interface NotificationOptions {
   title: string;
   body: string;
@@ -47,10 +50,10 @@ export const registerServiceWorker = async (): Promise<ServiceWorkerRegistration
 
   try {
     const registration = await navigator.serviceWorker.register('/sw.js');
-    console.log('Service Worker registered successfully:', registration);
+    logger.info('Service Worker registered successfully:', registration);
     return registration;
   } catch (error) {
-    console.error('Service Worker registration failed:', error);
+    logError('Service Worker registration failed:', error);
     throw error;
   }
 };
@@ -65,7 +68,7 @@ export const getServiceWorkerRegistration = async (): Promise<ServiceWorkerRegis
     const registration = await navigator.serviceWorker.ready;
     return registration;
   } catch (error) {
-    console.error('Error getting service worker registration:', error);
+    logError('Error getting service worker registration:', error);
     return null;
   }
 };
@@ -107,7 +110,7 @@ export const subscribeToPushNotifications = async (): Promise<PushSubscription |
 
     return subscription;
   } catch (error) {
-    console.error('Error subscribing to push notifications:', error);
+    logError('Error subscribing to push notifications:', error);
     throw error;
   }
 };
@@ -138,7 +141,7 @@ export const unsubscribeFromPushNotifications = async (): Promise<void> => {
       }),
     });
   } catch (error) {
-    console.error('Error unsubscribing from push notifications:', error);
+    logError('Error unsubscribing from push notifications:', error);
     throw error;
   }
 };
@@ -271,7 +274,7 @@ export const scheduleNotification = async (
       }),
     });
   } catch (error) {
-    console.error('Error scheduling notification:', error);
+    logError('Error scheduling notification:', error);
     throw error;
   }
 };
@@ -294,7 +297,7 @@ export const updateNotificationPreferences = async (preferences: {
       body: JSON.stringify(preferences),
     });
   } catch (error) {
-    console.error('Error updating notification preferences:', error);
+    logError('Error updating notification preferences:', error);
     throw error;
   }
 };
@@ -308,7 +311,7 @@ export const getNotificationHistory = async (limit: number = 20): Promise<any[]>
     }
     return await response.json();
   } catch (error) {
-    console.error('Error fetching notification history:', error);
+    logError('Error fetching notification history:', error);
     return [];
   }
 };

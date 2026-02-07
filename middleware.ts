@@ -24,7 +24,7 @@ export async function middleware(request: NextRequest) {
 
   if (isProtected) {
     const token = await getToken({
-      req: request as any,
+      req: request,
       secret: process.env.NEXTAUTH_SECRET,
     });
 
@@ -37,7 +37,7 @@ export async function middleware(request: NextRequest) {
 
     // Check admin role for admin routes
     if (isAdminRoute) {
-      const userRole = (token as any).role;
+      const userRole = token.role as string | undefined;
       if (userRole !== 'admin' && userRole !== 'staff') {
         return NextResponse.redirect(new URL('/unauthorized', request.url));
       }

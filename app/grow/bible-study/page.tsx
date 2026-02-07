@@ -19,6 +19,7 @@ import {
   Phone,
 } from "lucide-react";
 import Link from "next/link";
+import { logger, logError, logWarn } from '@/lib/logger';
 
 interface BibleStudyGroup {
   id: string;
@@ -88,7 +89,7 @@ export default function BibleStudyPage() {
         ]);
       }
     } catch (error) {
-      console.error("Error fetching bible study groups:", error);
+      logError("Error fetching bible study groups:", error);
     } finally {
       setLoading(false);
     }

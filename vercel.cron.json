@@ -1,0 +1,19 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron?task=daily",
+      "schedule": "0 8 * * *",
+      "description": "Daily tasks: event reminders, recurring events"
+    },
+    {
+      "path": "/api/cron?task=weekly",
+      "schedule": "0 9 * * 1",
+      "description": "Weekly tasks: prayer digest, data cleanup (runs every Monday at 9am)"
+    },
+    {
+      "path": "/api/cron?task=monthly",
+      "schedule": "0 10 1 * *",
+      "description": "Monthly tasks: generate reports (runs 1st of month at 10am)"
+    }
+  ]
+}

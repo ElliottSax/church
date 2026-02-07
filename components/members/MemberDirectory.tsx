@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Member } from "@/lib/members";
 import Image from "next/image";
+import { logger, logError, logWarn } from '@/lib/logger';
 
 interface MemberDirectoryProps {
   initialMembers?: Member[];
@@ -73,7 +74,7 @@ export default function MemberDirectory({
         setFilteredMembers(data);
       }
     } catch (error) {
-      console.error("Error loading members:", error);
+      logError("Error loading members:", error);
     } finally {
       setIsLoading(false);
     }

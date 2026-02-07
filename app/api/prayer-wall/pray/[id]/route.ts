@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { incrementPrayerCount } from '@/lib/prayer-wall';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 export async function POST(
   request: Request,
@@ -15,7 +16,7 @@ export async function POST(
 
     return NextResponse.json({ prayerCount: newCount });
   } catch (error) {
-    console.error('Error recording prayer:', error);
+    logError('Error recording prayer:', error);
     return NextResponse.json(
       { error: 'Failed to record prayer' },
       { status: 500 }

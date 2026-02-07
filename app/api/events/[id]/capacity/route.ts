@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { checkEventCapacity } from '@/lib/events';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,7 +12,7 @@ export async function GET(
     const capacity = await checkEventCapacity(params.id);
     return NextResponse.json(capacity);
   } catch (error) {
-    console.error('Error checking event capacity:', error);
+    logError('Error checking event capacity:', error);
     return NextResponse.json(
       { error: 'Failed to check event capacity' },
       { status: 500 }

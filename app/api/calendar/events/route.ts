@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, getDay, isWithinInterval, setHours, setMinutes, parseISO } from 'date-fns';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 // Type definitions
 interface CalendarEvent {
@@ -445,7 +446,7 @@ export async function GET(request: NextRequest) {
       total: events.length,
     });
   } catch (error) {
-    console.error('Error fetching calendar events:', error);
+    logError('Error fetching calendar events:', error);
     return NextResponse.json(
       { error: 'Failed to fetch calendar events' },
       { status: 500 }
@@ -472,7 +473,7 @@ export async function POST(request: NextRequest) {
       event: newEvent,
     });
   } catch (error) {
-    console.error('Error creating event:', error);
+    logError('Error creating event:', error);
     return NextResponse.json(
       { error: 'Failed to create event' },
       { status: 500 }

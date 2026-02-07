@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe/client';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 export async function POST(request: Request) {
   try {
@@ -60,14 +61,16 @@ export async function POST(request: Request) {
       expand: ['latest_invoice.payment_intent'],
     });
 
+    const invoice = subscription.latest_invoice as { payment_intent: { client_secret: string } };
     return NextResponse.json({
       subscriptionId: subscription.id,
-      clientSecret: (subscription.latest_invoice as any).payment_intent.client_secret,
+      clientSecret: invoice.payment_intent.client_secret,
     });
-  } catch (error: any) {
-    console.error('Stripe subscription error:', error);
+  } catch (error: unknown) {
+    logError('Stripe subscription error:', error);
+    const message = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: error.message },
+      { error: message },
       { status: 500 }
     );
   }

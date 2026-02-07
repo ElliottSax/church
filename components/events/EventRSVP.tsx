@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Event, RSVP, eventCategories } from "@/lib/events";
 import { format, isPast, addDays } from "date-fns";
+import { logger, logError, logWarn } from '@/lib/logger';
 
 interface EventRSVPProps {
   event: Event;
@@ -58,7 +59,7 @@ export default function EventRSVP({ event, initialCapacity }: EventRSVPProps) {
           setCapacity(data);
         }
       } catch (error) {
-        console.error('Error checking capacity:', error);
+        logError('Error checking capacity:', error);
       }
     };
 
@@ -112,7 +113,7 @@ export default function EventRSVP({ event, initialCapacity }: EventRSVPProps) {
         notes: ''
       });
     } catch (error) {
-      console.error('Error submitting RSVP:', error);
+      logError('Error submitting RSVP:', error);
       setError(error instanceof Error ? error.message : 'Failed to submit RSVP');
     } finally {
       setIsSubmitting(false);

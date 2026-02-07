@@ -81,7 +81,7 @@ export default function OnlineGivingPage() {
                   ].map((option) => (
                     <button
                       key={option.value}
-                      onClick={() => setFrequency(option.value as any)}
+                      onClick={() => setFrequency(option.value as "once" | "weekly" | "monthly")}
                       className={`px-4 py-3 rounded-lg font-semibold transition-colors ${
                         frequency === option.value
                           ? "bg-primary-600 text-white"

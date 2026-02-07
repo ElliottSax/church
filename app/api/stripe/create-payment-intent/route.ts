@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe/client';
+import { logError } from '@/lib/logger';
 
 export async function POST(request: Request) {
   try {
@@ -29,10 +30,11 @@ export async function POST(request: Request) {
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
     });
-  } catch (error: any) {
-    console.error('Stripe error:', error);
+  } catch (error: unknown) {
+    logError('Stripe payment intent creation failed', error);
+    const message = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: error.message },
+      { error: message },
       { status: 500 }
     );
   }

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { submitPrayerRequest } from '@/lib/prayer-wall';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 export async function POST(request: Request) {
   try {
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newRequest);
   } catch (error) {
-    console.error('Error submitting prayer request:', error);
+    logError('Error submitting prayer request:', error);
     return NextResponse.json(
       { error: 'Failed to submit prayer request' },
       { status: 500 }

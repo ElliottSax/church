@@ -1,5 +1,6 @@
 // Streaming service integration utilities
 import { cache } from 'react';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 export interface StreamStatus {
   isLive: boolean;
@@ -62,7 +63,7 @@ export const checkYouTubeLiveStatus = cache(async (channelId: string): Promise<S
 
     return { isLive: false, platform: 'youtube' };
   } catch (error) {
-    console.error('Error checking YouTube live status:', error);
+    logError('Error checking YouTube live status:', error);
     return { isLive: false, platform: 'youtube' };
   }
 });
@@ -94,7 +95,7 @@ export const getUpcomingYouTubeStreams = cache(async (channelId: string): Promis
       platform: 'youtube' as const
     })) || [];
   } catch (error) {
-    console.error('Error fetching upcoming streams:', error);
+    logError('Error fetching upcoming streams:', error);
     return [];
   }
 });
@@ -137,7 +138,7 @@ export const checkVimeoLiveStatus = cache(async (userId: string): Promise<Stream
 
     return { isLive: false, platform: 'vimeo' };
   } catch (error) {
-    console.error('Error checking Vimeo live status:', error);
+    logError('Error checking Vimeo live status:', error);
     return { isLive: false, platform: 'vimeo' };
   }
 });
@@ -175,7 +176,7 @@ export const getUpcomingVimeoEvents = cache(async (userId: string): Promise<Sche
       platform: 'vimeo' as const
     })) || [];
   } catch (error) {
-    console.error('Error fetching upcoming Vimeo events:', error);
+    logError('Error fetching upcoming Vimeo events:', error);
     return [];
   }
 });

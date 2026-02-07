@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { sendEmail } from '@/lib/email/sendgrid';
+import { logger, logError, logWarn } from '@/lib/logger';
 import {
   generateWelcomeEmail,
   generateEventReminderEmail,
@@ -42,10 +43,11 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(result);
-  } catch (error: any) {
-    console.error('Email send error:', error);
+  } catch (error: unknown) {
+    logError('Email send error:', error);
+    const message = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { error: error.message },
+      { error: message },
       { status: 500 }
     );
   }

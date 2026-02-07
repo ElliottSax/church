@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 // Type definitions
 interface BibleStudyGroup {
@@ -239,7 +240,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error fetching bible study groups:', error);
+    logError('Error fetching bible study groups:', error);
     return NextResponse.json(
       { error: 'Failed to fetch bible study groups' },
       { status: 500 }
@@ -337,7 +338,7 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Error registering for bible study:', error);
+    logError('Error registering for bible study:', error);
     return NextResponse.json(
       { error: 'Failed to process registration' },
       { status: 500 }
@@ -382,7 +383,7 @@ export async function DELETE(request: NextRequest) {
       message: 'Registration cancelled successfully',
     });
   } catch (error) {
-    console.error('Error cancelling registration:', error);
+    logError('Error cancelling registration:', error);
     return NextResponse.json(
       { error: 'Failed to cancel registration' },
       { status: 500 }

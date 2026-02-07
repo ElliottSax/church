@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Send, Filter, TrendingUp, Search, X, Users, Clock } from "lucide-react";
 import { PrayerRequest, prayerEvents, prayerCategories } from "@/lib/prayer-wall";
 import { format, formatDistanceToNow } from "date-fns";
+import { logger, logError, logWarn } from '@/lib/logger';
 
 interface PrayerWallEnhancedProps {
   initialRequests?: PrayerRequest[];
@@ -93,7 +94,7 @@ export default function PrayerWallEnhanced({ initialRequests = [] }: PrayerWallE
         setRequests(data);
       }
     } catch (error) {
-      console.error('Error loading prayer requests:', error);
+      logError('Error loading prayer requests:', error);
     } finally {
       setIsLoading(false);
     }
@@ -107,7 +108,7 @@ export default function PrayerWallEnhanced({ initialRequests = [] }: PrayerWallE
         setStats(data);
       }
     } catch (error) {
-      console.error('Error loading stats:', error);
+      logError('Error loading stats:', error);
     }
   };
 
@@ -139,7 +140,7 @@ export default function PrayerWallEnhanced({ initialRequests = [] }: PrayerWallE
         );
       }
     } catch (error) {
-      console.error('Error recording prayer:', error);
+      logError('Error recording prayer:', error);
     }
   };
 
@@ -170,7 +171,7 @@ export default function PrayerWallEnhanced({ initialRequests = [] }: PrayerWallE
         alert('Your prayer request has been submitted and will be reviewed shortly.');
       }
     } catch (error) {
-      console.error('Error submitting prayer request:', error);
+      logError('Error submitting prayer request:', error);
       alert('Failed to submit prayer request. Please try again.');
     } finally {
       setIsLoading(false);

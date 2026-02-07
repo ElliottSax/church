@@ -1,4 +1,5 @@
 import sgMail from '@sendgrid/mail';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 // Initialize SendGrid
 if (process.env.SENDGRID_API_KEY) {
@@ -11,39 +12,40 @@ export interface EmailOptions {
   text?: string;
   html?: string;
   templateId?: string;
-  dynamicTemplateData?: any;
+  dynamicTemplateData?: Record<string, unknown>;
 }
 
 export async function sendEmail(options: EmailOptions) {
   const from = process.env.SENDGRID_FROM_EMAIL || 'noreply@minneapoliscofchrist.org';
 
   try {
-    const msg: any = {
+    const msg: sgMail.MailDataRequired = {
       to: options.to,
       from: {
         email: from,
         name: 'Minneapolis Community of Christ',
       },
       subject: options.subject,
+      ...(options.templateId
+        ? {
+            templateId: options.templateId,
+            dynamicTemplateData: options.dynamicTemplateData || {},
+          }
+        : {
+            text: options.text || '',
+            html: options.html || '',
+          }),
     };
-
-    // Use dynamic template if provided
-    if (options.templateId) {
-      msg.templateId = options.templateId;
-      msg.dynamicTemplateData = options.dynamicTemplateData || {};
-    } else {
-      msg.text = options.text;
-      msg.html = options.html;
-    }
 
     const result = await sgMail.send(msg);
     return { success: true, messageId: result[0].headers['x-message-id'] };
-  } catch (error: any) {
-    console.error('SendGrid error:', error);
-    if (error.response) {
-      console.error('SendGrid error body:', error.response.body);
+  } catch (error: unknown) {
+    logError('SendGrid error:', error);
+    const sgError = error as { response?: { body: unknown }; message?: string };
+    if (sgError.response) {
+      logError('SendGrid error body:', sgError.response.body);
     }
-    throw new Error(`Failed to send email: ${error.message}`);
+    throw new Error(`Failed to send email: ${sgError.message ?? 'Unknown error'}`);
   }
 }
 
@@ -64,10 +66,11 @@ export async function sendBulkEmail(options: EmailOptions & { to: string[] }) {
       dynamicTemplateData: options.dynamicTemplateData,
     }));
 
-    const result = await sgMail.send(messages as any);
+    const result = await sgMail.send(messages);
     return { success: true, count: result.length };
-  } catch (error: any) {
-    console.error('SendGrid bulk error:', error);
-    throw new Error(`Failed to send bulk email: ${error.message}`);
+  } catch (error: unknown) {
+    logError('SendGrid bulk error:', error);
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    throw new Error(`Failed to send bulk email: ${message}`);
   }
 }

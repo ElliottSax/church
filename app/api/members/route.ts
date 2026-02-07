@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getAllMembers, getPublicMembers, searchMembers } from '@/lib/members';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
 
@@ -37,7 +38,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(members);
   } catch (error) {
-    console.error('Error fetching members:', error);
+    logError('Error fetching members:', error);
     return NextResponse.json(
       { error: 'Failed to fetch members' },
       { status: 500 }

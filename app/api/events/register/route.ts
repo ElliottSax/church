@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendEventRegistrationEmail } from '@/lib/email';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 // Type definitions
 interface EventRegistration {
@@ -142,7 +143,7 @@ export async function GET(request: NextRequest) {
       total: results.length,
     });
   } catch (error) {
-    console.error('Error fetching registrations:', error);
+    logError('Error fetching registrations:', error);
     return NextResponse.json(
       { error: 'Failed to fetch registrations' },
       { status: 500 }
@@ -230,7 +231,7 @@ export async function POST(request: NextRequest) {
         isWaitlist,
       });
     } catch (emailError) {
-      console.error('Error sending confirmation email:', emailError);
+      logError('Error sending confirmation email:', emailError);
       // Continue with registration even if email fails
     }
 
@@ -250,7 +251,7 @@ export async function POST(request: NextRequest) {
         : `Registration confirmed! Check your email for details.`,
     });
   } catch (error) {
-    console.error('Error creating registration:', error);
+    logError('Error creating registration:', error);
     return NextResponse.json(
       { error: 'Failed to process registration' },
       { status: 500 }
@@ -333,7 +334,7 @@ export async function PUT(request: NextRequest) {
       message: 'Registration updated successfully',
     });
   } catch (error) {
-    console.error('Error updating registration:', error);
+    logError('Error updating registration:', error);
     return NextResponse.json(
       { error: 'Failed to update registration' },
       { status: 500 }
@@ -388,7 +389,7 @@ export async function DELETE(request: NextRequest) {
                   isWaitlist: false,
                 });
               } catch (emailError) {
-                console.error('Error sending waitlist promotion email:', emailError);
+                logError('Error sending waitlist promotion email:', emailError);
               }
               break;
             }
@@ -414,7 +415,7 @@ export async function DELETE(request: NextRequest) {
       message: 'Registration cancelled successfully',
     });
   } catch (error) {
-    console.error('Error cancelling registration:', error);
+    logError('Error cancelling registration:', error);
     return NextResponse.json(
       { error: 'Failed to cancel registration' },
       { status: 500 }

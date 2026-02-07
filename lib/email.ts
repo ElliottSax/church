@@ -1,6 +1,8 @@
 // Email service for church notifications
 // In production, this would integrate with SendGrid, AWS SES, or similar
 
+import { logger, logError } from '@/lib/logger';
+
 interface EmailData {
   to: string;
   from?: string;
@@ -22,10 +24,10 @@ async function sendEmail(data: EmailData): Promise<boolean> {
     // sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     // await sgMail.send(data);
 
-    console.log('Sending email:', data);
+    logger.info('Sending email:', data);
     return true;
   } catch (error) {
-    console.error('Error sending email:', error);
+    logError('Error sending email:', error);
     return false;
   }
 }

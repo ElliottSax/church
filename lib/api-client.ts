@@ -1,5 +1,7 @@
 // API Client with mock support for static deployment
 
+import { logError } from '@/lib/logger';
+
 const IS_STATIC = process.env.NEXT_PUBLIC_API_MOCK === 'true';
 
 // Mock data for static deployment
@@ -78,7 +80,7 @@ export async function apiRequest<T = any>(
 
     return response.json();
   } catch (error) {
-    console.error('API request error:', error);
+    logError('API request error:', error);
 
     // Fallback to mock data in case of error
     const basePath = url.split('?')[0];

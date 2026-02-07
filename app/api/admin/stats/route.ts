@@ -3,6 +3,7 @@ import { getMemberStats } from '@/lib/members';
 import { getEventStats } from '@/lib/events';
 import { getPrayerWallStats } from '@/lib/prayer-wall';
 import { getVolunteerStats } from '@/lib/volunteers';
+import { logger, logError, logWarn } from '@/lib/logger';
 
 export async function GET() {
   try {
@@ -51,7 +52,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error('Error fetching admin stats:', error);
+    logError('Error fetching admin stats:', error);
     return NextResponse.json(
       { error: 'Failed to fetch statistics' },
       { status: 500 }

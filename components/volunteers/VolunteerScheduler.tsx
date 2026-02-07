@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
@@ -21,28 +22,75 @@ import {
   Trash2,
   UserPlus,
   CheckCircle,
+  User,
+  Loader2,
 } from "lucide-react";
-import { VolunteerShift, VolunteerRole, VolunteerProfile } from "@/lib/volunteers";
-import { format, addDays, startOfWeek, endOfWeek, isSameDay } from "date-fns";
+import { format, addDays, startOfWeek, isSameDay } from "date-fns";
+import { logger, logError, logWarn } from '@/lib/logger';
+
+interface VolunteerRole {
+  id: string;
+  name: string;
+  description: string;
+  ministry: string;
+  requirements?: string[];
+  training?: string;
+  commitment: string;
+  minAge?: number;
+  backgroundCheckRequired: boolean;
+  skills?: string[];
+  isActive: boolean;
+}
+
+interface VolunteerAssignment {
+  id: string;
+  volunteerId: string;
+  volunteerName: string;
+  shiftId: string;
+  roleId: string;
+  status: string;
+  checkedIn: boolean;
+  checkedInTime?: Date;
+  checkedOutTime?: Date;
+  notes?: string;
+}
+
+interface VolunteerShift {
+  id: string;
+  roleId: string;
+  eventId?: string;
+  title: string;
+  description?: string;
+  date: Date;
+  startTime: string;
+  endTime: string;
+  location: string;
+  spotsNeeded: number;
+  spotsFilled: number;
+  volunteers: VolunteerAssignment[];
+  status: string;
+  notes?: string;
+  reminderSent: boolean;
+}
 
 interface VolunteerSchedulerProps {
-  initialShifts?: VolunteerShift[];
   isAdmin?: boolean;
 }
 
 export default function VolunteerScheduler({
-  initialShifts = [],
   isAdmin = false,
 }: VolunteerSchedulerProps) {
-  const [shifts, setShifts] = useState<VolunteerShift[]>(initialShifts);
+  const { data: session, status: sessionStatus } = useSession();
+  const [shifts, setShifts] = useState<VolunteerShift[]>([]);
+  const [mySignups, setMySignups] = useState<any[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewMode, setViewMode] = useState<"week" | "month" | "list">("week");
   const [selectedShift, setSelectedShift] = useState<VolunteerShift | null>(null);
   const [showAddShift, setShowAddShift] = useState(false);
-  const [showVolunteerList, setShowVolunteerList] = useState(false);
-  const [availableVolunteers, setAvailableVolunteers] = useState<VolunteerProfile[]>([]);
   const [roles, setRoles] = useState<VolunteerRole[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
   const [filter, setFilter] = useState({
     role: "all",
     status: "all",
@@ -50,28 +98,48 @@ export default function VolunteerScheduler({
 
   const loadScheduleData = useCallback(async () => {
     setIsLoading(true);
+    setError(null);
+
     try {
+      // Calculate date range based on view
+      const start = startOfWeek(selectedDate);
+      const end = new Date(start);
+      end.setDate(end.getDate() + (viewMode === 'week' ? 7 : 30));
+
       // Load shifts for the selected period
-      const response = await fetch(
-        `/api/volunteers/shifts?date=${selectedDate.toISOString()}&view=${viewMode}`
+      const shiftsResponse = await fetch(
+        `/api/v2/volunteers/shifts?startDate=${start.toISOString()}&endDate=${end.toISOString()}&view=${viewMode}`
       );
-      if (response.ok) {
-        const data = await response.json();
-        setShifts(data);
+
+      if (!shiftsResponse.ok) {
+        throw new Error('Failed to load shifts');
       }
 
+      const shiftsData = await shiftsResponse.json();
+      setShifts(shiftsData.data || shiftsData);
+
       // Load roles
-      const rolesResponse = await fetch('/api/volunteers/roles');
+      const rolesResponse = await fetch('/api/v2/volunteers/roles');
       if (rolesResponse.ok) {
         const rolesData = await rolesResponse.json();
-        setRoles(rolesData);
+        setRoles(rolesData.data || rolesData);
       }
-    } catch (error) {
-      console.error('Error loading schedule data:', error);
+
+      // Load user's signups if authenticated
+      if (session?.user) {
+        const signupsResponse = await fetch('/api/v2/volunteers/my-signups');
+        if (signupsResponse.ok) {
+          const signupsData = await signupsResponse.json();
+          setMySignups(signupsData.data || signupsData);
+        }
+      }
+    } catch (err: any) {
+      logError('Error loading schedule data:', err);
+      setError(err.message || 'Failed to load schedule data');
     } finally {
       setIsLoading(false);
     }
-  }, [selectedDate, viewMode]);
+  }, [selectedDate, viewMode, session]);
 
   useEffect(() => {
     loadScheduleData();
@@ -86,40 +154,74 @@ export default function VolunteerScheduler({
     return shifts.filter(shift => isSameDay(new Date(shift.date), date));
   };
 
+  const isUserSignedUp = (shiftId: string) => {
+    return mySignups.some(signup =>
+      signup.shiftId === shiftId &&
+      signup.status !== 'cancelled'
+    );
+  };
+
   const handleSignUp = async (shiftId: string) => {
+    if (!session?.user) {
+      alert('Please sign in to volunteer');
+      return;
+    }
+
+    if (isUserSignedUp(shiftId)) {
+      alert('You are already signed up for this shift');
+      return;
+    }
+
+    setActionLoading(shiftId);
     try {
-      const response = await fetch(`/api/volunteers/shifts/${shiftId}/signup`, {
+      const response = await fetch(`/api/v2/volunteers/shifts/${shiftId}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
       });
 
-      if (response.ok) {
-        // Reload shifts
-        loadScheduleData();
-        alert('Successfully signed up for shift!');
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || 'Failed to sign up');
       }
-    } catch (error) {
-      console.error('Error signing up for shift:', error);
-      alert('Failed to sign up. Please try again.');
+
+      // Reload shifts and signups
+      await loadScheduleData();
+      setSelectedShift(null);
+      alert(data.message || 'Successfully signed up for shift!');
+    } catch (err: any) {
+      logError('Error signing up for shift:', err);
+      alert(err.message || 'Failed to sign up. Please try again.');
+    } finally {
+      setActionLoading(null);
     }
   };
 
-  const handleCancelSignUp = async (shiftId: string, assignmentId: string) => {
+  const handleCancelSignUp = async (shiftId: string) => {
     if (!confirm('Are you sure you want to cancel this shift?')) return;
 
+    setActionLoading(shiftId);
     try {
       const response = await fetch(
-        `/api/volunteers/assignments/${assignmentId}/cancel`,
-        { method: 'POST' }
+        `/api/v2/volunteers/shifts/${shiftId}/signup`,
+        { method: 'DELETE' }
       );
 
-      if (response.ok) {
-        loadScheduleData();
-        alert('Shift cancelled successfully');
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || 'Failed to cancel');
       }
-    } catch (error) {
-      console.error('Error cancelling shift:', error);
-      alert('Failed to cancel shift');
+
+      await loadScheduleData();
+      setSelectedShift(null);
+      alert(data.message || 'Shift cancelled successfully');
+    } catch (err: any) {
+      logError('Error cancelling shift:', err);
+      alert(err.message || 'Failed to cancel shift');
+    } finally {
+      setActionLoading(null);
     }
   };
 
@@ -155,7 +257,6 @@ export default function VolunteerScheduler({
 
       <div className="grid grid-cols-8 min-h-[400px]">
         <div className="p-3 bg-gray-50 border-r">
-          {/* Time slots */}
           {['Morning', 'Afternoon', 'Evening'].map(slot => (
             <div key={slot} className="h-32 py-2 text-xs text-gray-600">
               {slot}
@@ -185,6 +286,11 @@ export default function VolunteerScheduler({
                   <div className="text-xs mt-1 font-medium">
                     {shift.spotsFilled}/{shift.spotsNeeded}
                   </div>
+                  {isUserSignedUp(shift.id) && (
+                    <div className="mt-1">
+                      <CheckCircle size={12} className="text-green-600" />
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -237,7 +343,7 @@ export default function VolunteerScheduler({
               onClick={() => setSelectedShift(shift)}
             >
               <div className="flex justify-between items-start">
-                <div>
+                <div className="flex-1">
                   <h4 className="font-semibold text-gray-900">{shift.title}</h4>
                   <div className="mt-2 space-y-1 text-sm text-gray-600">
                     <div className="flex items-center">
@@ -255,29 +361,87 @@ export default function VolunteerScheduler({
                   </div>
                 </div>
 
-                <div className="text-right">
+                <div className="text-right ml-4">
                   <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getShiftStatusColor(shift)}`}>
                     <Users size={14} className="mr-1" />
                     {shift.spotsFilled}/{shift.spotsNeeded}
                   </div>
-                  {shift.status === 'open' && (
+                  {isUserSignedUp(shift.id) ? (
+                    <div className="mt-2 flex items-center justify-end text-green-600 text-sm">
+                      <CheckCircle size={16} className="mr-1" />
+                      Signed Up
+                    </div>
+                  ) : shift.status === 'open' && session?.user && (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         handleSignUp(shift.id);
                       }}
-                      className="mt-2 block w-full px-3 py-1 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700"
+                      disabled={actionLoading === shift.id}
+                      className="mt-2 block w-full px-3 py-1 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700 disabled:opacity-50"
                     >
-                      Sign Up
+                      {actionLoading === shift.id ? (
+                        <Loader2 size={14} className="inline animate-spin" />
+                      ) : (
+                        'Sign Up'
+                      )}
                     </button>
                   )}
                 </div>
               </div>
             </div>
           ))}
+
+        {shifts.length === 0 && !isLoading && (
+          <div className="p-8 text-center text-gray-500">
+            No shifts available for this period
+          </div>
+        )}
       </div>
     </div>
   );
+
+  const MySignupsSection = () => {
+    if (!session?.user || mySignups.length === 0) return null;
+
+    return (
+      <div className="mb-6 bg-blue-50 rounded-lg p-4">
+        <h3 className="font-semibold text-gray-900 mb-3">My Upcoming Shifts</h3>
+        <div className="space-y-2">
+          {mySignups
+            .filter(signup => signup.status !== 'cancelled' && signup.status !== 'completed')
+            .slice(0, 3)
+            .map(signup => (
+              <div
+                key={signup.id}
+                className="flex items-center justify-between bg-white p-3 rounded-lg"
+              >
+                <div className="flex items-center">
+                  <CheckCircle size={16} className="text-green-600 mr-2" />
+                  <div>
+                    <div className="font-medium text-sm">{signup.shift?.title}</div>
+                    <div className="text-xs text-gray-600">
+                      {format(new Date(signup.shift?.date), 'MMM d')} at {signup.shift?.startTime}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleCancelSignUp(signup.shiftId)}
+                  disabled={actionLoading === signup.shiftId}
+                  className="text-xs text-red-600 hover:text-red-700 disabled:opacity-50"
+                >
+                  {actionLoading === signup.shiftId ? (
+                    <Loader2 size={14} className="animate-spin" />
+                  ) : (
+                    'Cancel'
+                  )}
+                </button>
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -291,6 +455,37 @@ export default function VolunteerScheduler({
         </p>
       </div>
 
+      {/* Authentication Notice */}
+      {sessionStatus !== 'loading' && !session?.user && (
+        <div className="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="flex items-start">
+            <AlertCircle className="text-yellow-600 mr-3 mt-0.5" size={20} />
+            <div>
+              <h3 className="font-semibold text-yellow-800">Sign in to volunteer</h3>
+              <p className="text-sm text-yellow-700 mt-1">
+                You need to be signed in to sign up for volunteer shifts.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* My Signups */}
+      <MySignupsSection />
+
+      {/* Error Message */}
+      {error && (
+        <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="flex items-start">
+            <AlertCircle className="text-red-600 mr-3 mt-0.5" size={20} />
+            <div>
+              <h3 className="font-semibold text-red-800">Error</h3>
+              <p className="text-sm text-red-700 mt-1">{error}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Controls */}
       <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
@@ -299,6 +494,7 @@ export default function VolunteerScheduler({
             <button
               onClick={() => setSelectedDate(addDays(selectedDate, -7))}
               className="p-2 hover:bg-gray-100 rounded-lg"
+              disabled={isLoading}
             >
               <ChevronLeft size={20} />
             </button>
@@ -313,12 +509,14 @@ export default function VolunteerScheduler({
             <button
               onClick={() => setSelectedDate(addDays(selectedDate, 7))}
               className="p-2 hover:bg-gray-100 rounded-lg"
+              disabled={isLoading}
             >
               <ChevronRight size={20} />
             </button>
             <button
               onClick={() => setSelectedDate(new Date())}
               className="px-3 py-1 text-sm bg-primary-100 text-primary-700 rounded-lg hover:bg-primary-200"
+              disabled={isLoading}
             >
               Today
             </button>
@@ -333,6 +531,7 @@ export default function VolunteerScheduler({
                   ? 'bg-primary-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
+              disabled={isLoading}
             >
               Week
             </button>
@@ -343,6 +542,7 @@ export default function VolunteerScheduler({
                   ? 'bg-primary-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
+              disabled={isLoading}
             >
               List
             </button>
@@ -353,6 +553,7 @@ export default function VolunteerScheduler({
             <button
               onClick={() => setShowAddShift(true)}
               className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 flex items-center"
+              disabled={isLoading}
             >
               <Plus size={20} className="mr-2" />
               Add Shift
@@ -364,7 +565,7 @@ export default function VolunteerScheduler({
       {/* Schedule View */}
       {isLoading ? (
         <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+          <Loader2 className="inline-block animate-spin h-8 w-8 text-primary-600" />
           <p className="mt-2 text-gray-600">Loading schedule...</p>
         </div>
       ) : viewMode === 'week' ? (
@@ -444,29 +645,31 @@ export default function VolunteerScheduler({
                   </h3>
                   {selectedShift.volunteers.length > 0 ? (
                     <div className="space-y-2">
-                      {selectedShift.volunteers.map(volunteer => (
-                        <div
-                          key={volunteer.id}
-                          className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
-                        >
-                          <div className="flex items-center">
-                            <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
-                              <User className="text-primary-600" size={16} />
+                      {selectedShift.volunteers
+                        .filter(v => v.status !== 'cancelled')
+                        .map(volunteer => (
+                          <div
+                            key={volunteer.id}
+                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                          >
+                            <div className="flex items-center">
+                              <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-3">
+                                <User className="text-primary-600" size={16} />
+                              </div>
+                              <div>
+                                <p className="font-medium text-gray-900">
+                                  {volunteer.volunteerName}
+                                </p>
+                                <p className="text-xs text-gray-600 capitalize">
+                                  {volunteer.status}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <p className="font-medium text-gray-900">
-                                {volunteer.volunteerName}
-                              </p>
-                              <p className="text-xs text-gray-600">
-                                {volunteer.status}
-                              </p>
-                            </div>
+                            {volunteer.checkedIn && (
+                              <CheckCircle className="text-green-600" size={20} />
+                            )}
                           </div>
-                          {volunteer.checkedIn && (
-                            <CheckCircle className="text-green-600" size={20} />
-                          )}
-                        </div>
-                      ))}
+                        ))}
                     </div>
                   ) : (
                     <p className="text-gray-500">No volunteers signed up yet</p>
@@ -475,23 +678,52 @@ export default function VolunteerScheduler({
 
                 {/* Actions */}
                 <div className="flex gap-3">
-                  {selectedShift.status === 'open' && (
-                    <button
-                      onClick={() => handleSignUp(selectedShift.id)}
-                      className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700"
-                    >
-                      Sign Up for This Shift
-                    </button>
+                  {session?.user && (
+                    <>
+                      {isUserSignedUp(selectedShift.id) ? (
+                        <button
+                          onClick={() => handleCancelSignUp(selectedShift.id)}
+                          disabled={actionLoading === selectedShift.id}
+                          className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:opacity-50"
+                        >
+                          {actionLoading === selectedShift.id ? (
+                            <>
+                              <Loader2 size={20} className="inline mr-2 animate-spin" />
+                              Cancelling...
+                            </>
+                          ) : (
+                            'Cancel My Signup'
+                          )}
+                        </button>
+                      ) : selectedShift.status === 'open' && (
+                        <button
+                          onClick={() => handleSignUp(selectedShift.id)}
+                          disabled={actionLoading === selectedShift.id}
+                          className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50"
+                        >
+                          {actionLoading === selectedShift.id ? (
+                            <>
+                              <Loader2 size={20} className="inline mr-2 animate-spin" />
+                              Signing up...
+                            </>
+                          ) : (
+                            'Sign Up for This Shift'
+                          )}
+                        </button>
+                      )}
+                    </>
                   )}
+
+                  {!session?.user && (
+                    <div className="flex-1 p-4 bg-yellow-50 rounded-lg text-center">
+                      <p className="text-sm text-yellow-700">
+                        Please sign in to sign up for this shift
+                      </p>
+                    </div>
+                  )}
+
                   {isAdmin && (
                     <>
-                      <button
-                        onClick={() => setShowVolunteerList(true)}
-                        className="px-4 py-2 border border-primary-600 text-primary-600 rounded-lg hover:bg-primary-50"
-                      >
-                        <UserPlus size={20} className="inline mr-2" />
-                        Assign Volunteer
-                      </button>
                       <button
                         className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
                       >
@@ -509,6 +741,3 @@ export default function VolunteerScheduler({
     </div>
   );
 }
-
-// Add missing User import
-import { User } from "lucide-react";

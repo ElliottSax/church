@@ -89,7 +89,7 @@ export default function EventRegistration({
           },
           message: "Demo registration successful. In production, this would connect to a real backend.",
         }),
-      }) as any);
+      }) as Response);
 
       const data = await response.json();
 
@@ -132,7 +132,7 @@ export default function EventRegistration({
     }
   };
 
-  const updateFormData = (field: string, value: any) => {
+  const updateFormData = (field: string, value: string | number | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 

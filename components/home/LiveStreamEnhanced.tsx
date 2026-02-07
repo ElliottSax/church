@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { StreamStatus, ScheduledStream } from "@/lib/streaming";
 import { format } from "date-fns";
+import { logger, logError, logWarn } from '@/lib/logger';
 
 interface LiveStreamEnhancedProps {
   streamStatus?: StreamStatus;
@@ -33,7 +34,7 @@ export default function LiveStreamEnhanced({
           setStreamStatus(status);
         }
       } catch (error) {
-        console.error('Error checking stream status:', error);
+        logError('Error checking stream status:', error);
       }
     };
 
