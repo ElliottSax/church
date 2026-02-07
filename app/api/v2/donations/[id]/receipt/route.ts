@@ -7,10 +7,10 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/db/client';
 import {
-  withErrorHandling,
   validateMethod,
   requireAuth,
 } from '@/lib/api/middleware';
+import { withErrorHandling } from '@/lib/api/response';
 import { format } from 'date-fns';
 
 /**

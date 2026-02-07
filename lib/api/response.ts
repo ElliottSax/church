@@ -74,6 +74,13 @@ export function apiNotFound(resource: string = 'Resource') {
 }
 
 /**
+ * Bad request error
+ */
+export function apiBadRequest(message: string = 'Bad request') {
+  return apiError(message, 'BAD_REQUEST', null, 400);
+}
+
+/**
  * Unauthorized error
  */
 export function apiUnauthorized(message: string = 'Unauthorized') {
