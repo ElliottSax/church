@@ -99,7 +99,7 @@ export default function MissionsPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Mission Projects</h1>
             <p className="text-xl text-white/90">
-              Sharing Christ's mission locally and globally through service, compassion,
+              Sharing Christ&apos;s mission locally and globally through service, compassion,
               and justice
             </p>
           </div>

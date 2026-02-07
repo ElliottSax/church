@@ -17,7 +17,7 @@ interface EmailData {
 const DEFAULT_FROM = 'noreply@minneapoliscoc.org';
 
 // Send email using SendGrid (mock implementation)
-async function sendEmail(data: EmailData): Promise<boolean> {
+export async function sendEmail(data: EmailData): Promise<boolean> {
   try {
     // In production:
     // const sgMail = require('@sendgrid/mail');

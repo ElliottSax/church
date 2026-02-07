@@ -140,7 +140,7 @@ export default function GroupsPage() {
               Ready to Join a Group?
             </h2>
             <p className="text-secondary-700 mb-8">
-              We'd love to help you find the right group for you. Contact us to learn more
+              We&apos;d love to help you find the right group for you. Contact us to learn more
               about our small groups or to sign up.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

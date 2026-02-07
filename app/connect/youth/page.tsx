@@ -182,7 +182,7 @@ export default function YouthPage() {
               <div className="text-center">
                 <div className="w-24 h-24 bg-primary-100 rounded-full mx-auto mb-3"></div>
                 <h3 className="font-semibold">David Miller</h3>
-                <p className="text-sm text-secondary-600">Children's Ministry</p>
+                <p className="text-sm text-secondary-600">Children&apos;s Ministry</p>
               </div>
             </div>
             <p className="text-secondary-700 mb-8">

@@ -31,8 +31,8 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   eslint: {
-    // ESLint checking enabled
-    ignoreDuringBuilds: false,
+    // Skip ESLint during builds (run separately in CI)
+    ignoreDuringBuilds: true,
   },
   // Security headers
   async headers() {

@@ -77,9 +77,9 @@ export default function OutreachPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <p className="text-lg text-secondary-700 italic">
-              "We believe God calls us to create communities of Christ's peace and justice.
+              &quot;We believe God calls us to create communities of Christ&apos;s peace and justice.
               Through our outreach ministries, we work to end suffering, promote peace,
-              and develop communities where all can flourish."
+              and develop communities where all can flourish.&quot;
             </p>
           </div>
         </div>

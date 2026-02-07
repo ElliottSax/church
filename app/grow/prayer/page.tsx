@@ -81,7 +81,7 @@ export default function PrayerPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Prayer Groups</h1>
             <p className="text-xl text-white/90">
-              "Where two or three are gathered in my name, there I am among them."
+              &quot;Where two or three are gathered in my name, there I am among them.&quot;
               <br />
               <span className="text-sm">- Matthew 18:20</span>
             </p>
@@ -98,8 +98,8 @@ export default function PrayerPage() {
                 Join a Prayer Group
               </h2>
               <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
-                Prayer is at the heart of our spiritual life. Whether you're new to prayer
-                or have been praying for years, you'll find a welcoming community here.
+                Prayer is at the heart of our spiritual life. Whether you&apos;re new to prayer
+                or have been praying for years, you&apos;ll find a welcoming community here.
               </p>
             </div>
 
@@ -219,10 +219,10 @@ export default function PrayerPage() {
                 Prayer for Peace
               </h3>
               <p className="text-secondary-700 italic max-w-2xl mx-auto">
-                "God, where people are gathered together in anger or fear, we ask for your
+                &quot;God, where people are gathered together in anger or fear, we ask for your
                 peace. Where there is discord and division, heal your children with love.
-                Help us to be instruments of your peace, sharing Christ's mission in word
-                and deed."
+                Help us to be instruments of your peace, sharing Christ&apos;s mission in word
+                and deed.&quot;
               </p>
             </div>
           </div>
