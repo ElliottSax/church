@@ -6,7 +6,7 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 
@@ -43,12 +43,7 @@ export default function EventsListPage() {
   const [startDateFilter, setStartDateFilter] = useState<string>('');
   const [endDateFilter, setEndDateFilter] = useState<string>('');
 
-  // Fetch events
-  useEffect(() => {
-    fetchEvents();
-  }, [categoryFilter, statusFilter, startDateFilter, endDateFilter]);
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -72,7 +67,12 @@ export default function EventsListPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [categoryFilter, statusFilter, startDateFilter, endDateFilter]);
+
+  // Fetch events
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
 
   const handleDelete = async (eventId: string) => {
     if (!confirm('Are you sure you want to delete this event?')) {

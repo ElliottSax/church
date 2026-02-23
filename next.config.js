@@ -17,9 +17,8 @@ const nextConfig = {
     // Required for Sentry to work with Next.js instrumentation
     instrumentationHook: true,
   },
-  // Exclude Winston from client-side bundle
-  serverComponentsExternalPackages: ['winston'],
   webpack: (config, { isServer }) => {
+    // Exclude Winston from client-side bundle
     if (!isServer) {
       // Don't resolve 'fs' module on the client to prevent Winston file transport issues
       config.resolve.fallback = {
@@ -93,11 +92,6 @@ const sentryWebpackPluginOptions = {
 
   // Hides source maps from generated client bundles
   hideSourceMaps: true,
-
-  // Automatically annotate React components to show their full name in breadcrumbs and session replay
-  reactComponentAnnotation: {
-    enabled: true,
-  },
 };
 
 // Make sure adding Sentry options is the last code to run before exporting

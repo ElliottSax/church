@@ -8,6 +8,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { format } from 'date-fns';
 
 interface Event {
@@ -193,11 +194,12 @@ export default function ViewEventPage({ params }: { params: { id: string } }) {
 
         {/* Image */}
         {event.image && (
-          <div className="mb-8 bg-white rounded-lg shadow overflow-hidden">
-            <img
+          <div className="mb-8 bg-white rounded-lg shadow overflow-hidden relative h-64">
+            <Image
               src={event.image}
               alt={event.title}
-              className="w-full h-64 object-cover"
+              fill
+              className="object-cover"
             />
           </div>
         )}

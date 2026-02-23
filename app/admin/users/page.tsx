@@ -6,7 +6,8 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { format } from 'date-fns';
 
 interface User {
@@ -51,12 +52,7 @@ export default function UsersManagementPage() {
     role: 'member',
   });
 
-  // Fetch users
-  useEffect(() => {
-    fetchUsers();
-  }, [searchQuery, roleFilter, currentPage]);
-
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     setLoading(true);
     setError(null);
 
@@ -81,7 +77,12 @@ export default function UsersManagementPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [searchQuery, roleFilter, currentPage, limit]);
+
+  // Fetch users
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   const handleCreateUser = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -321,10 +322,12 @@ export default function UsersManagementPage() {
                           <div className="flex items-center">
                             <div className="h-10 w-10 flex-shrink-0">
                               {user.image ? (
-                                <img
+                                <Image
                                   className="h-10 w-10 rounded-full"
                                   src={user.image}
                                   alt={user.name || 'User'}
+                                  width={40}
+                                  height={40}
                                 />
                               ) : (
                                 <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
