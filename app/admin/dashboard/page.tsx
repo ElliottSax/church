@@ -102,7 +102,10 @@ export default async function AdminDashboard() {
           </div>
 
           {/* Pending Prayer Requests */}
-          <PendingPrayersCard initialPrayers={pendingPrayers} />
+          <PendingPrayersCard initialPrayers={pendingPrayers.map(p => ({
+            ...p,
+            submittedAt: p.submittedAt.toISOString(),
+          }))} />
 
           {/* Popular Content */}
           <div className="bg-white rounded-lg shadow lg:col-span-2">

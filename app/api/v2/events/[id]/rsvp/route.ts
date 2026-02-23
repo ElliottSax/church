@@ -19,8 +19,9 @@ import { logger, logError, logWarn } from '@/lib/logger';
  */
 export const POST = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context
 ) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['POST']);
   checkRateLimit(request);
 
@@ -69,7 +70,7 @@ export const POST = withErrorHandling(async (
   if (rsvp.status === 'confirmed') {
     await eventsRepository.update(params.id, {
       currentAttendees: {
-        increment: 1 + data.numberOfGuests
+        increment: 1 + (data.numberOfGuests ?? 0)
       }
     });
   }
@@ -79,7 +80,7 @@ export const POST = withErrorHandling(async (
     const emailHtml = EventRSVPConfirmation({
       name: data.name,
       eventTitle: event.title,
-      eventDate: format(event.startDate, 'EEEE, MMMM d, yyyy \'at\' h:mm a'),
+      eventDate: format(event.date, 'EEEE, MMMM d, yyyy \'at\' h:mm a'),
       eventLocation: event.location || 'Location TBA',
       confirmationCode,
       numberOfGuests: data.numberOfGuests || 0,

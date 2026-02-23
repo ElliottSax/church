@@ -33,6 +33,13 @@ export async function POST(
       status: 'confirmed' // Will be changed to waitlisted if needed by submitRSVP
     });
 
+    // Fetch event details for email
+    const { getEventById } = await import('@/lib/events');
+    const event = await getEventById(params.id);
+    const eventTitle = event?.title || 'Event';
+    const eventDate = event?.date ? format(new Date(event.date), 'EEEE, MMMM d, yyyy \'at\' h:mm a') : 'Date TBA';
+    const eventLocation = event?.location || 'Location TBA';
+
     // Send confirmation email
     try {
       // Generate a simple confirmation code
@@ -40,9 +47,9 @@ export async function POST(
 
       const emailHtml = EventRSVPConfirmation({
         name: data.name,
-        eventTitle: rsvp.eventTitle || 'Event',
-        eventDate: rsvp.eventDate ? format(new Date(rsvp.eventDate), 'EEEE, MMMM d, yyyy \'at\' h:mm a') : 'Date TBA',
-        eventLocation: rsvp.eventLocation || 'Location TBA',
+        eventTitle,
+        eventDate,
+        eventLocation,
         confirmationCode: rsvp.confirmationCode || confirmationCode,
         numberOfGuests: data.numberOfGuests || 0,
         isWaitlisted: rsvp.status === 'waitlisted',
@@ -53,8 +60,8 @@ export async function POST(
       await sendEmail({
         to: data.email,
         subject: rsvp.status === 'confirmed'
-          ? `RSVP Confirmed: ${rsvp.eventTitle || 'Event'}`
-          : `Waitlisted: ${rsvp.eventTitle || 'Event'}`,
+          ? `RSVP Confirmed: ${eventTitle}`
+          : `Waitlisted: ${eventTitle}`,
         html: emailHtml,
       });
     } catch (emailError) {

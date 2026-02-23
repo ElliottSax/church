@@ -33,8 +33,9 @@ const signupSchema = z.object({
  */
 export const POST = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context
 ) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['POST']);
   checkRateLimit(request, 50);
 
@@ -167,8 +168,9 @@ export const POST = withErrorHandling(async (
  */
 export const DELETE = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context
 ) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['DELETE']);
   checkRateLimit(request, 50);
 

@@ -53,18 +53,21 @@ export async function sendBulkEmail(options: EmailOptions & { to: string[] }) {
   const from = process.env.SENDGRID_FROM_EMAIL || 'noreply@minneapoliscofchrist.org';
 
   try {
-    const messages = options.to.map((recipient) => ({
-      to: recipient,
-      from: {
-        email: from,
-        name: 'Minneapolis Community of Christ',
-      },
-      subject: options.subject,
-      text: options.text,
-      html: options.html,
-      templateId: options.templateId,
-      dynamicTemplateData: options.dynamicTemplateData,
-    }));
+    const messages = options.to.map((recipient) => {
+      const msg: Record<string, unknown> = {
+        to: recipient,
+        from: {
+          email: from,
+          name: 'Minneapolis Community of Christ',
+        },
+        subject: options.subject,
+      };
+      if (options.text) msg.text = options.text;
+      if (options.html) msg.html = options.html;
+      if (options.templateId) msg.templateId = options.templateId;
+      if (options.dynamicTemplateData) msg.dynamicTemplateData = options.dynamicTemplateData;
+      return msg as unknown as sgMail.MailDataRequired;
+    });
 
     const result = await sgMail.send(messages);
     return { success: true, count: result.length };

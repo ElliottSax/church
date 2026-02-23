@@ -49,7 +49,10 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
   // Get total count for pagination
   const total = events.length; // In production, do a separate count query
 
-  return apiPaginated(events, query.offset / query.limit + 1, query.limit, total);
+  const offset = query.offset ?? 0;
+  const limit = query.limit ?? 20;
+
+  return apiPaginated(events, offset / limit + 1, limit, total);
 });
 
 /**
@@ -71,6 +74,7 @@ export const POST = withErrorHandling(async (request: NextRequest) => {
     endDate: data.endDate ? new Date(data.endDate) : undefined,
     rsvpDeadline: data.rsvpDeadline ? new Date(data.rsvpDeadline) : undefined,
     recurringEndDate: data.recurringEndDate ? new Date(data.recurringEndDate) : undefined,
+    tags: JSON.stringify(data.tags ?? []),
   });
 
   return apiCreated(event);

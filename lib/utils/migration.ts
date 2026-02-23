@@ -140,7 +140,7 @@ export async function importFromSanity() {
           status: 'upcoming',
           organizerName: 'Church Admin', // Default
           organizerEmail: 'admin@church.org',
-          tags: [],
+          tags: '[]',
         });
         logger.info(`✅ Imported event: ${event.title}`);
       } catch (error) {

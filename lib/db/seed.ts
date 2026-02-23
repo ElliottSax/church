@@ -46,7 +46,7 @@ async function main() {
         organizerName: 'Pastor John Smith',
         organizerEmail: 'pastor@church.org',
         organizerPhone: '(555) 123-4567',
-        tags: ['worship', 'sunday', 'service']
+        tags: JSON.stringify(['worship', 'sunday', 'service'])
       }
     }),
     prisma.event.create({
@@ -65,7 +65,7 @@ async function main() {
         status: 'upcoming',
         organizerName: 'Sarah Johnson',
         organizerEmail: 'youth@church.org',
-        tags: ['youth', 'social', 'teens']
+        tags: JSON.stringify(['youth', 'social', 'teens'])
       }
     }),
     prisma.event.create({
@@ -82,7 +82,7 @@ async function main() {
         status: 'upcoming',
         organizerName: 'Mission Team',
         organizerEmail: 'mission@church.org',
-        tags: ['community', 'service', 'outreach']
+        tags: JSON.stringify(['community', 'service', 'outreach'])
       }
     })
   ]);
@@ -177,7 +177,7 @@ async function main() {
         description: 'Exploring what it means to walk by faith and not by sight.',
         audioUrl: 'https://example.com/sermons/walking-in-faith.mp3',
         videoUrl: 'https://youtube.com/watch?v=example',
-        tags: ['faith', 'hebrews', 'sunday'],
+        tags: JSON.stringify(['faith', 'hebrews', 'sunday']),
         featured: true
       }
     })

@@ -31,7 +31,10 @@ export const GET = withErrorHandling(async (request: NextRequest) => {
 
   const total = requests.length;
 
-  return apiPaginated(requests, query.offset / query.limit + 1, query.limit, total);
+  const offset = query.offset ?? 0;
+  const limit = query.limit ?? 20;
+
+  return apiPaginated(requests, offset / limit + 1, limit, total);
 });
 
 /**

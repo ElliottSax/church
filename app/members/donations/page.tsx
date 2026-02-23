@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useSession } from "next-auth/react";
+
+// Force dynamic rendering since this page requires authentication
+export const dynamic = 'force-dynamic';
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {

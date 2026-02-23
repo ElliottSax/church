@@ -78,6 +78,8 @@ export const POST = withErrorHandling(async (request: NextRequest) => {
   const role = await prisma.volunteerRole.create({
     data: {
       ...data,
+      requirements: data.requirements ? JSON.stringify(data.requirements) : '[]',
+      skills: data.skills ? JSON.stringify(data.skills) : '[]',
       isActive: true,
     },
   });

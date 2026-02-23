@@ -165,8 +165,8 @@ async function handleRefund(charge: StripeCharge) {
 }
 
 interface DonationRecord {
-  donorEmail?: string;
-  donorName?: string;
+  donorEmail?: string | null;
+  donorName?: string | null;
   user?: { email: string };
   amount: number;
   fund: string;

@@ -13,6 +13,10 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   {
+    label: "New Here",
+    href: "/new-here",
+  },
+  {
     label: "About",
     href: "/about",
     children: [

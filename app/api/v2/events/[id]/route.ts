@@ -27,8 +27,9 @@ import {
  */
 export const GET = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context
 ) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['GET']);
   checkRateLimit(request);
 
@@ -46,8 +47,9 @@ export const GET = withErrorHandling(async (
  */
 export const PATCH = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context
 ) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['PATCH']);
   await requireAdmin(request);
   checkRateLimit(request, 50);
@@ -68,6 +70,7 @@ export const PATCH = withErrorHandling(async (
     endDate: data.endDate ? new Date(data.endDate) : undefined,
     rsvpDeadline: data.rsvpDeadline ? new Date(data.rsvpDeadline) : undefined,
     recurringEndDate: data.recurringEndDate ? new Date(data.recurringEndDate) : undefined,
+    tags: data.tags ? JSON.stringify(data.tags) : undefined,
   });
 
   return apiSuccess(updated);
@@ -78,8 +81,9 @@ export const PATCH = withErrorHandling(async (
  */
 export const DELETE = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context
 ) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['DELETE']);
   await requireAdmin(request);
   checkRateLimit(request, 50);

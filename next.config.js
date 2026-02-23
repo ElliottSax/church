@@ -3,7 +3,12 @@ const { withSentryConfig } = require('@sentry/nextjs');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost', 'cdn.sanity.io'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
   experimental: {
     serverActions: {
@@ -27,12 +32,10 @@ const nextConfig = {
     return config;
   },
   typescript: {
-    // Skip type checking during builds (run separately in CI)
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
-    // Skip ESLint during builds (run separately in CI)
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   // Security headers
   async headers() {

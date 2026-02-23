@@ -100,7 +100,7 @@ export function apiForbidden(message: string = 'Forbidden') {
 export function apiServerError(message: string = 'Internal server error', details?: unknown) {
   // Log the error details for debugging
   if (process.env.NODE_ENV === 'development') {
-    logError('Server Error:', message, details);
+    logError(`Server Error: ${message}`, details instanceof Error ? details : undefined, details && !(details instanceof Error) ? details as object : undefined);
   }
 
   return apiError(
@@ -154,14 +154,21 @@ export function apiDeleted() {
 }
 
 /**
+ * Route handler context (Next.js dynamic route params)
+ */
+export interface RouteContext {
+  params: Record<string, string | string[]>;
+}
+
+/**
  * Handle async API route with error handling
  */
 export function withErrorHandling(
-  handler: (request: NextRequest) => Promise<NextResponse>
+  handler: (request: NextRequest, context: RouteContext) => Promise<NextResponse>
 ) {
-  return async (request: NextRequest) => {
+  return async (request: NextRequest, context: RouteContext) => {
     try {
-      return await handler(request);
+      return await handler(request, context);
     } catch (error: unknown) {
       logError('API Error:', error);
 

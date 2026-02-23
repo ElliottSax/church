@@ -45,7 +45,7 @@ const consoleFormat = winston.format.combine(
 );
 
 // Define transports
-const transports = [
+const transports: winston.transport[] = [
   // Console transport (always active)
   new winston.transports.Console({
     format: process.env.NODE_ENV === 'production' ? format : consoleFormat,

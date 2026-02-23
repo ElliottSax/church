@@ -8,24 +8,21 @@
 
 import { NextRequest } from 'next/server';
 import { prayerRepository } from '@/lib/db/repositories/prayer.repository';
-import { apiSuccess, apiError, withErrorHandling } from '@/lib/api/response';
+import { apiSuccess, apiError, withErrorHandling, RouteContext } from '@/lib/api/response';
 import { validateMethod } from '@/lib/api/middleware';
 import { z } from 'zod';
-
-interface RouteContext {
-  params: { id: string };
-}
 
 /**
  * GET /api/v2/prayer-requests/[id]
  */
-export const GET = withErrorHandling(async (request: NextRequest, { params }: RouteContext) => {
+export const GET = withErrorHandling(async (request: NextRequest, context) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['GET']);
 
   const prayerRequest = await prayerRepository.findById(params.id);
 
   if (!prayerRequest) {
-    return apiError('Prayer request not found', 404);
+    return apiError('Prayer request not found', 'NOT_FOUND', null, 404);
   }
 
   return apiSuccess(prayerRequest);
@@ -35,7 +32,8 @@ export const GET = withErrorHandling(async (request: NextRequest, { params }: Ro
  * PATCH /api/v2/prayer-requests/[id]
  * Update prayer request status (approve/decline)
  */
-export const PATCH = withErrorHandling(async (request: NextRequest, { params }: RouteContext) => {
+export const PATCH = withErrorHandling(async (request: NextRequest, context) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['PATCH']);
 
   // Validate request body
@@ -51,7 +49,7 @@ export const PATCH = withErrorHandling(async (request: NextRequest, { params }: 
   // Check if prayer request exists
   const existingRequest = await prayerRepository.findById(params.id);
   if (!existingRequest) {
-    return apiError('Prayer request not found', 404);
+    return apiError('Prayer request not found', 'NOT_FOUND', null, 404);
   }
 
   // Update the prayer request
@@ -69,13 +67,14 @@ export const PATCH = withErrorHandling(async (request: NextRequest, { params }: 
  * DELETE /api/v2/prayer-requests/[id]
  * Delete prayer request (admin only)
  */
-export const DELETE = withErrorHandling(async (request: NextRequest, { params }: RouteContext) => {
+export const DELETE = withErrorHandling(async (request: NextRequest, context) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['DELETE']);
 
   // Check if prayer request exists
   const existingRequest = await prayerRepository.findById(params.id);
   if (!existingRequest) {
-    return apiError('Prayer request not found', 404);
+    return apiError('Prayer request not found', 'NOT_FOUND', null, 404);
   }
 
   // Delete the prayer request

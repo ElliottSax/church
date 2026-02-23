@@ -164,45 +164,159 @@ export default function YouthPage() {
       {/* Youth Leaders */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-secondary-900 mb-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-secondary-900 mb-4 text-center">
               Meet Our Youth Leaders
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <div className="w-24 h-24 bg-primary-100 rounded-full mx-auto mb-3"></div>
-                <h3 className="font-semibold">Pastor Mike</h3>
-                <p className="text-sm text-secondary-600">Youth Pastor</p>
-              </div>
-              <div className="text-center">
-                <div className="w-24 h-24 bg-primary-100 rounded-full mx-auto mb-3"></div>
-                <h3 className="font-semibold">Rachel Thompson</h3>
-                <p className="text-sm text-secondary-600">Youth Coordinator</p>
-              </div>
-              <div className="text-center">
-                <div className="w-24 h-24 bg-primary-100 rounded-full mx-auto mb-3"></div>
-                <h3 className="font-semibold">David Miller</h3>
-                <p className="text-sm text-secondary-600">Children&apos;s Ministry</p>
-              </div>
-            </div>
-            <p className="text-secondary-700 mb-8">
-              Our dedicated team of leaders is passionate about helping young people
-              discover their faith and develop their gifts.
+            <p className="text-center text-secondary-600 mb-12 max-w-2xl mx-auto">
+              Our dedicated team of leaders is Safe Sanctuary certified and passionate
+              about helping young people discover their faith and develop their gifts.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/connect/events"
-                className="px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors"
-              >
-                View Calendar
-              </Link>
-              <a
-                href="tel:6125551234"
-                className="px-8 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
-              >
-                Contact Youth Team
-              </a>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="w-32 h-32 bg-purple-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Users className="w-16 h-16 text-purple-600" />
+                </div>
+                <h3 className="font-bold text-xl mb-1">Pastor Mike Johnson</h3>
+                <p className="text-primary-600 font-semibold mb-3">Youth Pastor</p>
+                <p className="text-sm text-secondary-600 mb-4">
+                  15 years of youth ministry experience. Passionate about helping teens
+                  discover their purpose and identity in Christ.
+                </p>
+                <a
+                  href="mailto:pastormike@example.com"
+                  className="text-primary-600 hover:underline text-sm"
+                >
+                  pastormike@example.com
+                </a>
+              </div>
+
+              <div className="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="w-32 h-32 bg-pink-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Heart className="w-16 h-16 text-pink-600" />
+                </div>
+                <h3 className="font-bold text-xl mb-1">Rachel Thompson</h3>
+                <p className="text-primary-600 font-semibold mb-3">Youth Coordinator</p>
+                <p className="text-sm text-secondary-600 mb-4">
+                  Coordinates events, missions, and small groups. Former youth group
+                  member who loves giving back to the next generation.
+                </p>
+                <a
+                  href="mailto:rachel.thompson@example.com"
+                  className="text-primary-600 hover:underline text-sm"
+                >
+                  rachel.thompson@example.com
+                </a>
+              </div>
+
+              <div className="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="w-32 h-32 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Star className="w-16 h-16 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-xl mb-1">David Miller</h3>
+                <p className="text-primary-600 font-semibold mb-3">
+                  Children&apos;s Ministry Director
+                </p>
+                <p className="text-sm text-secondary-600 mb-4">
+                  Elementary teacher by day, children&apos;s ministry leader by calling.
+                  Makes Bible stories come alive for kids.
+                </p>
+                <a
+                  href="mailto:david.miller@example.com"
+                  className="text-primary-600 hover:underline text-sm"
+                >
+                  david.miller@example.com
+                </a>
+              </div>
             </div>
+
+            <div className="text-center">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/connect/events"
+                  className="px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+                >
+                  View Calendar
+                </Link>
+                <a
+                  href="mailto:youth@minneapoliscofchrist.org"
+                  className="px-8 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                >
+                  Contact Youth Team
+                </a>
+                <a
+                  href="tel:6125551234"
+                  className="px-8 py-3 bg-gray-100 text-gray-900 border-2 border-gray-300 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+                >
+                  Call (612) 555-1234
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Safe Sanctuary */}
+      <section className="py-16 bg-blue-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+              <Heart className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-secondary-900 mb-4">
+              Committed to Safe Sanctuary
+            </h2>
+            <p className="text-secondary-700 leading-relaxed mb-6">
+              The safety and well-being of our children and youth is our top priority.
+              All volunteers are background-checked, Safe Sanctuary trained, and
+              committed to providing a secure, nurturing environment where young people
+              can grow in faith.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6 text-left">
+              <div className="bg-white rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Background Checks</h3>
+                <p className="text-sm text-secondary-600">
+                  All volunteers complete comprehensive background screenings
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Two-Adult Rule</h3>
+                <p className="text-sm text-secondary-600">
+                  Two screened adults present in all activities with minors
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-4">
+                <h3 className="font-semibold mb-2">Ongoing Training</h3>
+                <p className="text-sm text-secondary-600">
+                  Annual training on safety protocols and abuse prevention
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Registration CTA */}
+      <section className="py-16 bg-gradient-to-br from-purple-600 to-pink-600 text-white">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Get Your Child Involved?</h2>
+          <p className="text-xl mb-8 opacity-95">
+            Registration is simple and free. We can&apos;t wait to welcome your family!
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/connect/events"
+              className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Register for Programs
+            </Link>
+            <Link
+              href="/new-here"
+              className="px-8 py-4 bg-purple-700 text-white rounded-lg font-semibold hover:bg-purple-600 transition-colors border-2 border-white/30"
+            >
+              First Time? Start Here
+            </Link>
           </div>
         </div>
       </section>

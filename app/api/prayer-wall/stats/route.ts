@@ -2,7 +2,6 @@ import { NextResponse } from 'next/server';
 import { getPrayerWallStats } from '@/lib/prayer-wall';
 import { logger, logError, logWarn } from '@/lib/logger';
 
-export const dynamic = 'force-dynamic';
 export const revalidate = 300; // Revalidate every 5 minutes
 
 export async function GET() {

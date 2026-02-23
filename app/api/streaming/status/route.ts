@@ -3,7 +3,6 @@ import { checkStreamStatus } from '@/lib/streaming';
 import { logger, logError, logWarn } from '@/lib/logger';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 60; // Revalidate every minute
 
 export async function GET() {
   try {

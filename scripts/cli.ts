@@ -29,7 +29,7 @@ program
   .description('Seed database with sample data')
   .action(async () => {
     console.log('🌱 Seeding database...\n');
-    const { default: seed } = await import('../lib/db/seed');
+    await import('../lib/db/seed');
     process.exit(0);
   });
 
@@ -190,4 +190,4 @@ program
     process.exit(0);
   });
 
-program.parse();
+program.parse(process.argv);

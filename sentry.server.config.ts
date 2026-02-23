@@ -47,7 +47,7 @@ Sentry.init({
       }
 
       // Sanitize query params (remove tokens, passwords, etc.)
-      if (event.request.query_string) {
+      if (event.request.query_string && typeof event.request.query_string === 'string') {
         event.request.query_string = event.request.query_string
           .replace(/token=[^&]*/gi, 'token=[REDACTED]')
           .replace(/password=[^&]*/gi, 'password=[REDACTED]')
@@ -64,9 +64,5 @@ Sentry.init({
     return event;
   },
 
-  // Performance monitoring options
-  integrations: [
-    // Automatically instrument Node.js libraries and frameworks
-    ...Sentry.autoDiscoverNodePerformanceMonitoringIntegrations(),
-  ],
+  // Performance monitoring is handled automatically by Sentry SDK
 });

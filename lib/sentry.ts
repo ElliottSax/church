@@ -147,10 +147,7 @@ export function setContext(name: string, context: Record<string, any>) {
  * ```
  */
 export function startTransaction(name: string, op: string) {
-  return Sentry.startTransaction({
-    name,
-    op,
-  });
+  return Sentry.startSpan({ name, op }, () => {});
 }
 
 /**

@@ -33,7 +33,8 @@ const updateUserSchema = z.object({
  * Get user by ID
  */
 export const GET = withErrorHandling(
-  async (request: NextRequest, { params }: { params: { id: string } }) => {
+  async (request: NextRequest, context) => {
+    const { params } = context as { params: { id: string } };
     validateMethod(request, ['GET']);
     // Uncomment when auth is enabled
     // await requireAuth(request);
@@ -54,7 +55,8 @@ export const GET = withErrorHandling(
  * Update user
  */
 export const PUT = withErrorHandling(
-  async (request: NextRequest, { params }: { params: { id: string } }) => {
+  async (request: NextRequest, context) => {
+    const { params } = context as { params: { id: string } };
     validateMethod(request, ['PUT']);
     // Uncomment when auth is enabled
     // await requireAuth(request);
@@ -87,7 +89,8 @@ export const PUT = withErrorHandling(
  * Delete user
  */
 export const DELETE = withErrorHandling(
-  async (request: NextRequest, { params }: { params: { id: string } }) => {
+  async (request: NextRequest, context) => {
+    const { params } = context as { params: { id: string } };
     validateMethod(request, ['DELETE']);
     // Uncomment when auth is enabled
     // await requireAuth(request);

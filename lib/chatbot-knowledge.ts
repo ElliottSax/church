@@ -1187,7 +1187,7 @@ export function findBestMatch(query: string, conversationHistory?: string[]): {
     }
 
     if (score > bestMatch.score) {
-      bestMatch = { item, score, keywordMatches };
+      bestMatch = { item, score, keywordMatches: matchedKeywords };
     }
   }
 

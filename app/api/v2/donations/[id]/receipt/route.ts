@@ -4,7 +4,7 @@
  * GET /api/v2/donations/[id]/receipt - Generate and download receipt (PDF or HTML)
  */
 
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db/client';
 import {
   validateMethod,
@@ -19,8 +19,9 @@ import { format } from 'date-fns';
  */
 export const GET = withErrorHandling(async (
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context
 ) => {
+  const { params } = context as { params: { id: string } };
   validateMethod(request, ['GET']);
   const session = await requireAuth(request);
 
@@ -38,7 +39,7 @@ export const GET = withErrorHandling(async (
   });
 
   if (!donation) {
-    return new Response(JSON.stringify({ error: 'Donation not found' }), {
+    return new NextResponse(JSON.stringify({ error: 'Donation not found' }), {
       status: 404,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -49,7 +50,7 @@ export const GET = withErrorHandling(async (
     donation.userId !== session.user.id &&
     donation.donorEmail !== session.user.email
   ) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+    return new NextResponse(JSON.stringify({ error: 'Unauthorized' }), {
       status: 403,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -62,7 +63,7 @@ export const GET = withErrorHandling(async (
   if (format_type === 'html') {
     // Return HTML receipt
     const html = generateReceiptHTML(donation, session.user);
-    return new Response(html, {
+    return new NextResponse(html, {
       headers: {
         'Content-Type': 'text/html',
       },
@@ -74,7 +75,7 @@ export const GET = withErrorHandling(async (
   // For now, we'll return HTML with print styles that can be saved as PDF
   const html = generatePrintableReceiptHTML(donation, session.user);
 
-  return new Response(html, {
+  return new NextResponse(html, {
     headers: {
       'Content-Type': 'text/html',
       'Content-Disposition': `inline; filename="receipt-${donation.id}.html"`,

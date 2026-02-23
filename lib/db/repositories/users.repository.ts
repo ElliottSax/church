@@ -26,8 +26,8 @@ export class UsersRepository {
 
     if (filters?.search) {
       where.OR = [
-        { name: { contains: filters.search, mode: 'insensitive' } },
-        { email: { contains: filters.search, mode: 'insensitive' } },
+        { name: { contains: filters.search } },
+        { email: { contains: filters.search } },
       ];
     }
 
@@ -165,8 +165,8 @@ export class UsersRepository {
     return await prisma.user.findMany({
       where: {
         OR: [
-          { name: { contains: query, mode: 'insensitive' } },
-          { email: { contains: query, mode: 'insensitive' } },
+          { name: { contains: query } },
+          { email: { contains: query } },
         ],
       },
       take: limit,
