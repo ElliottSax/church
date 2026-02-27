@@ -15,6 +15,7 @@
  */
 
 import { Command } from 'commander';
+import { logInfo, logError } from '../lib/logger';
 
 const program = new Command();
 
@@ -28,7 +29,7 @@ program
   .command('seed')
   .description('Seed database with sample data')
   .action(async () => {
-    console.log('🌱 Seeding database...\n');
+    logInfo('🌱 Seeding database...\n');
     await import('../lib/db/seed');
     process.exit(0);
   });
@@ -73,28 +74,28 @@ program
     const { getAnalyticsSummary } = await import('../lib/analytics/tracker');
     const stats = await getAnalyticsSummary(parseInt(options.days));
 
-    console.log('\n📊 Database Statistics\n');
-    console.log('Events:');
-    console.log(`  Total: ${stats.events.total}`);
-    console.log(`  Average per week: ${stats.events.averagePerWeek.toFixed(1)}`);
-    console.log('');
-    console.log('RSVPs:');
-    console.log(`  Total: ${stats.rsvps.total}`);
-    console.log(`  Average per event: ${stats.rsvps.averagePerEvent.toFixed(1)}`);
-    console.log('');
-    console.log('Prayer Requests:');
-    console.log(`  Total: ${stats.prayerRequests.total}`);
-    console.log(`  Average per week: ${stats.prayerRequests.averagePerWeek.toFixed(1)}`);
-    console.log('');
-    console.log('Donations:');
-    console.log(`  Count: ${stats.donations.count}`);
-    console.log(`  Total: $${stats.donations.total.toFixed(2)}`);
-    console.log(`  Average: $${stats.donations.average.toFixed(2)}`);
-    console.log('');
-    console.log('Users:');
-    console.log(`  New: ${stats.users.new}`);
-    console.log(`  Monthly growth rate: ${stats.users.growthRate.toFixed(1)}`);
-    console.log('');
+    logInfo('\n📊 Database Statistics\n');
+    logInfo('Events:');
+    logInfo(`  Total: ${stats.events.total}`);
+    logInfo(`  Average per week: ${stats.events.averagePerWeek.toFixed(1)}`);
+    logInfo('');
+    logInfo('RSVPs:');
+    logInfo(`  Total: ${stats.rsvps.total}`);
+    logInfo(`  Average per event: ${stats.rsvps.averagePerEvent.toFixed(1)}`);
+    logInfo('');
+    logInfo('Prayer Requests:');
+    logInfo(`  Total: ${stats.prayerRequests.total}`);
+    logInfo(`  Average per week: ${stats.prayerRequests.averagePerWeek.toFixed(1)}`);
+    logInfo('');
+    logInfo('Donations:');
+    logInfo(`  Count: ${stats.donations.count}`);
+    logInfo(`  Total: $${stats.donations.total.toFixed(2)}`);
+    logInfo(`  Average: $${stats.donations.average.toFixed(2)}`);
+    logInfo('');
+    logInfo('Users:');
+    logInfo(`  New: ${stats.users.new}`);
+    logInfo(`  Monthly growth rate: ${stats.users.growthRate.toFixed(1)}`);
+    logInfo('');
 
     process.exit(0);
   });
@@ -106,7 +107,7 @@ program
   .action(async () => {
     const { cache } = await import('../lib/cache/redis');
     await cache.clear();
-    console.log('✅ Cache cleared');
+    logInfo('✅ Cache cleared');
     process.exit(0);
   });
 
@@ -117,7 +118,7 @@ program
   .action(async (to) => {
     const { sendEmail } = await import('../lib/email');
 
-    console.log(`📧 Sending test email to ${to}...`);
+    logInfo(`📧 Sending test email to ${to}...`);
 
     await sendEmail({
       to,
@@ -129,7 +130,7 @@ program
       `
     });
 
-    console.log('✅ Email sent');
+    logInfo('✅ Email sent');
     process.exit(0);
   });
 
@@ -149,10 +150,10 @@ program
       }
     });
 
-    console.log('✅ Admin user created:');
-    console.log(`   Email: ${user.email}`);
-    console.log(`   Name: ${user.name}`);
-    console.log(`   Role: ${user.role}`);
+    logInfo('✅ Admin user created:');
+    logInfo(`   Email: ${user.email}`);
+    logInfo(`   Name: ${user.name}`);
+    logInfo(`   Role: ${user.role}`);
     process.exit(0);
   });
 
@@ -167,13 +168,13 @@ program
     const emails = options.emails ? options.emails.split(',') : [];
 
     if (emails.length === 0) {
-      console.error('❌ Please provide email addresses with -e flag');
+      logError('❌ Please provide email addresses with -e flag');
       process.exit(1);
     }
 
-    console.log(`📧 Sending prayer digest to ${emails.length} recipients...`);
+    logInfo(`📧 Sending prayer digest to ${emails.length} recipients...`);
     await prayerService.sendWeeklyDigest(emails);
-    console.log('✅ Prayer digest sent');
+    logInfo('✅ Prayer digest sent');
     process.exit(0);
   });
 
@@ -184,9 +185,9 @@ program
   .action(async () => {
     const { eventService } = await import('../lib/services/event.service');
 
-    console.log('📧 Sending event reminders...');
+    logInfo('📧 Sending event reminders...');
     await eventService.sendEventReminders();
-    console.log('✅ Reminders sent');
+    logInfo('✅ Reminders sent');
     process.exit(0);
   });
 
