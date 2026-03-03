@@ -1,8 +1,9 @@
+import Image from "next/image";
 import { Calendar, Users, Heart, Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Our Story | Minneapolis Community of Christ",
-  description: "Learn about the history of our Minneapolis congregation and Community of Christ.",
+  description: "Learn about the history and heritage of Community of Christ, a global faith movement rooted in the Restoration movement.",
 };
 
 export default function StoryPage() {
@@ -138,32 +139,47 @@ export default function StoryPage() {
       {/* Community of Christ Story */}
       <section className="py-16 bg-secondary-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-secondary-900 mb-6 text-center">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-secondary-900 mb-8 text-center">
               Part of a Larger Story
             </h2>
-            <div className="bg-white rounded-lg p-8 shadow-md">
-              <p className="text-secondary-700 mb-4">
-                Our Minneapolis congregation is part of <strong>Community of Christ</strong>,
-                an international Christian denomination with approximately 250,000 members
-                in 60 countries.
-              </p>
-              <p className="text-secondary-700 mb-4">
-                The church traces its roots to the Restoration movement of the 1830s.
-                After the death of Joseph Smith Jr., we reorganized in 1860 under the
-                leadership of Joseph Smith III. For 141 years we were known as the
-                &quot;Reorganized Church of Jesus Christ of Latter Day Saints&quot; (RLDS).
-              </p>
-              <p className="text-secondary-700 mb-4">
-                In 2001, the church adopted the name &quot;Community of Christ&quot; to better
-                reflect our identity and mission. Today, we are a Christ-centered,
-                peace-loving church committed to the worth of all persons and the pursuit
-                of justice.
-              </p>
-              <p className="text-secondary-700">
-                Our worldwide headquarters is in Independence, Missouri, home to the
-                beautiful Temple dedicated to peace and reconciliation.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="bg-white rounded-lg p-8 shadow-md">
+                <p className="text-secondary-700 mb-4">
+                  Our Minneapolis community is part of <strong>Community of Christ</strong>,
+                  an international Christian denomination with approximately 250,000 members
+                  in 60 countries.
+                </p>
+                <p className="text-secondary-700 mb-4">
+                  The church traces its roots to the Restoration movement of the 1830s.
+                  After the death of Joseph Smith Jr., we reorganized in 1860 under the
+                  leadership of Joseph Smith III. For 141 years we were known as the
+                  &quot;Reorganized Church of Jesus Christ of Latter Day Saints&quot; (RLDS).
+                </p>
+                <p className="text-secondary-700 mb-4">
+                  In 2001, the church adopted the name &quot;Community of Christ&quot; to better
+                  reflect our identity and mission. Today, we are a Christ-centered,
+                  peace-loving church committed to the worth of all persons and the pursuit
+                  of justice.
+                </p>
+                <p className="text-secondary-700">
+                  Our worldwide headquarters is in Independence, Missouri, home to the
+                  beautiful Temple dedicated to peace and reconciliation.
+                </p>
+              </div>
+              <div className="relative rounded-lg overflow-hidden shadow-lg h-96">
+                <Image
+                  src="/IndependenceTemple.jpg"
+                  alt="Community of Christ Temple in Independence, Missouri"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <p className="text-white p-4 text-sm font-semibold">
+                    Community of Christ Temple, Independence, Missouri
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
