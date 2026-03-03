@@ -49,7 +49,7 @@ export default function NewHerePage() {
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               <Mail className="w-5 h-5 mr-2" />
-              Contact Pastor JoAnne
+              Contact the Pastor, JoAnne Kelty
             </a>
             <a
               href="tel:+16123081615"
@@ -189,7 +189,7 @@ export default function NewHerePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="px-6 pb-4 text-gray-700 leading-relaxed">
-                Contact Pastor JoAnne at{" "}
+                Contact the pastor, JoAnne Kelty at{" "}
                 <a href="mailto:joanne.kelty99@gmail.com" className="text-blue-600 hover:underline">
                   joanne.kelty99@gmail.com
                 </a>{" "}
@@ -316,7 +316,7 @@ export default function NewHerePage() {
                 Learn Our Meeting Location
               </h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                As a home church, we meet in various locations. Contact Pastor JoAnne to find out where we&apos;re gathering next.
+                As a home church, we meet in various locations. Contact the pastor, JoAnne Kelty to find out where we&apos;re gathering next.
               </p>
               <Link
                 href="/about/location"
@@ -390,7 +390,7 @@ export default function NewHerePage() {
           <Home className="w-16 h-16 mx-auto mb-6 opacity-90" />
           <h2 className="text-4xl font-bold mb-6">Ready to Join Us?</h2>
           <p className="text-xl mb-8 leading-relaxed opacity-95">
-            Contact Pastor JoAnne to learn where we&apos;re gathering next. We&apos;d love
+            Contact the pastor, JoAnne Kelty to learn where we&apos;re gathering next. We&apos;d love
             to welcome you into our community!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -399,7 +399,7 @@ export default function NewHerePage() {
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               <Mail className="w-5 h-5 mr-2" />
-              Email Pastor JoAnne
+              Email JoAnne Kelty
             </a>
             <a
               href="tel:+16123081615"
