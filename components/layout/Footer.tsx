@@ -112,23 +112,23 @@ export default function Footer() {
               <li className="flex items-start space-x-2">
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
                 <span className="text-secondary-300">
-                  123 Main Street<br />
-                  Minneapolis, MN 55401
+                  Minneapolis, MN<br />
+                  <span className="text-xs italic">Home Church</span>
                 </span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone size={18} className="flex-shrink-0" />
-                <a href="tel:+16125551234" className="text-secondary-300 hover:text-white transition-colors">
-                  (612) 555-1234
+                <a href="tel:+16123081615" className="text-secondary-300 hover:text-white transition-colors">
+                  (612) 308-1615
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail size={18} className="flex-shrink-0" />
                 <a
-                  href="mailto:info@minneapoliscofchrist.org"
+                  href="mailto:joanne.kelty99@gmail.com"
                   className="text-secondary-300 hover:text-white transition-colors"
                 >
-                  info@minneapoliscofchrist.org
+                  joanne.kelty99@gmail.com
                 </a>
               </li>
             </ul>
