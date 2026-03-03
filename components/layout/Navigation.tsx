@@ -38,22 +38,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "Connect",
-    href: "/connect",
-    children: [
-      { label: "Events", href: "/connect/events" },
-      { label: "Small Groups", href: "/connect/groups" },
-      { label: "Youth Ministry", href: "/connect/youth" },
-      { label: "Community Outreach", href: "/connect/outreach" },
-    ],
-  },
-  {
-    label: "Give",
-    href: "/give",
-    children: [
-      { label: "Online Giving", href: "/give/online" },
-      { label: "Mission Projects", href: "/give/missions" },
-      { label: "Volunteer", href: "/give/volunteer" },
-    ],
+    href: "/connect/events",
   },
 ];
 

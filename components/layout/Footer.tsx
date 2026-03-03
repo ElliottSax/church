@@ -56,18 +56,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/grow/worship" className="text-secondary-300 hover:text-white transition-colors">
-                  Worship Services
+                <Link href="/about/story" className="text-secondary-300 hover:text-white transition-colors">
+                  Our Story
+                </Link>
+              </li>
+              <li>
+                <Link href="/about/beliefs" className="text-secondary-300 hover:text-white transition-colors">
+                  Our Beliefs
                 </Link>
               </li>
               <li>
                 <Link href="/connect/events" className="text-secondary-300 hover:text-white transition-colors">
                   Events
-                </Link>
-              </li>
-              <li>
-                <Link href="/give" className="text-secondary-300 hover:text-white transition-colors">
-                  Give
                 </Link>
               </li>
             </ul>
@@ -78,18 +78,18 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
+                <Link href="/grow/worship" className="text-secondary-300 hover:text-white transition-colors">
+                  Worship
+                </Link>
+              </li>
+              <li>
                 <Link href="/grow/sermons" className="text-secondary-300 hover:text-white transition-colors">
-                  Sermon Archive
+                  Sermons
                 </Link>
               </li>
               <li>
                 <Link href="/grow/bible-study" className="text-secondary-300 hover:text-white transition-colors">
                   Bible Study
-                </Link>
-              </li>
-              <li>
-                <Link href="/grow/prayer" className="text-secondary-300 hover:text-white transition-colors">
-                  Prayer Wall
                 </Link>
               </li>
               <li>
@@ -99,7 +99,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="text-secondary-300 hover:text-white transition-colors"
                 >
-                  Community of Christ World Church
+                  Community of Christ
                 </a>
               </li>
             </ul>
