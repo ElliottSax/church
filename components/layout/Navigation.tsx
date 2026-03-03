@@ -22,23 +22,8 @@ const navItems: NavItem[] = [
     children: [
       { label: "Our Story", href: "/about/story" },
       { label: "Beliefs", href: "/about/beliefs" },
-      { label: "Leadership", href: "/about/leadership" },
       { label: "Location & Times", href: "/about/location" },
     ],
-  },
-  {
-    label: "Grow",
-    href: "/grow",
-    children: [
-      { label: "Worship Services", href: "/grow/worship" },
-      { label: "Bible Study", href: "/grow/bible-study" },
-      { label: "Prayer Groups", href: "/grow/prayer" },
-      { label: "Sermon Archive", href: "/grow/sermons" },
-    ],
-  },
-  {
-    label: "Connect",
-    href: "/connect/events",
   },
 ];
 

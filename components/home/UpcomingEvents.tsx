@@ -86,25 +86,9 @@ export default function UpcomingEvents() {
         </div>
 
         <div className="text-center mt-8">
-          <Link
-            href="/connect/events"
-            className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700"
-          >
-            View All Events
-            <svg
-              className="ml-2 w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </Link>
+          <p className="text-secondary-500 text-sm">
+            Contact the pastor for more details about upcoming gatherings
+          </p>
         </div>
       </div>
     </section>
