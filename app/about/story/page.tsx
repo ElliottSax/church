@@ -25,11 +25,11 @@ export default function StoryPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-secondary-900 mb-12 text-center">
-              Our Journey
+              History of the World Church
             </h2>
 
             <div className="space-y-12">
-              {/* 1950s */}
+              {/* 1830s */}
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
@@ -38,18 +38,15 @@ export default function StoryPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-secondary-900 mb-2">
-                    1950s - Founding Years
+                    1830 - The Restoration Movement
                   </h3>
                   <p className="text-secondary-700">
-                    A small group of faithful members began meeting in homes in
-                    Minneapolis, part of the Reorganized Church of Jesus Christ of Latter
-                    Day Saints. These pioneers laid the foundation for what would become a
-                    vibrant congregation.
+                    Community of Christ traces its roots to the Restoration movement, when Joseph Smith Jr. sought to restore the early Christian church. The faith community that emerged embraced scripture, spiritual experience, and a vision of building God&apos;s kingdom on earth.
                   </p>
                 </div>
               </div>
 
-              {/* 1960s */}
+              {/* 1860 */}
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
@@ -58,17 +55,15 @@ export default function StoryPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-secondary-900 mb-2">
-                    1960s-70s - Growth & Community
+                    1860 - Reorganization
                   </h3>
                   <p className="text-secondary-700">
-                    The congregation grew steadily, purchasing our first building on Main
-                    Street. Families gathered for worship, youth programs flourished, and
-                    deep friendships formed that continue to this day.
+                    Following Joseph Smith Jr.&apos;s death, the church reorganized under the leadership of Joseph Smith III. For 141 years, we were known as the &quot;Reorganized Church of Jesus Christ of Latter Day Saints&quot; (RLDS), establishing congregations across North America and eventually worldwide.
                   </p>
                 </div>
               </div>
 
-              {/* 1980s */}
+              {/* 1960s */}
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
@@ -77,17 +72,15 @@ export default function StoryPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-secondary-900 mb-2">
-                    1980s-90s - Expanding Ministry
+                    1960s-70s - Expanding Inclusion
                   </h3>
                   <p className="text-secondary-700">
-                    Our congregation became known for community service, starting a food
-                    shelf ministry and partnering with local shelters. We welcomed our
-                    first women to priesthood, embracing the church&apos;s inclusive calling.
+                    The church began opening priesthood roles to women and deepening its commitment to peace and justice. Worldwide, Community of Christ congregations engaged in civil rights, environmental stewardship, and reconciliation work.
                   </p>
                 </div>
               </div>
 
-              {/* 2000s */}
+              {/* 2000 */}
               <div className="flex gap-6">
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
@@ -99,9 +92,7 @@ export default function StoryPage() {
                     2001 - Community of Christ
                   </h3>
                   <p className="text-secondary-700">
-                    Along with the international church, we adopted the name &quot;Community of
-                    Christ,&quot; reflecting our Christ-centered mission and commitment to
-                    building communities of joy, hope, love, and peace.
+                    The church adopted the name &quot;Community of Christ&quot; to better reflect its Christ-centered identity and mission. This name change signified our commitment to building communities of joy, hope, love, and peace across the globe.
                   </p>
                 </div>
               </div>
@@ -115,12 +106,10 @@ export default function StoryPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-secondary-900 mb-2">
-                    2010s - Renewed Vision
+                    2010s - Deepening Welcome
                   </h3>
                   <p className="text-secondary-700">
-                    We deepened our commitment to peace and justice ministries, became
-                    more intentionally welcoming to LGBTQ+ persons, and strengthened our
-                    partnerships with other Minneapolis faith communities.
+                    Community of Christ continued expanding its vision of radical inclusivity, fully welcoming LGBTQ+ persons into all aspects of church life and leadership. Congregations worldwide intensified their focus on peacemaking and justice work.
                   </p>
                 </div>
               </div>
@@ -134,13 +123,10 @@ export default function StoryPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-secondary-900 mb-2">
-                    Today - Living Our Mission
+                    Today - A Global Community
                   </h3>
                   <p className="text-secondary-700">
-                    We continue to grow as a diverse, welcoming community. While
-                    respecting our heritage, we&apos;re focused on the future - sharing
-                    Christ&apos;s love, pursuing peace and justice, and inviting all to
-                    experience God&apos;s grace.
+                    With approximately 250,000 members in 60 countries, Community of Christ continues its mission to embody Christ&apos;s love, pursue justice and peace, and welcome all God&apos;s children. We remain committed to continuing revelation, faithful discipleship, and building the beloved community.
                   </p>
                 </div>
               </div>

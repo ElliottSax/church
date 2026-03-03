@@ -33,21 +33,26 @@ export default function LocationPage() {
       {/* Contact & Times */}
       <section className="py-16 bg-secondary-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="max-w-4xl mx-auto">
             {/* Contact Info */}
-            <div className="bg-white rounded-lg p-8 shadow-md">
+            <div className="bg-white rounded-lg p-8 shadow-md mb-8">
               <h2 className="text-2xl font-bold text-secondary-900 mb-6">
-                Contact Information
+                Contact Pastor JoAnne
               </h2>
+              <p className="text-secondary-700 mb-6">
+                We are a home church without a physical sanctuary. Visitors are welcome! Please contact our pastor to learn where we&apos;ll be meeting.
+              </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <MapPin className="text-primary-600 mt-1 flex-shrink-0" size={24} />
+                  <Mail className="text-primary-600 mt-1 flex-shrink-0" size={24} />
                   <div>
-                    <h3 className="font-semibold text-secondary-900">Address</h3>
-                    <p className="text-secondary-600">
-                      123 Main Street<br />
-                      Minneapolis, MN 55401
-                    </p>
+                    <h3 className="font-semibold text-secondary-900">Email</h3>
+                    <a
+                      href="mailto:joanne.kelty99@gmail.com"
+                      className="text-primary-600 hover:text-primary-700 text-lg"
+                    >
+                      joanne.kelty99@gmail.com
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
@@ -55,107 +60,47 @@ export default function LocationPage() {
                   <div>
                     <h3 className="font-semibold text-secondary-900">Phone</h3>
                     <a
-                      href="tel:+16125551234"
-                      className="text-primary-600 hover:text-primary-700"
+                      href="tel:+16123081615"
+                      className="text-primary-600 hover:text-primary-700 text-lg"
                     >
-                      (612) 555-1234
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <Mail className="text-primary-600 mt-1 flex-shrink-0" size={24} />
-                  <div>
-                    <h3 className="font-semibold text-secondary-900">Email</h3>
-                    <a
-                      href="mailto:info@minneapoliscofchrist.org"
-                      className="text-primary-600 hover:text-primary-700"
-                    >
-                      info@minneapoliscofchrist.org
+                      (612) 308-1615
                     </a>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Service Times */}
+            {/* What to Expect */}
             <div className="bg-white rounded-lg p-8 shadow-md">
               <h2 className="text-2xl font-bold text-secondary-900 mb-6">
-                Service Times
+                What to Expect
               </h2>
               <div className="space-y-6">
                 <div>
                   <div className="flex items-center space-x-2 mb-2">
                     <Clock className="text-primary-600" size={20} />
-                    <h3 className="font-semibold text-secondary-900">Sunday Worship</h3>
+                    <h3 className="font-semibold text-secondary-900">Flexible Gathering Times</h3>
                   </div>
-                  <p className="text-secondary-600 ml-7">10:30 AM</p>
-                  <p className="text-sm text-secondary-500 ml-7">
-                    Traditional worship service with communion
+                  <p className="text-secondary-600 ml-7">
+                    As a home church, we meet in intimate settings focused on deep fellowship and shared worship. Contact us for current meeting times and location.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <MapPin className="text-primary-600" size={20} />
+                    <h3 className="font-semibold text-secondary-900">Home-Based Gatherings</h3>
+                  </div>
+                  <p className="text-secondary-600 ml-7">
+                    We gather in homes throughout Minneapolis. When you contact us, we&apos;ll provide the specific location for our next gathering.
                   </p>
                 </div>
                 <div>
                   <div className="flex items-center space-x-2 mb-2">
                     <Clock className="text-primary-600" size={20} />
-                    <h3 className="font-semibold text-secondary-900">Friday Bible Study</h3>
+                    <h3 className="font-semibold text-secondary-900">Intimate Community</h3>
                   </div>
-                  <p className="text-secondary-600 ml-7">7:00 PM</p>
-                  <p className="text-sm text-secondary-500 ml-7">
-                    In-depth scripture study and discussion
-                  </p>
-                </div>
-                <div>
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Clock className="text-primary-600" size={20} />
-                    <h3 className="font-semibold text-secondary-900">Thursday Prayer Group</h3>
-                  </div>
-                  <p className="text-secondary-600 ml-7">6:30 PM</p>
-                  <p className="text-sm text-secondary-500 ml-7">
-                    Community prayer and spiritual support
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Directions */}
-          <div className="max-w-4xl mx-auto mt-8">
-            <div className="bg-white rounded-lg p-8 shadow-md">
-              <h2 className="text-2xl font-bold text-secondary-900 mb-4">
-                Directions & Parking
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-secondary-700">
-                <div>
-                  <h3 className="font-semibold text-secondary-900 mb-2">
-                    From Downtown Minneapolis
-                  </h3>
-                  <p>
-                    Take I-35W North to Exit 17. Turn right on Main Street. The church
-                    is on the left after 2 blocks.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-secondary-900 mb-2">
-                    Public Transportation
-                  </h3>
-                  <p>
-                    Metro Transit Bus Routes 6 and 17 stop one block from the church.
-                    Light rail: Take Green Line to Nicollet Mall station.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-secondary-900 mb-2">Parking</h3>
-                  <p>
-                    Free parking is available in our lot behind the building. Street
-                    parking is also available on Main Street.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-secondary-900 mb-2">
-                    Accessibility
-                  </h3>
-                  <p>
-                    Our building is fully accessible. Accessible parking spaces are
-                    located near the main entrance.
+                  <p className="text-secondary-600 ml-7">
+                    Our small group setting fosters deep friendships and meaningful spiritual exploration centered on Christ&apos;s teachings.
                   </p>
                 </div>
               </div>

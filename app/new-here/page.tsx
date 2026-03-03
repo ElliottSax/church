@@ -13,6 +13,8 @@ import {
   Baby,
   Music,
   Book,
+  Mail,
+  Phone,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -42,20 +44,20 @@ export default function NewHerePage() {
             you&apos;re welcome here. No perfect people, just real community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/about/location"
+            <a
+              href="mailto:joanne.kelty99@gmail.com"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              <MapPin className="w-5 h-5 mr-2" />
-              Plan Your Visit
-            </Link>
-            <Link
-              href="/connect/events"
+              <Mail className="w-5 h-5 mr-2" />
+              Contact Pastor JoAnne
+            </a>
+            <a
+              href="tel:+16123081615"
               className="inline-flex items-center justify-center px-8 py-4 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors border-2 border-white/30"
             >
-              <Calendar className="w-5 h-5 mr-2" />
-              View Events
-            </Link>
+              <Phone className="w-5 h-5 mr-2" />
+              (612) 308-1615
+            </a>
           </div>
         </div>
       </section>
@@ -65,11 +67,10 @@ export default function NewHerePage() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              What to Expect on Sunday
+              A House Church Experience
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We want your first visit to be comfortable and welcoming. Here&apos;s
-              what a typical Sunday looks like.
+              We are a home church without a sanctuary building. Our gatherings are intimate, focused on deep spiritual community and shared worship in someone&apos;s home.
             </p>
           </div>
 
@@ -78,31 +79,43 @@ export default function NewHerePage() {
             <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
               <Clock className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                When We Meet
+                Flexible Gathering Times
               </h3>
               <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">Sunday Worship</p>
-                <p className="text-lg">10:00 AM - 11:15 AM</p>
+                <p className="font-semibold">Contact Us to Learn About Meetings</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  Coffee and fellowship before service (9:30 AM). Children&apos;s
-                  programs during worship.
+                  As a home church, we meet at times and locations that work for our community.
+                  Contact Pastor JoAnne to find out when and where we&apos;ll be gathering next.
                 </p>
               </div>
             </div>
 
-            {/* Where to Park */}
+            {/* Where We Gather */}
             <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <MapPin className="w-12 h-12 text-blue-600 mb-4" />
+              <Home className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Where to Park
+                Home-Based Gatherings
               </h3>
               <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">Free Parking Available</p>
-                <p>Main lot behind the building</p>
-                <p>Street parking on Oak Street</p>
+                <p className="font-semibold">Intimate Community Setting</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  Accessible parking spots near main entrance. We have volunteers
-                  to help you find your way.
+                  We gather in homes throughout Minneapolis. This intimate setting fosters
+                  deep friendships and meaningful spiritual exploration together.
+                </p>
+              </div>
+            </div>
+
+            {/* What to Expect */}
+            <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
+              <Heart className="w-12 h-12 text-blue-600 mb-4" />
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">
+                Worship Experience
+              </h3>
+              <div className="space-y-2 text-gray-700">
+                <p className="font-semibold">Centered on Christ&apos;s Love</p>
+                <p className="text-sm text-gray-600 mt-3">
+                  Scripture, prayer, discussion, and fellowship centered on our shared faith in Christ.
+                  All are welcome to participate fully in our worship.
                 </p>
               </div>
             </div>
@@ -111,68 +124,44 @@ export default function NewHerePage() {
             <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
               <Users className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                What to Wear
+                Come As You Are
               </h3>
               <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">Come As You Are</p>
-                <p>Casual to business casual</p>
-                <p>Jeans are perfectly fine!</p>
+                <p className="font-semibold">Casual and Comfortable</p>
+                <p>Wear whatever makes you comfortable</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  We care more about your heart than your wardrobe. Wear what
-                  makes you comfortable.
+                  We&apos;re a casual home church community. There&apos;s no dress code—
+                  just come as you are.
                 </p>
               </div>
             </div>
 
-            {/* Children & Youth */}
+            {/* Children & Families */}
             <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
               <Baby className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Children &amp; Youth
+                All Ages Welcome
               </h3>
               <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">All Ages Welcome</p>
-                <p>Nursery (0-3 years)</p>
-                <p>Children&apos;s Church (4-12)</p>
-                <p>Youth Group (13-18)</p>
+                <p className="font-semibold">Families &amp; Children Encouraged</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  Safe Sanctuary certified. Background-checked volunteers.
+                  We welcome children and families of all ages. Our home setting is
+                  naturally accommodating for little ones.
                 </p>
               </div>
             </div>
 
-            {/* The Service */}
-            <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <Music className="w-12 h-12 text-blue-600 mb-4" />
-              <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                The Service
-              </h3>
-              <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">Worship Format</p>
-                <p>Contemporary worship music</p>
-                <p>Scripture reading</p>
-                <p>20-minute message</p>
-                <p>Communion (1st Sunday)</p>
-                <p className="text-sm text-gray-600 mt-3">
-                  Welcoming, inclusive, and participatory worship experience.
-                </p>
-              </div>
-            </div>
-
-            {/* After Service */}
+            {/* Fellowship */}
             <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
               <Coffee className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                After Service
+                Deep Fellowship
               </h3>
               <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">Fellowship Time</p>
-                <p>Coffee and refreshments</p>
-                <p>Meet the pastor</p>
-                <p>Connect with members</p>
+                <p className="font-semibold">Community &amp; Connection</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  Stay as long as you like. No pressure, just friendly
-                  conversation.
+                  Our small group setting fosters meaningful friendships and authentic
+                  spiritual community. This is where real connection happens.
                 </p>
               </div>
             </div>
@@ -196,17 +185,19 @@ export default function NewHerePage() {
           <div className="space-y-6">
             <details className="bg-white rounded-lg shadow-md group">
               <summary className="px-6 py-4 cursor-pointer font-semibold text-lg text-gray-900 hover:text-blue-600 transition-colors flex items-center justify-between">
-                Do I need to register or RSVP?
+                Where and when do you meet?
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="px-6 pb-4 text-gray-700 leading-relaxed">
-                No registration needed! Just show up. However, if you&apos;d like us
-                to expect you and have someone ready to greet you personally, you
-                can{" "}
-                <Link href="/contact" className="text-blue-600 hover:underline">
-                  let us know you&apos;re coming
-                </Link>
-                .
+                Contact Pastor JoAnne at{" "}
+                <a href="mailto:joanne.kelty99@gmail.com" className="text-blue-600 hover:underline">
+                  joanne.kelty99@gmail.com
+                </a>{" "}
+                or call{" "}
+                <a href="tel:+16123081615" className="text-blue-600 hover:underline">
+                  (612) 308-1615
+                </a>
+                . She&apos;ll be happy to tell you where we&apos;re gathering and welcome you personally.
               </div>
             </details>
 
@@ -318,40 +309,20 @@ export default function NewHerePage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Plan Your Visit */}
+            {/* Contact Us */}
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
               <MapPin className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Plan Your Visit
+                Learn Our Meeting Location
               </h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Get directions, view our campus map, and find helpful information
-                about parking and accessibility.
+                As a home church, we meet in various locations. Contact Pastor JoAnne to find out where we&apos;re gathering next.
               </p>
               <Link
                 href="/about/location"
                 className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700"
               >
-                Location &amp; Directions
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </div>
-
-            {/* Explore Events */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
-              <Calendar className="w-12 h-12 text-green-600 mb-4" />
-              <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Explore Events
-              </h3>
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                See what&apos;s happening beyond Sunday worship. Bible studies, social
-                events, service projects, and more.
-              </p>
-              <Link
-                href="/connect/events"
-                className="inline-flex items-center text-green-600 font-semibold hover:text-green-700"
-              >
-                View Calendar
+                Contact Information
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </div>
@@ -360,36 +331,52 @@ export default function NewHerePage() {
             <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
               <Users className="w-12 h-12 text-purple-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Join a Small Group
+                Join Our Community
               </h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Small groups are where deep friendships form. Find a group that
-                fits your interests and schedule.
+                Our intimate home church setting fosters deep friendships and meaningful spiritual fellowship.
               </p>
               <Link
                 href="/connect/groups"
                 className="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700"
               >
-                Browse Groups
+                Our Groups
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </div>
 
-            {/* Learn About Us */}
+            {/* Learn About Our Faith */}
             <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
               <Book className="w-12 h-12 text-orange-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Learn About Us
+                Our Beliefs &amp; Story
               </h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Discover our story, mission, beliefs, and what makes Community of
-                Christ unique and welcoming.
+                Discover the rich history of Community of Christ and what we believe about God, faith, and building God&apos;s kingdom.
               </p>
               <Link
                 href="/about/beliefs"
                 className="inline-flex items-center text-orange-600 font-semibold hover:text-orange-700"
               >
-                Our Beliefs
+                Learn More
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Link>
+            </div>
+
+            {/* World Church History */}
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
+              <Heart className="w-12 h-12 text-green-600 mb-4" />
+              <h3 className="text-2xl font-bold mb-3 text-gray-900">
+                History of Our Church
+              </h3>
+              <p className="text-gray-700 mb-6 leading-relaxed">
+                We&apos;re part of a global community of faith with roots in the Restoration movement. Explore our heritage.
+              </p>
+              <Link
+                href="/about/story"
+                className="inline-flex items-center text-green-600 font-semibold hover:text-green-700"
+              >
+                Our Story
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </div>
@@ -401,28 +388,27 @@ export default function NewHerePage() {
       <section className="py-16 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <Home className="w-16 h-16 mx-auto mb-6 opacity-90" />
-          <h2 className="text-4xl font-bold mb-6">Still Have Questions?</h2>
+          <h2 className="text-4xl font-bold mb-6">Ready to Join Us?</h2>
           <p className="text-xl mb-8 leading-relaxed opacity-95">
-            We&apos;d love to connect with you personally. Reach out anytime, and
-            we&apos;ll get back to you within 24 hours.
+            Contact Pastor JoAnne to learn where we&apos;re gathering next. We&apos;d love
+            to welcome you into our community!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:info@minneapoliscofchrist.org"
+              href="mailto:joanne.kelty99@gmail.com"
               className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
-              Email Us
+              <Mail className="w-5 h-5 mr-2" />
+              Email Pastor JoAnne
             </a>
             <a
-              href="tel:+16125551234"
+              href="tel:+16123081615"
               className="inline-flex items-center justify-center px-8 py-4 bg-blue-700 text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors border-2 border-white/30"
             >
-              Call (612) 555-1234
+              <Phone className="w-5 h-5 mr-2" />
+              Call (612) 308-1615
             </a>
           </div>
-          <p className="mt-8 text-sm opacity-75">
-            Or use our AI chatbot (bottom right) for instant answers!
-          </p>
         </div>
       </section>
     </div>

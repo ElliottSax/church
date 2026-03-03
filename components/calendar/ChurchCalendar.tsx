@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar,
@@ -8,19 +8,9 @@ import {
   ChevronRight,
   Clock,
   MapPin,
-  Users,
-  Book,
-  Church,
-  Video,
-  Coffee,
-  Heart,
-  Music,
-  Baby,
-  Users2,
-  Sparkles,
-  Filter,
-  List,
-  Grid3X3,
+  AlertCircle,
+  Loader,
+  ExternalLink,
 } from "lucide-react";
 import {
   format,
@@ -35,331 +25,55 @@ import {
   isSameDay,
   isToday,
   getDay,
-  setHours,
-  setMinutes,
 } from "date-fns";
 import Link from "next/link";
-
-interface CalendarEvent {
-  id: string;
-  title: string;
-  type: "service" | "bible-study" | "event" | "meeting" | "youth" | "special";
-  date: Date;
-  startTime: string;
-  endTime?: string;
-  location: string;
-  description?: string;
-  recurring?: {
-    frequency: "weekly" | "biweekly" | "monthly";
-    daysOfWeek?: number[]; // 0 = Sunday, 6 = Saturday
-    endDate?: Date;
-  };
-  leader?: string;
-  capacity?: number;
-  attendees?: number;
-  category?: string;
-  isOnline?: boolean;
-  zoomLink?: string;
-  color?: string;
-}
-
-// Regular weekly schedule
-const weeklySchedule: CalendarEvent[] = [
-  // Sunday Services
-  {
-    id: "sun-worship-1",
-    title: "Traditional Worship Service",
-    type: "service",
-    date: new Date(),
-    startTime: "09:00",
-    endTime: "10:15",
-    location: "Main Sanctuary",
-    description: "Traditional hymns and liturgy",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [0], // Sunday
-    },
-    leader: "Pastor John Smith",
-    category: "worship",
-  },
-  {
-    id: "sun-worship-2",
-    title: "Contemporary Worship Service",
-    type: "service",
-    date: new Date(),
-    startTime: "11:00",
-    endTime: "12:15",
-    location: "Main Sanctuary",
-    description: "Modern worship with contemporary music",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [0],
-    },
-    leader: "Pastor John Smith",
-    category: "worship",
-  },
-  {
-    id: "sun-school",
-    title: "Sunday School (All Ages)",
-    type: "bible-study",
-    date: new Date(),
-    startTime: "10:30",
-    endTime: "11:00",
-    location: "Education Wing",
-    description: "Bible study classes for all age groups",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [0],
-    },
-    category: "education",
-  },
-
-  // Friday Services
-  {
-    id: "fri-bible",
-    title: "Friday Bible Study",
-    type: "bible-study",
-    date: new Date(),
-    startTime: "19:00",
-    endTime: "20:30",
-    location: "Fellowship Hall",
-    description: "In-depth Bible study and discussion",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [5], // Friday
-    },
-    leader: "Pastor Sarah Johnson",
-    category: "education",
-  },
-  {
-    id: "wed-prayer",
-    title: "Prayer Meeting",
-    type: "meeting",
-    date: new Date(),
-    startTime: "18:00",
-    endTime: "18:45",
-    location: "Prayer Chapel",
-    description: "Corporate prayer time",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [3],
-    },
-    category: "prayer",
-  },
-
-  // Tuesday Groups
-  {
-    id: "tue-womens",
-    title: "Women&apos;s Bible Study",
-    type: "bible-study",
-    date: new Date(),
-    startTime: "10:00",
-    endTime: "11:30",
-    location: "Room 201",
-    description: "Women&apos;s fellowship and Bible study",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [2], // Tuesday
-    },
-    leader: "Mary Williams",
-    category: "womens",
-  },
-  {
-    id: "tue-mens",
-    title: "Men&apos;s Bible Study",
-    type: "bible-study",
-    date: new Date(),
-    startTime: "06:00",
-    endTime: "07:00",
-    location: "Room 103",
-    description: "Early morning men&apos;s Bible study and prayer",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [2],
-    },
-    leader: "David Brown",
-    category: "mens",
-  },
-
-  // Thursday Groups
-  {
-    id: "thu-youth",
-    title: "Youth Group",
-    type: "youth",
-    date: new Date(),
-    startTime: "18:30",
-    endTime: "20:30",
-    location: "Youth Center",
-    description: "Teen worship, games, and Bible study",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [4], // Thursday
-    },
-    leader: "Youth Pastor Mike",
-    category: "youth",
-  },
-  {
-    id: "thu-choir",
-    title: "Choir Practice",
-    type: "meeting",
-    date: new Date(),
-    startTime: "19:00",
-    endTime: "20:30",
-    location: "Choir Room",
-    description: "Worship team and choir rehearsal",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [4],
-    },
-    leader: "Music Director Jane",
-    category: "worship",
-  },
-
-  // Friday Groups
-  {
-    id: "fri-youth-bible",
-    title: "Young Adults Bible Study",
-    type: "bible-study",
-    date: new Date(),
-    startTime: "19:00",
-    endTime: "21:00",
-    location: "Coffee House",
-    description: "Bible study for ages 18-30",
-    recurring: {
-      frequency: "weekly",
-      daysOfWeek: [5], // Friday
-    },
-    leader: "Pastor Mike",
-    category: "young-adults",
-  },
-
-  // Saturday Groups
-  {
-    id: "sat-mens-breakfast",
-    title: "Men&apos;s Breakfast & Bible Study",
-    type: "meeting",
-    date: new Date(),
-    startTime: "08:00",
-    endTime: "10:00",
-    location: "Fellowship Hall",
-    description: "Monthly men&apos;s breakfast and devotional",
-    recurring: {
-      frequency: "monthly",
-      daysOfWeek: [6], // First Saturday
-    },
-    leader: "Men&apos;s Ministry Team",
-    category: "mens",
-  },
-];
-
-// Bible Study Groups
-const bibleStudyGroups = [
-  {
-    id: "bs-1",
-    name: "New Testament Survey",
-    leader: "Dr. James Wilson",
-    schedule: "Mondays, 7:00 PM",
-    location: "Room 204",
-    currentBook: "Gospel of John",
-    spotsAvailable: 5,
-    maxCapacity: 20,
-  },
-  {
-    id: "bs-2",
-    name: "Women&apos;s Heart to Heart",
-    leader: "Sarah Miller",
-    schedule: "Tuesdays, 10:00 AM",
-    location: "Room 201",
-    currentBook: "Proverbs 31",
-    spotsAvailable: 8,
-    maxCapacity: 15,
-  },
-  {
-    id: "bs-3",
-    name: "Marriage & Family",
-    leader: "Tom & Lisa Anderson",
-    schedule: "Fridays, 7:00 PM",
-    location: "Conference Room",
-    currentBook: "Love & Respect",
-    spotsAvailable: 3,
-    maxCapacity: 12,
-  },
-  {
-    id: "bs-4",
-    name: "Foundations of Faith",
-    leader: "Pastor John",
-    schedule: "Thursdays, 6:30 PM",
-    location: "Chapel",
-    currentBook: "Basic Christianity",
-    spotsAvailable: 10,
-    maxCapacity: 25,
-  },
-  {
-    id: "bs-5",
-    name: "Senior Saints",
-    leader: "Bob Thompson",
-    schedule: "Thursdays, 10:00 AM",
-    location: "Library",
-    currentBook: "Psalms",
-    spotsAvailable: 6,
-    maxCapacity: 15,
-  },
-];
+import {
+  fetchCommunityOfChristCalendar,
+  ParsedCalendarEvent,
+} from "@/lib/calendar-feed";
 
 interface ChurchCalendarProps {
-  showOnlyServices?: boolean;
-  showOnlyBibleStudy?: boolean;
   compact?: boolean;
 }
 
-export default function ChurchCalendar({
-  showOnlyServices = false,
-  showOnlyBibleStudy = false,
-  compact = false,
-}: ChurchCalendarProps) {
+export default function ChurchCalendar({ compact = false }: ChurchCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [viewMode, setViewMode] = useState<"month" | "week" | "list">("month");
-  const [filterCategory, setFilterCategory] = useState<string>("all");
-  const [showEventDetails, setShowEventDetails] = useState<CalendarEvent | null>(null);
+  const [events, setEvents] = useState<ParsedCalendarEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [showEventDetails, setShowEventDetails] =
+    useState<ParsedCalendarEvent | null>(null);
+
+  // Fetch calendar feed on mount
+  useEffect(() => {
+    const loadCalendar = async () => {
+      setLoading(true);
+      try {
+        const fetchedEvents = await fetchCommunityOfChristCalendar();
+        setEvents(fetchedEvents);
+        setError(null);
+      } catch (err) {
+        setError("Failed to load calendar. Please try again later.");
+        console.error("Calendar fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCalendar();
+  }, []);
 
   // Get events for a specific date
-  const getEventsForDate = (date: Date): CalendarEvent[] => {
-    const events: CalendarEvent[] = [];
-    const dayOfWeek = getDay(date);
-
-    // Add recurring events
-    weeklySchedule.forEach((event) => {
-      if (event.recurring?.daysOfWeek?.includes(dayOfWeek)) {
-        // Check if it's monthly and if it's the right week
-        if (event.recurring.frequency === "monthly") {
-          const weekOfMonth = Math.ceil(date.getDate() / 7);
-          if (weekOfMonth !== 1) return; // Only first week of month
-        }
-
-        events.push({
-          ...event,
-          date: date,
-        });
-      }
+  const getEventsForDate = (date: Date): ParsedCalendarEvent[] => {
+    return events.filter((event) => {
+      const eventDate = new Date(event.startDate);
+      return isSameDay(eventDate, date);
     });
-
-    // Filter by category
-    if (showOnlyServices) {
-      return events.filter(e => e.type === "service");
-    }
-    if (showOnlyBibleStudy) {
-      return events.filter(e => e.type === "bible-study");
-    }
-    if (filterCategory !== "all") {
-      return events.filter(e => e.category === filterCategory);
-    }
-
-    return events;
   };
 
   // Generate calendar days
-  const calendarDays = useMemo(() => {
+  const calendarDays = (() => {
     const start = startOfWeek(startOfMonth(currentDate));
     const end = endOfWeek(endOfMonth(currentDate));
     const days = [];
@@ -371,388 +85,234 @@ export default function ChurchCalendar({
     }
 
     return days;
-  }, [currentDate]);
+  })();
 
-  // Get week view days
-  const weekDays = useMemo(() => {
-    const start = startOfWeek(currentDate);
-    return Array.from({ length: 7 }, (_, i) => addDays(start, i));
-  }, [currentDate]);
+  // Upcoming events (next 7 days)
+  const upcomingEvents = events
+    .filter(
+      (event) =>
+        new Date(event.startDate) >= new Date() &&
+        new Date(event.startDate) <=
+          addDays(new Date(), 7)
+    )
+    .sort(
+      (a, b) =>
+        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+    )
+    .slice(0, 5);
 
-  const getCategoryIcon = (type: string) => {
-    switch (type) {
-      case "service":
-        return <Church size={14} />;
-      case "bible-study":
-        return <Book size={14} />;
-      case "youth":
-        return <Users2 size={14} />;
-      case "meeting":
-        return <Coffee size={14} />;
-      case "special":
-        return <Sparkles size={14} />;
-      default:
-        return <Calendar size={14} />;
-    }
-  };
+  if (compact) {
+    return (
+      <div className="space-y-6">
+        {/* Mini Calendar */}
+        <div className="bg-white rounded-lg shadow-md p-4">
+          <h3 className="text-lg font-semibold mb-4 text-secondary-900">
+            Calendar
+          </h3>
 
-  const getCategoryColor = (type: string) => {
-    switch (type) {
-      case "service":
-        return "bg-purple-100 text-purple-700 border-purple-300";
-      case "bible-study":
-        return "bg-blue-100 text-blue-700 border-blue-300";
-      case "youth":
-        return "bg-green-100 text-green-700 border-green-300";
-      case "meeting":
-        return "bg-yellow-100 text-yellow-700 border-yellow-300";
-      case "special":
-        return "bg-pink-100 text-pink-700 border-pink-300";
-      default:
-        return "bg-gray-100 text-gray-700 border-gray-300";
-    }
-  };
-
-  // Month View
-  const MonthView = () => (
-    <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-      {/* Days of week header */}
-      <div className="grid grid-cols-7 bg-gray-50 border-b">
-        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-          <div key={day} className="px-2 py-3 text-center text-sm font-semibold text-gray-700">
-            {day}
-          </div>
-        ))}
-      </div>
-
-      {/* Calendar grid */}
-      <div className="grid grid-cols-7">
-        {calendarDays.map((day, index) => {
-          const events = getEventsForDate(day);
-          const isCurrentMonth = isSameMonth(day, currentDate);
-          const isSelected = selectedDate && isSameDay(day, selectedDate);
-
-          return (
-            <motion.div
-              key={day.toISOString()}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.01 }}
-              className={`
-                min-h-[100px] p-2 border-r border-b cursor-pointer transition-colors
-                ${!isCurrentMonth ? "bg-gray-50 text-gray-400" : ""}
-                ${isToday(day) ? "bg-blue-50" : ""}
-                ${isSelected ? "bg-primary-50" : "hover:bg-gray-50"}
-              `}
-              onClick={() => setSelectedDate(day)}
-            >
-              <div className="flex justify-between items-start mb-1">
-                <span className={`text-sm font-medium ${isToday(day) ? "text-primary-600" : ""}`}>
-                  {format(day, "d")}
-                </span>
-                {events.length > 0 && (
-                  <span className="text-xs bg-primary-100 text-primary-600 px-1.5 py-0.5 rounded-full">
-                    {events.length}
-                  </span>
-                )}
-              </div>
-
-              {/* Event dots */}
-              <div className="space-y-1">
-                {events.slice(0, compact ? 2 : 3).map((event) => (
-                  <div
-                    key={event.id}
-                    className={`text-xs px-1.5 py-0.5 rounded border ${getCategoryColor(event.type)} truncate`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setShowEventDetails(event);
-                    }}
-                  >
-                    <span className="flex items-center gap-1">
-                      {getCategoryIcon(event.type)}
-                      <span className="truncate">{event.startTime} - {event.title}</span>
-                    </span>
-                  </div>
-                ))}
-                {events.length > (compact ? 2 : 3) && (
-                  <div className="text-xs text-gray-500">
-                    +{events.length - (compact ? 2 : 3)} more
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
-    </div>
-  );
-
-  // Week View
-  const WeekView = () => (
-    <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-      <div className="grid grid-cols-8 border-b">
-        <div className="p-3 bg-gray-50 font-semibold text-sm text-gray-600">
-          Time
-        </div>
-        {weekDays.map((day) => (
-          <div
-            key={day.toISOString()}
-            className={`p-3 text-center border-l ${
-              isToday(day) ? "bg-primary-50 font-semibold" : "bg-gray-50"
-            }`}
-          >
-            <div className="text-xs text-gray-600">{format(day, "EEE")}</div>
-            <div className="text-lg">{format(day, "d")}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="overflow-y-auto max-h-[600px]">
-        {/* Time slots from 6 AM to 10 PM */}
-        {Array.from({ length: 17 }, (_, i) => i + 6).map((hour) => (
-          <div key={hour} className="grid grid-cols-8 border-b">
-            <div className="p-2 bg-gray-50 text-xs text-gray-600">
-              {format(setHours(new Date(), hour), "h:mm a")}
+          {error && (
+            <div className="flex items-center gap-2 p-3 mb-4 bg-red-50 text-red-700 rounded">
+              <AlertCircle size={20} />
+              <p className="text-sm">{error}</p>
             </div>
-            {weekDays.map((day) => {
-              const events = getEventsForDate(day).filter((event) => {
-                const eventHour = parseInt(event.startTime.split(":")[0]);
-                return eventHour === hour;
-              });
+          )}
 
-              return (
-                <div key={day.toISOString()} className="p-1 border-l min-h-[60px]">
-                  {events.map((event) => (
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader className="animate-spin text-primary-600" size={24} />
+            </div>
+          ) : (
+            <>
+              {/* Upcoming Events */}
+              {upcomingEvents.length > 0 ? (
+                <div className="space-y-2">
+                  {upcomingEvents.map((event) => (
                     <div
                       key={event.id}
-                      className={`text-xs p-1 rounded border ${getCategoryColor(event.type)} cursor-pointer`}
-                      onClick={() => setShowEventDetails(event)}
+                      className="p-2 bg-primary-50 rounded text-sm"
                     >
-                      <div className="font-semibold truncate">{event.title}</div>
-                      <div className="text-xs opacity-75">{event.location}</div>
+                      <p className="font-semibold text-primary-700">
+                        {event.title}
+                      </p>
+                      <p className="text-primary-600 text-xs">
+                        {format(new Date(event.startDate), "MMM d, h:mm a")}
+                      </p>
+                      {event.location && (
+                        <p className="text-primary-600 text-xs flex items-center gap-1 mt-1">
+                          <MapPin size={12} />
+                          {event.location}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
-  // List View
-  const ListView = () => {
-    const upcomingEvents: CalendarEvent[] = [];
-    for (let i = 0; i < 30; i++) {
-      const date = addDays(new Date(), i);
-      const events = getEventsForDate(date);
-      events.forEach((event) => {
-        upcomingEvents.push({ ...event, date });
-      });
-    }
-
-    return (
-      <div className="bg-white rounded-lg shadow-sm divide-y">
-        {upcomingEvents.slice(0, 20).map((event) => (
-          <div
-            key={`${event.id}-${event.date.toISOString()}`}
-            className="p-4 hover:bg-gray-50 cursor-pointer"
-            onClick={() => setShowEventDetails(event)}
-          >
-            <div className="flex items-start justify-between">
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${getCategoryColor(event.type)}`}>
-                    {getCategoryIcon(event.type)}
-                    <span className="ml-1">{event.type.replace("-", " ")}</span>
-                  </span>
-                  <h3 className="font-semibold text-gray-900">{event.title}</h3>
-                </div>
-                <div className="text-sm text-gray-600 space-y-1">
-                  <div className="flex items-center">
-                    <Calendar size={14} className="mr-2" />
-                    {format(event.date, "EEEE, MMMM d, yyyy")}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock size={14} className="mr-2" />
-                    {event.startTime} {event.endTime && `- ${event.endTime}`}
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin size={14} className="mr-2" />
-                    {event.location}
-                  </div>
-                  {event.leader && (
-                    <div className="flex items-center">
-                      <Users size={14} className="mr-2" />
-                      {event.leader}
-                    </div>
-                  )}
-                </div>
-              </div>
-              {event.isOnline && (
-                <Video className="text-blue-600" size={20} />
+              ) : (
+                <p className="text-secondary-600 text-sm">
+                  No upcoming events in the next week.
+                </p>
               )}
-            </div>
-          </div>
-        ))}
+
+              <Link
+                href="/calendar"
+                className="inline-block mt-4 text-primary-600 hover:text-primary-700 text-sm font-semibold"
+              >
+                View Full Calendar →
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     );
-  };
+  }
 
+  // Full calendar view
   return (
-    <div className={compact ? "" : "max-w-7xl mx-auto"}>
-      {/* Header */}
-      {!compact && (
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            Church Calendar
-          </h2>
-          <p className="text-gray-600">
-            View our worship services, Bible studies, and special events
+    <div className="w-full">
+      {error && (
+        <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-start gap-3">
+          <AlertCircle className="text-yellow-600 flex-shrink-0 mt-0.5" />
+          <div>
+            <h3 className="font-semibold text-yellow-900">Calendar Notice</h3>
+            <p className="text-yellow-700 text-sm mt-1">{error}</p>
+            <p className="text-yellow-600 text-xs mt-2">
+              For the latest Community of Christ events, visit{" "}
+              <a
+                href="https://gathering.cofchrist.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-yellow-900"
+              >
+                gathering.cofchrist.org
+              </a>
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        {/* Header */}
+        <div className="bg-primary-600 text-white p-6">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-4">
+              <Calendar className="w-8 h-8" />
+              <h2 className="text-3xl font-bold">
+                {format(currentDate, "MMMM yyyy")}
+              </h2>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentDate(subMonths(currentDate, 1))}
+                className="p-2 hover:bg-primary-700 rounded transition-colors"
+                aria-label="Previous month"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                onClick={() => setCurrentDate(new Date())}
+                className="px-4 py-2 hover:bg-primary-700 rounded transition-colors text-sm font-semibold"
+              >
+                Today
+              </button>
+              <button
+                onClick={() => setCurrentDate(addMonths(currentDate, 1))}
+                className="p-2 hover:bg-primary-700 rounded transition-colors"
+                aria-label="Next month"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
+
+          {/* Community of Christ Reference */}
+          <p className="text-primary-100 text-sm">
+            Events from Community of Christ worldwide calendar
           </p>
         </div>
-      )}
 
-      {/* Controls */}
-      <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          {/* Date Navigation */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setCurrentDate(subMonths(currentDate, 1))}
-              className="p-2 hover:bg-gray-100 rounded-lg"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <div className="text-center min-w-[150px]">
-              <div className="font-semibold text-gray-900">
-                {format(currentDate, "MMMM yyyy")}
+        {/* Calendar Grid */}
+        <div className="p-6">
+          {loading ? (
+            <div className="flex items-center justify-center py-16">
+              <div className="text-center">
+                <Loader className="animate-spin text-primary-600 mx-auto mb-4" size={32} />
+                <p className="text-secondary-600">Loading calendar events...</p>
               </div>
             </div>
-            <button
-              onClick={() => setCurrentDate(addMonths(currentDate, 1))}
-              className="p-2 hover:bg-gray-100 rounded-lg"
-            >
-              <ChevronRight size={20} />
-            </button>
-            <button
-              onClick={() => setCurrentDate(new Date())}
-              className="px-3 py-1 text-sm bg-primary-100 text-primary-700 rounded-lg hover:bg-primary-200"
-            >
-              Today
-            </button>
-          </div>
+          ) : (
+            <>
+              {/* Day headers */}
+              <div className="grid grid-cols-7 gap-2 mb-2">
+                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                  <div
+                    key={day}
+                    className="text-center font-semibold text-secondary-700 py-2"
+                  >
+                    {day}
+                  </div>
+                ))}
+              </div>
 
-          {/* View Mode and Filters */}
-          <div className="flex gap-2">
-            <select
-              value={filterCategory}
-              onChange={(e) => setFilterCategory(e.target.value)}
-              className="px-3 py-2 border rounded-lg text-sm"
-            >
-              <option value="all">All Categories</option>
-              <option value="worship">Worship Services</option>
-              <option value="education">Bible Study</option>
-              <option value="youth">Youth</option>
-              <option value="mens">Men&apos;s Ministry</option>
-              <option value="womens">Women&apos;s Ministry</option>
-              <option value="prayer">Prayer</option>
-            </select>
+              {/* Calendar days */}
+              <div className="grid grid-cols-7 gap-2">
+                {calendarDays.map((day) => {
+                  const dayEvents = getEventsForDate(day);
+                  const isCurrentMonth = isSameMonth(day, currentDate);
+                  const isCurrentDay = isToday(day);
 
-            <div className="flex gap-1 border rounded-lg p-1">
-              <button
-                onClick={() => setViewMode("month")}
-                className={`px-3 py-1 rounded text-sm ${
-                  viewMode === "month"
-                    ? "bg-primary-600 text-white"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                Month
-              </button>
-              <button
-                onClick={() => setViewMode("week")}
-                className={`px-3 py-1 rounded text-sm ${
-                  viewMode === "week"
-                    ? "bg-primary-600 text-white"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                Week
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`px-3 py-1 rounded text-sm ${
-                  viewMode === "list"
-                    ? "bg-primary-600 text-white"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                List
-              </button>
-            </div>
-          </div>
+                  return (
+                    <motion.div
+                      key={day.toISOString()}
+                      className={`min-h-24 p-2 rounded-lg border-2 cursor-pointer transition-all ${
+                        isCurrentMonth
+                          ? isCurrentDay
+                            ? "border-primary-500 bg-primary-50"
+                            : "border-secondary-200 bg-white hover:border-primary-400"
+                          : "border-secondary-100 bg-gray-50"
+                      }`}
+                      onClick={() => setSelectedDate(day)}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <div
+                        className={`text-sm font-semibold mb-1 ${
+                          isCurrentDay
+                            ? "text-primary-700"
+                            : isCurrentMonth
+                            ? "text-secondary-900"
+                            : "text-secondary-400"
+                        }`}
+                      >
+                        {format(day, "d")}
+                      </div>
+
+                      {/* Event indicators */}
+                      <div className="space-y-1">
+                        {dayEvents.slice(0, 2).map((event) => (
+                          <motion.div
+                            key={event.id}
+                            className="text-xs bg-primary-100 text-primary-700 px-2 py-1 rounded truncate hover:bg-primary-200 cursor-pointer"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setShowEventDetails(event);
+                            }}
+                            title={event.title}
+                          >
+                            {event.title}
+                          </motion.div>
+                        ))}
+                        {dayEvents.length > 2 && (
+                          <div className="text-xs text-primary-600 px-2 font-semibold">
+                            +{dayEvents.length - 2} more
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       </div>
-
-      {/* Calendar View */}
-      {viewMode === "month" && <MonthView />}
-      {viewMode === "week" && <WeekView />}
-      {viewMode === "list" && <ListView />}
-
-      {/* Bible Study Groups Section */}
-      {!showOnlyServices && !compact && (
-        <div className="mt-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">
-            Ongoing Bible Study Groups
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {bibleStudyGroups.map((group) => (
-              <div
-                key={group.id}
-                className="bg-white rounded-lg shadow-sm p-4 border hover:shadow-md transition-shadow"
-              >
-                <h4 className="font-semibold text-gray-900 mb-2">{group.name}</h4>
-                <div className="text-sm text-gray-600 space-y-1">
-                  <div className="flex items-center">
-                    <Users size={14} className="mr-2 text-gray-400" />
-                    {group.leader}
-                  </div>
-                  <div className="flex items-center">
-                    <Clock size={14} className="mr-2 text-gray-400" />
-                    {group.schedule}
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin size={14} className="mr-2 text-gray-400" />
-                    {group.location}
-                  </div>
-                  <div className="flex items-center">
-                    <Book size={14} className="mr-2 text-gray-400" />
-                    Currently studying: {group.currentBook}
-                  </div>
-                </div>
-                <div className="mt-3 flex items-center justify-between">
-                  <span className={`text-xs px-2 py-1 rounded-full ${
-                    group.spotsAvailable > 0
-                      ? "bg-green-100 text-green-700"
-                      : "bg-red-100 text-red-700"
-                  }`}>
-                    {group.spotsAvailable > 0
-                      ? `${group.spotsAvailable} spots available`
-                      : "Full"}
-                  </span>
-                  {group.spotsAvailable > 0 && (
-                    <button className="text-xs text-primary-600 hover:text-primary-700 font-semibold">
-                      Join Group
-                    </button>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {/* Event Details Modal */}
       <AnimatePresence>
@@ -761,79 +321,84 @@ export default function ChurchCalendar({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
             onClick={() => setShowEventDetails(null)}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-white rounded-xl max-w-md w-full p-6"
+              exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-lg shadow-2xl max-w-md w-full p-6"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-bold text-gray-900">
-                  {showEventDetails.title}
-                </h3>
-                <button
-                  onClick={() => setShowEventDetails(null)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  ×
-                </button>
-              </div>
+              <h3 className="text-2xl font-bold text-secondary-900 mb-2">
+                {showEventDetails.title}
+              </h3>
 
-              <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-4 ${getCategoryColor(showEventDetails.type)}`}>
-                {getCategoryIcon(showEventDetails.type)}
-                <span className="ml-1">{showEventDetails.type.replace("-", " ")}</span>
-              </div>
-
-              <div className="space-y-3 text-gray-700">
-                <div className="flex items-center">
-                  <Calendar size={18} className="mr-3 text-gray-400" />
-                  {format(showEventDetails.date, "EEEE, MMMM d, yyyy")}
-                </div>
-                <div className="flex items-center">
-                  <Clock size={18} className="mr-3 text-gray-400" />
-                  {showEventDetails.startTime}
-                  {showEventDetails.endTime && ` - ${showEventDetails.endTime}`}
-                </div>
-                <div className="flex items-center">
-                  <MapPin size={18} className="mr-3 text-gray-400" />
-                  {showEventDetails.location}
-                </div>
-                {showEventDetails.leader && (
-                  <div className="flex items-center">
-                    <Users size={18} className="mr-3 text-gray-400" />
-                    Led by {showEventDetails.leader}
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-secondary-700">
+                  <Clock size={20} className="text-primary-600" />
+                  <div>
+                    <p className="text-sm text-secondary-600">Date & Time</p>
+                    <p className="font-semibold">
+                      {format(
+                        new Date(showEventDetails.startDate),
+                        "EEEE, MMMM d, yyyy"
+                      )}
+                      {!showEventDetails.allDay && (
+                        <>
+                          <br />
+                          {format(
+                            new Date(showEventDetails.startDate),
+                            "h:mm a"
+                          )}
+                          {showEventDetails.endDate && (
+                            <> - {format(new Date(showEventDetails.endDate), "h:mm a")}</>
+                          )}
+                        </>
+                      )}
+                    </p>
                   </div>
-                )}
-                {showEventDetails.isOnline && showEventDetails.zoomLink && (
-                  <div className="flex items-center">
-                    <Video size={18} className="mr-3 text-gray-400" />
-                    <a href={showEventDetails.zoomLink} className="text-primary-600 hover:text-primary-700">
-                      Join Online
-                    </a>
+                </div>
+
+                {showEventDetails.location && (
+                  <div className="flex items-start gap-3 text-secondary-700">
+                    <MapPin size={20} className="text-primary-600 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-secondary-600">Location</p>
+                      <p className="font-semibold">
+                        {showEventDetails.location}
+                      </p>
+                    </div>
                   </div>
                 )}
               </div>
 
               {showEventDetails.description && (
-                <div className="mt-4 pt-4 border-t">
-                  <p className="text-gray-600">{showEventDetails.description}</p>
+                <div className="mb-6 pb-6 border-b border-secondary-200">
+                  <p className="text-sm text-secondary-600 mb-2">Description</p>
+                  <p className="text-secondary-700">
+                    {showEventDetails.description}
+                  </p>
                 </div>
               )}
 
-              <div className="mt-6 flex gap-3">
-                <Link
-                  href="/connect/events"
-                  className="flex-1 px-4 py-2 bg-primary-600 text-white text-center rounded-lg hover:bg-primary-700"
+              {showEventDetails.url && (
+                <a
+                  href={showEventDetails.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors mb-4"
                 >
-                  View All Events
-                </Link>
+                  Learn More
+                  <ExternalLink size={16} />
+                </a>
+              )}
+
+              <div className="flex gap-2">
                 <button
                   onClick={() => setShowEventDetails(null)}
-                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                  className="flex-1 px-4 py-2 bg-secondary-100 text-secondary-700 rounded-lg hover:bg-secondary-200 transition-colors font-semibold"
                 >
                   Close
                 </button>
@@ -842,6 +407,27 @@ export default function ChurchCalendar({
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Info section */}
+      <div className="mt-8 p-6 bg-primary-50 rounded-lg border border-primary-200">
+        <h3 className="font-semibold text-primary-900 mb-2">
+          Community of Christ Events
+        </h3>
+        <p className="text-primary-800 text-sm mb-3">
+          This calendar displays events from Community of Christ worldwide. For
+          the complete event schedule and more details, visit the official
+          gathering site.
+        </p>
+        <a
+          href="https://gathering.cofchrist.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold text-sm"
+        >
+          Visit Community of Christ Gathering
+          <ExternalLink size={16} />
+        </a>
+      </div>
     </div>
   );
 }
