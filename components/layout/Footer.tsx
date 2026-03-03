@@ -6,7 +6,34 @@ export default function Footer() {
 
   return (
     <footer className="bg-secondary-900 text-white">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4">
+        {/* Join Our Community Section */}
+        <div className="border-b border-secondary-700 py-12">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Join Our Community</h2>
+            <p className="text-secondary-300 mb-8">
+              Become part of our faith community. Contact the pastor, JoAnne Kelty, to learn where we&apos;re gathering next.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="mailto:joanne.kelty99@gmail.com"
+                className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition-colors"
+              >
+                <Mail className="mr-2" size={20} />
+                Email JoAnne Kelty
+              </a>
+              <a
+                href="tel:+16123081615"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white hover:bg-gray-100 text-slate-900 font-semibold rounded transition-colors"
+              >
+                <Phone className="mr-2" size={20} />
+                (612) 308-1615
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
@@ -133,6 +160,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+        </div>
         </div>
 
         <div className="border-t border-secondary-700 mt-8 pt-8 text-center text-secondary-400">
