@@ -76,6 +76,15 @@ export default function Navigation({ mobile = false, onClose }: NavigationProps)
             )}
           </div>
         ))}
+        <a
+          href="https://comeuntochris.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block px-4 py-2 text-lg font-semibold rounded-md bg-accent-500 text-white text-center"
+          onClick={handleClick}
+        >
+          Study the Book of Mormon
+        </a>
       </nav>
     );
   }
@@ -126,6 +135,14 @@ export default function Navigation({ mobile = false, onClose }: NavigationProps)
           </div>
         );
       })}
+      <a
+        href="https://comeuntochris.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="ml-2 px-4 py-2 text-sm font-semibold rounded-md bg-accent-500 text-white hover:bg-accent-600 transition-colors whitespace-nowrap"
+      >
+        Study the Book of Mormon
+      </a>
     </nav>
   );
 }
