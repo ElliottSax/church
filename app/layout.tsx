@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,12 +7,12 @@ import AnalyticsProvider from "@/components/providers/AnalyticsProvider";
 import SkipLink from "@/components/accessibility/SkipLink";
 import AccessibilityMenu from "@/components/accessibility/AccessibilityMenu";
 
-const inter = Inter({ subsets: ["latin"] });
+const openSans = Open_Sans({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#3b82f6",
+  themeColor: "#0075C9",
 };
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={openSans.className}>
         <SkipLink />
         <AnalyticsProvider>
           <div className="flex flex-col min-h-screen">
