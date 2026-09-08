@@ -382,13 +382,13 @@ export default function EventRSVP({ event, initialCapacity }: EventRSVPProps) {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Special Needs
+                    Accommodations Needed
                   </label>
                   <input
                     type="text"
                     value={formData.specialNeeds}
                     onChange={(e) => setFormData({ ...formData, specialNeeds: e.target.value })}
-                    placeholder="e.g., Wheelchair access"
+                    placeholder="e.g., closed captions, phone dial-in"
                     className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
                   />
                 </div>

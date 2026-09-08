@@ -21,8 +21,8 @@ const joinOptions = [
   },
   {
     icon: Home,
-    title: "Learn About House Church",
-    description: "Understand what it means to be part of our home-based community",
+    title: "How We Gather",
+    description: "Learn about our Zoom gatherings and how to join us",
     action: "/about/location",
     cta: "Learn More",
   },
@@ -50,7 +50,7 @@ export default function JoinUs() {
             Join Our Community
           </h2>
           <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-            We&apos;re a welcoming home church in Minneapolis. Contact the pastor, JoAnne Kelty, to learn where we&apos;re gathering and become part of our spiritual family.
+            We&apos;re a welcoming Community of Christ congregation currently meeting on Zoom. Email the pastor, JoAnne Kelty, for the link and become part of our spiritual family.
           </p>
         </motion.div>
 
@@ -130,7 +130,7 @@ export default function JoinUs() {
                 Deep Connection
               </h4>
               <p className="text-secondary-600">
-                Build meaningful relationships in our intimate home church setting
+                Build meaningful relationships in our intimate Zoom gatherings
               </p>
             </div>
             <div className="text-center">

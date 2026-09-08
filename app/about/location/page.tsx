@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export const metadata = {
   title: "Contact Us | Minneapolis Community of Christ",
-  description: "Contact the pastor, JoAnne Kelty. We're a home church in Minneapolis. Call or email to learn where we're gathering.",
+  description: "We currently meet on Zoom. Email Pastor JoAnne Kelty for the link or to join our newsletter.",
 };
 
 export default function LocationPage() {
@@ -15,7 +15,7 @@ export default function LocationPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Join Our Community</h1>
             <p className="text-xl text-primary-100">
-              Contact JoAnne Kelty to learn where we&apos;re gathering
+              Email JoAnne Kelty for our Zoom link
             </p>
           </div>
         </div>
@@ -31,7 +31,7 @@ export default function LocationPage() {
                 Contact the Pastor, JoAnne Kelty
               </h2>
               <p className="text-secondary-700 mb-6">
-                We are a home church without a physical sanctuary. Visitors are welcome! Please contact our pastor to learn where we&apos;ll be meeting.
+                We currently meet on Zoom. Visitors are welcome! Email our pastor for the meeting link or to be added to our newsletter.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
@@ -70,19 +70,19 @@ export default function LocationPage() {
                 <div>
                   <div className="flex items-center space-x-2 mb-2">
                     <Clock className="text-primary-600" size={20} />
-                    <h3 className="font-semibold text-secondary-900">Flexible Gathering Times</h3>
+                    <h3 className="font-semibold text-secondary-900">Meeting on Zoom</h3>
                   </div>
                   <p className="text-secondary-600 ml-7">
-                    As a home church, we meet in intimate settings focused on deep fellowship and shared worship. Contact JoAnne Kelty for current meeting times and location.
+                    We currently gather over Zoom, focused on deep fellowship and shared worship. Email JoAnne Kelty for the current meeting time and Zoom link.
                   </p>
                 </div>
                 <div>
                   <div className="flex items-center space-x-2 mb-2">
                     <MapPin className="text-primary-600" size={20} />
-                    <h3 className="font-semibold text-secondary-900">Home-Based Gatherings</h3>
+                    <h3 className="font-semibold text-secondary-900">Join From Anywhere</h3>
                   </div>
                   <p className="text-secondary-600 ml-7">
-                    We gather in homes throughout Minneapolis. When you contact JoAnne Kelty, she&apos;ll provide the specific location for our next gathering.
+                    When you email JoAnne Kelty, she&apos;ll send you the Zoom link and add you to our newsletter so you always know how to join.
                   </p>
                 </div>
                 <div>
@@ -91,7 +91,7 @@ export default function LocationPage() {
                     <h3 className="font-semibold text-secondary-900">Intimate Community</h3>
                   </div>
                   <p className="text-secondary-600 ml-7">
-                    Our small group setting fosters deep friendships and meaningful spiritual exploration centered on Christ&apos;s teachings.
+                    Our close-knit Zoom gatherings foster deep friendships and meaningful spiritual exploration centered on Christ&apos;s teachings.
                   </p>
                 </div>
               </div>

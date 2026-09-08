@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "New Here? Welcome to Minneapolis Community of Christ",
     description:
-      "Your first visit guide - everything you need to know about worship, parking, what to wear, and more.",
+      "Your first visit guide - everything you need to know about worship, joining our Zoom, what to wear, and more.",
   },
 };
 
@@ -67,10 +67,10 @@ export default function NewHerePage() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              A House Church Experience
+              A Warm Zoom Community
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We are a home church without a sanctuary building. Our gatherings are intimate, focused on deep spiritual community and shared worship in someone&apos;s home.
+              We currently gather on Zoom. Our meetings are intimate, focused on deep spiritual community and shared worship, wherever you are.
             </p>
           </div>
 
@@ -82,10 +82,10 @@ export default function NewHerePage() {
                 Flexible Gathering Times
               </h3>
               <div className="space-y-2 text-gray-700">
-                <p className="font-semibold">Contact Us to Learn About Meetings</p>
+                <p className="font-semibold">Email Us for the Zoom Link</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  As a home church, we meet at times and locations that work for our community.
-                  Contact Pastor JoAnne to find out when and where we&apos;ll be gathering next.
+                  We currently meet on Zoom. Email Pastor JoAnne to find out our current
+                  meeting time and get the link, or to be added to our newsletter.
                 </p>
               </div>
             </div>
@@ -94,12 +94,12 @@ export default function NewHerePage() {
             <div className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow">
               <Home className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Home-Based Gatherings
+                Join From Anywhere
               </h3>
               <div className="space-y-2 text-gray-700">
                 <p className="font-semibold">Intimate Community Setting</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  We gather in homes throughout Minneapolis. This intimate setting fosters
+                  We gather on Zoom from wherever we are. This intimate setting fosters
                   deep friendships and meaningful spiritual exploration together.
                 </p>
               </div>
@@ -130,7 +130,7 @@ export default function NewHerePage() {
                 <p className="font-semibold">Casual and Comfortable</p>
                 <p>Wear whatever makes you comfortable</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  We&apos;re a casual home church community. There&apos;s no dress code—
+                  We&apos;re a casual community. There&apos;s no dress code—
                   just come as you are.
                 </p>
               </div>
@@ -145,8 +145,8 @@ export default function NewHerePage() {
               <div className="space-y-2 text-gray-700">
                 <p className="font-semibold">Families &amp; Children Encouraged</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  We welcome children and families of all ages. Our home setting is
-                  naturally accommodating for little ones.
+                  We welcome children and families of all ages. Our Zoom gatherings are
+                  relaxed and family-friendly — little ones welcome.
                 </p>
               </div>
             </div>
@@ -160,8 +160,8 @@ export default function NewHerePage() {
               <div className="space-y-2 text-gray-700">
                 <p className="font-semibold">Community &amp; Connection</p>
                 <p className="text-sm text-gray-600 mt-3">
-                  Our small group setting fosters meaningful friendships and authentic
-                  spiritual community. This is where real connection happens.
+                  Our close-knit Zoom gatherings foster meaningful friendships and
+                  authentic spiritual community. This is where real connection happens.
                 </p>
               </div>
             </div>
@@ -189,7 +189,7 @@ export default function NewHerePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="px-6 pb-4 text-gray-700 leading-relaxed">
-                Contact the pastor, JoAnne Kelty at{" "}
+                We currently meet on Zoom. Email the pastor, JoAnne Kelty, at{" "}
                 <a href="mailto:joanne.kelty99@gmail.com" className="text-blue-600 hover:underline">
                   joanne.kelty99@gmail.com
                 </a>{" "}
@@ -197,19 +197,19 @@ export default function NewHerePage() {
                 <a href="tel:+16123081615" className="text-blue-600 hover:underline">
                   (612) 308-1615
                 </a>
-                . She&apos;ll be happy to tell you where we&apos;re gathering and welcome you personally.
+                . She&apos;ll send you the Zoom link and welcome you personally.
               </div>
             </details>
 
             <details className="bg-white rounded-lg shadow-md group">
               <summary className="px-6 py-4 cursor-pointer font-semibold text-lg text-gray-900 hover:text-blue-600 transition-colors flex items-center justify-between">
-                What if I arrive late?
+                What if I join late?
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="px-6 pb-4 text-gray-700 leading-relaxed">
-                No problem at all! Our greeters will welcome you and help you find
-                a seat. We&apos;d rather have you come late than not come at all.
-                Life happens, and we understand.
+                No problem at all — plenty of people join a little late. Just hop
+                into the Zoom whenever you&apos;re able. We&apos;d rather have you
+                join late than not join at all. Life happens, and we understand.
               </div>
             </details>
 
@@ -231,9 +231,11 @@ export default function NewHerePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="px-6 pb-4 text-gray-700 leading-relaxed">
-                Absolutely not! Giving is for members and regular attenders who want
-                to support the church. As a guest, you&apos;re not expected to
-                contribute. We&apos;re just glad you&apos;re here.
+                Not at all. We call our offering &ldquo;the Disciples&apos; Generous
+                Response&rdquo; — it&apos;s an invitation, not an expectation. Give
+                only as you feel led, whether that&apos;s something or nothing at
+                all. As a guest, you&apos;re never expected to contribute. We&apos;re
+                just glad you&apos;re here.
               </div>
             </details>
 
@@ -243,8 +245,8 @@ export default function NewHerePage() {
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="px-6 pb-4 text-gray-700 leading-relaxed">
-                Yes! We practice open communion. All who seek Christ are welcome to
-                participate, regardless of church membership or denomination. It&apos;s
+                Yes! We practice open communion. All are welcome at Christ&apos;s
+                table, regardless of church membership or denomination. It&apos;s
                 offered on the first Sunday of each month.
               </div>
             </details>
@@ -262,9 +264,8 @@ export default function NewHerePage() {
                 >
                   beliefs page
                 </Link>
-                , chat with our AI assistant (bottom right), or schedule a coffee
-                meeting with our pastor. We&apos;re an inclusive, progressive Christian
-                community.
+                , or email our pastor to set up a time to talk. We&apos;re an inclusive,
+                progressive Christian community.
               </div>
             </details>
 
@@ -282,13 +283,14 @@ export default function NewHerePage() {
 
             <details className="bg-white rounded-lg shadow-md group">
               <summary className="px-6 py-4 cursor-pointer font-semibold text-lg text-gray-900 hover:text-blue-600 transition-colors flex items-center justify-between">
-                What if I have mobility challenges or special needs?
+                What if I have accessibility needs?
                 <ArrowRight className="w-5 h-5 group-open:rotate-90 transition-transform" />
               </summary>
               <div className="px-6 pb-4 text-gray-700 leading-relaxed">
-                Our facility is fully accessible with ramps, elevators, accessible
-                restrooms, and reserved parking. We have hearing assistance devices
-                available. Please let a greeter know if you need any accommodations.
+                Since we&apos;re entirely on Zoom, there&apos;s no physical building
+                to navigate, so this looks different for everyone. Whatever you need
+                to fully participate — captions, a phone dial-in option, or anything
+                else — just let JoAnne know and we&apos;ll accommodate you.
               </div>
             </details>
           </div>
@@ -313,10 +315,10 @@ export default function NewHerePage() {
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
               <MapPin className="w-12 h-12 text-blue-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Learn Our Meeting Location
+                Get Our Zoom Link
               </h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                As a home church, we meet in various locations. Contact the pastor, JoAnne Kelty to find out where we&apos;re gathering next.
+                We currently meet on Zoom. Email the pastor, JoAnne Kelty, for the link and to be added to our newsletter.
               </p>
               <Link
                 href="/about/location"
@@ -327,20 +329,20 @@ export default function NewHerePage() {
               </Link>
             </div>
 
-            {/* Join a Small Group */}
+            {/* Scripture Study */}
             <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-8 hover:shadow-xl transition-shadow">
               <Users className="w-12 h-12 text-purple-600 mb-4" />
               <h3 className="text-2xl font-bold mb-3 text-gray-900">
-                Join Our Community
+                Study Scripture With Us
               </h3>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Our intimate home church setting fosters deep friendships and meaningful spiritual fellowship.
+                Explore the Bible, Book of Mormon, and Doctrine and Covenants together in our Zoom gatherings.
               </p>
               <Link
-                href="/connect/groups"
+                href="/grow/bible-study"
                 className="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700"
               >
-                Our Groups
+                Bible Study
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </div>

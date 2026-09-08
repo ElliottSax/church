@@ -2,8 +2,8 @@ import { Clock, MapPin, Calendar, Music, Users, Heart } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Worship Services | Minneapolis Community of Christ",
-  description: "Join us for worship Sundays at 10:30 AM. In-person and online options available.",
+  title: "Worship | Minneapolis Community of Christ",
+  description: "We currently gather for worship on Zoom. Email JoAnne Kelty for the link and current meeting time.",
 };
 
 export default function WorshipPage() {
@@ -18,29 +18,23 @@ export default function WorshipPage() {
               Join us in celebrating God&apos;s love through music, message, and community
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/about/location"
+              <a
+                href="mailto:joanne.kelty99@gmail.com"
                 className="px-8 py-3 bg-white text-primary-700 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
               >
-                Plan Your Visit
-              </Link>
-              <a
-                href="#"
-                className="px-8 py-3 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors border-2 border-white"
-              >
-                Watch Live
+                Email for the Zoom Link
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Service Times */}
+      {/* Gathering Info */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-secondary-900 mb-12 text-center">
-              Service Times
+              How We Gather
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -49,9 +43,8 @@ export default function WorshipPage() {
                 <h3 className="text-xl font-semibold text-secondary-900 mb-2">
                   Sunday Worship
                 </h3>
-                <p className="text-2xl font-bold text-primary-600 mb-2">10:30 AM</p>
                 <p className="text-secondary-600 text-sm">
-                  Traditional worship with contemporary elements
+                  Email JoAnne Kelty for our current meeting time and Zoom link.
                 </p>
               </div>
 
@@ -62,23 +55,23 @@ export default function WorshipPage() {
                 </h3>
                 <p className="text-2xl font-bold text-primary-600 mb-2">Communion</p>
                 <p className="text-secondary-600 text-sm">
-                  We celebrate the Lord&apos;s Supper together
+                  We celebrate the Lord&apos;s Supper together. All are welcome at Christ&apos;s table.
                 </p>
               </div>
 
               <div className="bg-primary-50 rounded-lg p-6 text-center">
                 <MapPin className="text-primary-600 mx-auto mb-4" size={48} />
                 <h3 className="text-xl font-semibold text-secondary-900 mb-2">
-                  Location
+                  Where
                 </h3>
                 <p className="text-lg font-semibold text-secondary-900 mb-2">
-                  Main Sanctuary
+                  On Zoom, Wherever You Are
                 </p>
                 <Link
                   href="/about/location"
                   className="text-primary-600 hover:text-primary-700 text-sm font-semibold"
                 >
-                  Get Directions →
+                  Get the Link →
                 </Link>
               </div>
             </div>
@@ -136,8 +129,8 @@ export default function WorshipPage() {
                     </h3>
                     <p className="text-secondary-700">
                       We believe worship is better together. You&apos;ll find a warm, friendly
-                      congregation that genuinely cares about one another. Coffee and
-                      fellowship follow the service.
+                      congregation that genuinely cares about one another, and we always
+                      stay on the call for a few minutes of fellowship afterward.
                     </p>
                   </div>
                 </div>
@@ -152,101 +145,43 @@ export default function WorshipPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-secondary-900 mb-8 text-center">
-              Typical Service Flow
+              What a Gathering Looks Like
             </h2>
 
             <div className="bg-primary-50 rounded-lg p-8">
               <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:30 AM
-                  </div>
-                  <div className="flex-1 border-l-2 border-primary-600 pl-4">
-                    <h4 className="font-semibold text-secondary-900">
-                      Prelude & Welcome
-                    </h4>
-                    <p className="text-sm text-secondary-600">
-                      Gathering music and greeting
-                    </p>
-                  </div>
+                <div className="flex-1 border-l-2 border-primary-600 pl-4">
+                  <h4 className="font-semibold text-secondary-900">
+                    Welcome
+                  </h4>
+                  <p className="text-sm text-secondary-600">
+                    We check in with each other as folks join the Zoom.
+                  </p>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:35
-                  </div>
-                  <div className="flex-1 border-l-2 border-primary-600 pl-4">
-                    <h4 className="font-semibold text-secondary-900">Opening Song</h4>
-                    <p className="text-sm text-secondary-600">
-                      Congregation joins in worship
-                    </p>
-                  </div>
+                <div className="flex-1 border-l-2 border-primary-600 pl-4">
+                  <h4 className="font-semibold text-secondary-900">Song &amp; Prayer</h4>
+                  <p className="text-sm text-secondary-600">
+                    An opening song, prayer, and scripture reading.
+                  </p>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:40
-                  </div>
-                  <div className="flex-1 border-l-2 border-primary-600 pl-4">
-                    <h4 className="font-semibold text-secondary-900">
-                      Prayer & Scripture
-                    </h4>
-                    <p className="text-sm text-secondary-600">
-                      Opening prayer and Bible reading
-                    </p>
-                  </div>
+                <div className="flex-1 border-l-2 border-primary-600 pl-4">
+                  <h4 className="font-semibold text-secondary-900">
+                    Message &amp; Discussion
+                  </h4>
+                  <p className="text-sm text-secondary-600">
+                    A message connecting scripture to daily life, often followed by discussion.
+                  </p>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:50
-                  </div>
-                  <div className="flex-1 border-l-2 border-primary-600 pl-4">
-                    <h4 className="font-semibold text-secondary-900">
-                      Children&apos;s Moment
-                    </h4>
-                    <p className="text-sm text-secondary-600">
-                      Kids come forward for a brief lesson
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 text-right text-primary-600 font-semibold">
-                    10:55
-                  </div>
-                  <div className="flex-1 border-l-2 border-primary-600 pl-4">
-                    <h4 className="font-semibold text-secondary-900">Message</h4>
-                    <p className="text-sm text-secondary-600">Sermon by pastoral team</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 text-right text-primary-600 font-semibold">
-                    11:20
-                  </div>
-                  <div className="flex-1 border-l-2 border-primary-600 pl-4">
-                    <h4 className="font-semibold text-secondary-900">
-                      Response & Closing
-                    </h4>
-                    <p className="text-sm text-secondary-600">
-                      Final song, announcements, benediction
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-20 text-right text-primary-600 font-semibold">
-                    11:30
-                  </div>
-                  <div className="flex-1 border-l-2 border-primary-600 pl-4">
-                    <h4 className="font-semibold text-secondary-900">
-                      Fellowship Time
-                    </h4>
-                    <p className="text-sm text-secondary-600">
-                      Coffee, snacks, and conversation
-                    </p>
-                  </div>
+                <div className="flex-1 border-l-2 border-primary-600 pl-4">
+                  <h4 className="font-semibold text-secondary-900">
+                    Closing &amp; Fellowship
+                  </h4>
+                  <p className="text-sm text-secondary-600">
+                    A closing song and benediction, then time to catch up before we log off.
+                  </p>
                 </div>
               </div>
             </div>
@@ -266,65 +201,29 @@ export default function WorshipPage() {
               <div className="bg-white rounded-lg p-6">
                 <h3 className="font-semibold text-secondary-900 mb-3">What to Wear</h3>
                 <p className="text-secondary-700 text-sm">
-                  Come as you are! Some wear jeans and a t-shirt, others prefer business
-                  casual. We care more about your presence than your clothes.
-                </p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6">
-                <h3 className="font-semibold text-secondary-900 mb-3">Parking</h3>
-                <p className="text-secondary-700 text-sm">
-                  Free parking in our lot behind the building. Accessible spaces near the
-                  main entrance. Street parking also available.
+                  Come as you are! Camera on or off, jeans or pajamas — we care more
+                  about your presence than your appearance.
                 </p>
               </div>
 
               <div className="bg-white rounded-lg p-6">
                 <h3 className="font-semibold text-secondary-900 mb-3">Children</h3>
                 <p className="text-secondary-700 text-sm">
-                  Nursery available for infants-3 years. Children&apos;s Church for ages 4-11
-                  starts after the Children&apos;s Moment. Kids are always welcome in worship!
+                  Kids are always welcome on the call, wiggles and all.
                 </p>
               </div>
 
-              <div className="bg-white rounded-lg p-6">
+              <div className="bg-white rounded-lg p-6 md:col-span-2">
                 <h3 className="font-semibold text-secondary-900 mb-3">
                   Accessibility
                 </h3>
                 <p className="text-secondary-700 text-sm">
-                  Our building is fully accessible. Large-print bulletins and assistive
-                  listening devices available. Just ask an usher!
+                  Since we meet entirely on Zoom, there&apos;s no physical building to
+                  navigate. Let JoAnne know if there&apos;s anything we can do to help
+                  you participate fully — captions, a phone dial-in option, or
+                  anything else. We&apos;ll accommodate everyone who needs accommodating.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Online Worship */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-secondary-900 mb-4">
-              Can&apos;t Join Us in Person?
-            </h2>
-            <p className="text-lg text-secondary-700 mb-8">
-              Watch our worship services live online every Sunday at 10:30 AM, or catch up
-              later with our sermon archive.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#"
-                className="px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors"
-              >
-                Watch Live
-              </a>
-              <Link
-                href="/grow/sermons"
-                className="px-8 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
-              >
-                Sermon Archive
-              </Link>
             </div>
           </div>
         </div>

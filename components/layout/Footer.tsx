@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Join Our Community</h2>
             <p className="text-secondary-300 mb-8">
-              Become part of our faith community. Contact the pastor, JoAnne Kelty, to learn where we&apos;re gathering next.
+              Become part of our faith community. We currently meet on Zoom — email the pastor, JoAnne Kelty, for the link or to join our newsletter.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -92,11 +92,6 @@ export default function Footer() {
                   Our Beliefs
                 </Link>
               </li>
-              <li>
-                <Link href="/connect/events" className="text-secondary-300 hover:text-white transition-colors">
-                  Events
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -110,13 +105,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/grow/sermons" className="text-secondary-300 hover:text-white transition-colors">
-                  Sermons
-                </Link>
-              </li>
-              <li>
                 <Link href="/grow/bible-study" className="text-secondary-300 hover:text-white transition-colors">
-                  Bible Study
+                  Bible, Book of Mormon &amp; D&amp;C Study
                 </Link>
               </li>
               <li>
@@ -140,7 +130,7 @@ export default function Footer() {
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
                 <span className="text-secondary-300">
                   Minneapolis, MN<br />
-                  <span className="text-xs italic">Home Church</span>
+                  <span className="text-xs italic">Currently meeting on Zoom</span>
                 </span>
               </li>
               <li className="flex items-center space-x-2">

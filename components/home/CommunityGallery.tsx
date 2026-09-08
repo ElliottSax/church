@@ -39,7 +39,7 @@ export default function CommunityGallery() {
             Our Community
           </h2>
           <p className="text-lg text-secondary-600 max-w-2xl mx-auto">
-            A welcoming home church where we gather, worship, and grow together in faith
+            A welcoming community where we gather, worship, and grow together in faith
           </p>
         </motion.div>
 

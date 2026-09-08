@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Type,
   Moon,
@@ -26,11 +26,28 @@ export default function AccessibilityMenu() {
   const [highContrast, setHighContrast] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
+  // Restore saved settings on load.
+  useEffect(() => {
+    const savedFontSize = Number(localStorage.getItem("a11y-font-size")) || 100;
+    const savedHighContrast = localStorage.getItem("a11y-high-contrast") === "true";
+    const savedDarkMode = localStorage.getItem("a11y-dark-mode") === "true";
+
+    setFontSize(savedFontSize);
+    document.documentElement.style.fontSize = `${savedFontSize}%`;
+
+    setHighContrast(savedHighContrast);
+    document.documentElement.classList.toggle("high-contrast", savedHighContrast);
+
+    setDarkMode(savedDarkMode);
+    document.documentElement.classList.toggle("dark", savedDarkMode);
+  }, []);
+
   const increaseFontSize = () => {
     if (fontSize < 150) {
       const newSize = fontSize + 10;
       setFontSize(newSize);
       document.documentElement.style.fontSize = `${newSize}%`;
+      localStorage.setItem("a11y-font-size", String(newSize));
     }
   };
 
@@ -39,30 +56,28 @@ export default function AccessibilityMenu() {
       const newSize = fontSize - 10;
       setFontSize(newSize);
       document.documentElement.style.fontSize = `${newSize}%`;
+      localStorage.setItem("a11y-font-size", String(newSize));
     }
   };
 
   const resetFontSize = () => {
     setFontSize(100);
     document.documentElement.style.fontSize = "100%";
+    localStorage.setItem("a11y-font-size", "100");
   };
 
   const toggleHighContrast = () => {
-    setHighContrast(!highContrast);
-    if (!highContrast) {
-      document.documentElement.classList.add("high-contrast");
-    } else {
-      document.documentElement.classList.remove("high-contrast");
-    }
+    const next = !highContrast;
+    setHighContrast(next);
+    document.documentElement.classList.toggle("high-contrast", next);
+    localStorage.setItem("a11y-high-contrast", String(next));
   };
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    if (!darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    const next = !darkMode;
+    setDarkMode(next);
+    document.documentElement.classList.toggle("dark", next);
+    localStorage.setItem("a11y-dark-mode", String(next));
   };
 
   return (

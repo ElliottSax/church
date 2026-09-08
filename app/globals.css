@@ -66,3 +66,18 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Dark mode: most of the site uses hardcoded Tailwind colors (bg-white,
+   text-gray-900, etc.) rather than dark: variants, so a class-based theme
+   swap can't just remap a handful of tokens. Inverting the page and then
+   counter-inverting real media keeps photos/the logo accurate while every
+   background and text color flips. */
+html.dark {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html.dark img,
+html.dark video,
+html.dark iframe {
+  filter: invert(1) hue-rotate(180deg);
+}

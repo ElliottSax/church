@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Hero() {
@@ -17,21 +16,25 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="max-w-5xl mx-auto text-center"
         >
-          {/* Church Seal - now as the main heading */}
+          {/* Community of Christ logo - same mark used as the browser tab icon.
+              Plain <img>, not next/image: this SVG can't be optimized by Next's
+              image pipeline since next.config.js doesn't set images.dangerouslyAllowSVG.
+              Wrapped in a white card since the logo's navy/gold coloring has too
+              little contrast directly against this section's dark background. */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
             className="mb-8 flex justify-center"
           >
-            <Image
-              src="/295734f9-903b-46b0-af54-0e2d78ff5511.png"
-              alt="Minneapolis Community of Christ"
-              width={180}
-              height={180}
-              className="rounded-full shadow-2xl"
-              priority
-            />
+            <div className="bg-white rounded-2xl shadow-2xl px-8 py-6 inline-block">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/logo.svg"
+                alt="Community of Christ"
+                className="h-12 md:h-14 w-auto"
+              />
+            </div>
           </motion.div>
 
           {/* Mission statement */}
@@ -51,7 +54,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg text-gray-300 font-medium"
           >
-            A welcoming home church community in Minneapolis
+            A welcoming Community of Christ congregation in Minneapolis, meeting on Zoom
           </motion.p>
         </motion.div>
       </div>
