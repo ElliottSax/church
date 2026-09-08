@@ -18,14 +18,6 @@ const adminRoutes = [
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // comeuntochris.org is a separate front door onto the same church site --
-  // its homepage should land on the succession-history page, not the regular
-  // homepage, without duplicating the site under a second deployment.
-  const host = request.headers.get("host") || "";
-  if (pathname === "/" && (host === "comeuntochris.org" || host === "www.comeuntochris.org")) {
-    return NextResponse.rewrite(new URL("/why-community-of-christ", request.url));
-  }
-
   // Check if route is protected
   const isProtected = protectedRoutes.some(route => pathname.startsWith(route));
   const isAdminRoute = adminRoutes.some(route => pathname.startsWith(route));
@@ -57,7 +49,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/',
     '/admin/:path*',
     '/members/:path*',
     '/api/admin/:path*',
