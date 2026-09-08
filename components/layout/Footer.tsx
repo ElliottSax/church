@@ -106,7 +106,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://comeuntochris.org"
+                  href="https://mplscc.org"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-secondary-300 hover:text-white transition-colors"

@@ -153,7 +153,7 @@ export default function ResourcesPage() {
                 <strong>Access all 167 sections:</strong> study the full Doctrine and
                 Covenants (and the Book of Mormon and Inspired Version Bible) in our{" "}
                 <a
-                  href="https://comeuntochris.org"
+                  href="https://mplscc.org"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary-600 hover:underline"

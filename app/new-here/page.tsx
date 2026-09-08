@@ -339,7 +339,7 @@ export default function NewHerePage() {
                 Explore the Bible, Book of Mormon, and Doctrine and Covenants together in our Zoom gatherings.
               </p>
               <a
-                href="https://comeuntochris.org"
+                href="https://mplscc.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700"

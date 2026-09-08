@@ -5,5 +5,5 @@ import { redirect } from "next/navigation";
 // actually run small groups. Our real scripture study happens in the
 // Bible/Book of Mormon/D&C study app, so send visitors there instead.
 export default function BibleStudyRedirect() {
-  redirect("https://comeuntochris.org");
+  redirect("https://mplscc.org");
 }
