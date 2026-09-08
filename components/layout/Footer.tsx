@@ -105,8 +105,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/grow/bible-study" className="text-secondary-300 hover:text-white transition-colors">
+                <a
+                  href="https://comeuntochris.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary-300 hover:text-white transition-colors"
+                >
                   Bible, Book of Mormon &amp; D&amp;C Study
+                </a>
+              </li>
+              <li>
+                <Link href="/grow/resources" className="text-secondary-300 hover:text-white transition-colors">
+                  Study Resources
                 </Link>
               </li>
               <li>

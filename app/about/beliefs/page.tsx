@@ -232,12 +232,10 @@ export default function BeliefsPage() {
                 Visit Us
               </a>
               <a
-                href="https://cofchrist.org/beliefs"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/about/community-of-christ"
                 className="px-8 py-3 bg-white text-primary-600 border-2 border-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
               >
-                Community of Christ World Church
+                About Community of Christ
               </a>
             </div>
           </div>

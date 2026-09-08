@@ -338,13 +338,15 @@ export default function NewHerePage() {
               <p className="text-gray-700 mb-6 leading-relaxed">
                 Explore the Bible, Book of Mormon, and Doctrine and Covenants together in our Zoom gatherings.
               </p>
-              <Link
-                href="/grow/bible-study"
+              <a
+                href="https://comeuntochris.org"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700"
               >
                 Bible Study
                 <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+              </a>
             </div>
 
             {/* Learn About Our Faith */}

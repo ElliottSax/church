@@ -22,6 +22,8 @@ const navItems: NavItem[] = [
     children: [
       { label: "Our Story", href: "/about/story" },
       { label: "Beliefs", href: "/about/beliefs" },
+      { label: "About Community of Christ", href: "/about/community-of-christ" },
+      { label: "Study Resources", href: "/grow/resources" },
       { label: "Location & Times", href: "/about/location" },
     ],
   },
